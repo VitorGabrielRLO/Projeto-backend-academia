@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Scanner;
 
 public class Pessoa {
     private int id;
@@ -12,19 +13,9 @@ public class Pessoa {
     private Date dataModificacao;
 
     // Construtor
-    public Pessoa(int id, String nome, String sexo, Date nascimento, String login, String senha, int tipoUsuario, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.sexo = sexo;
-        this.nascimento = nascimento;
-        this.login = login;
-        this.senha = senha;
-        this.tipoUsuario = tipoUsuario;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
 
     // Getters e Setters
+
     public int getId() {
         return id;
     }
@@ -49,46 +40,6 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
-    public Date getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Date nascimento) {
-        this.nascimento = nascimento;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public int getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(int tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
     public Date getDataModificacao() {
         return dataModificacao;
     }
@@ -97,7 +48,76 @@ public class Pessoa {
         this.dataModificacao = dataModificacao;
     }
 
-    
+    // Método para permitir que o usuário adicione informações do aluno
+    protected void adicionaInfoPessoa() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("\nPor favor, insira o ID do Aluno: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer de entrada
+
+        System.out.print("\nPor favor, insira o nome do Aluno: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("\nPor favor, insira o sexo do Aluno: ");
+        String sexo = scanner.nextLine();
+
+        // Adicionar mais campos aqui, como data de nascimento, login, senha, etc.
+
+        setId(id);
+        setNome(nome);
+        setSexo(sexo);
+
+        // Atualizar a data de modificação
+        setDataModificacao(new Date());
+
+        System.out.println("\nInformações do Aluno adicionadas com sucesso!\n");
+    }
+
+    // Método para exibir as informações do aluno
+    public void exibeInfoPessoa() {
+        System.out.println("\nInformações do Aluno:");
+        System.out.println("ID: " + getId());
+        System.out.println("Nome: " + getNome());
+        System.out.println("Sexo: " + getSexo());
+        // Adicione mais campos conforme necessário
+    }
+
+    // Método para selecionar operação (adicionar ou exibir informações do aluno)
+    public void selecionarOpc() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("");
+            System.out.println("Selecione a operação desejada:");
+            System.out.println("1. Adicionar informações do Aluno");
+            System.out.println("2. Exibir informações do Aluno");
+            System.out.println("3. Sair");
+            System.out.print("Opção: ");
+
+            int opc = scanner.nextInt();
+
+            switch (opc) {
+                case 1:
+                    adicionaInfoPessoa();
+                    break;
+
+                case 2:
+                    exibeInfoPessoa();
+                    break;
+
+                case 3:
+                    System.out.println("Encerrando o programa...");
+                    return;
+
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+        }
+    }
+
+    // Outros métodos da classe...
+
     @Override
     public String toString() {
         return "Pessoa{" +
