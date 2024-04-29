@@ -1,17 +1,19 @@
 import java.util.Date;
 
-public class Exercicio {
+public class MovFinanceira {
     private int id;
-    private String nome;
-    private String descricaoFoto;
+    private double valor;
+    private int tipo;
+    private String descricao;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public Exercicio(int id, String nome, String descricaoFoto, Date dataCriacao, Date dataModificacao) {
+    public MovFinanceira(int id, double valor, int tipo, String descricao, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.nome = nome;
-        this.descricaoFoto = descricaoFoto;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.descricao = descricao;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -25,20 +27,28 @@ public class Exercicio {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public double getValor() {
+        return valor;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public String getDescricaoFoto() {
-        return descricaoFoto;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setDescricaoFoto(String descricaoFoto) {
-        this.descricaoFoto = descricaoFoto;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Date getDataCriacao() {
@@ -57,12 +67,14 @@ public class Exercicio {
         this.dataModificacao = dataModificacao;
     }
 
+    
     @Override
     public String toString() {
-        return "Exercicio{" +
+        return "MovFinanceira{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricaoFoto='" + descricaoFoto + '\'' +
+                ", valor=" + valor +
+                ", tipo=" + tipo +
+                ", descricao='" + descricao + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

@@ -97,7 +97,7 @@ public class Pessoa {
         this.dataModificacao = dataModificacao;
     }
 
-    // Método toString para representação da Pessoa em String
+    
     @Override
     public String toString() {
         return "Pessoa{" +

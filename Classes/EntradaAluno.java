@@ -1,17 +1,15 @@
 import java.util.Date;
 
-public class Exercicio {
+public class EntradaAluno {
     private int id;
-    private String nome;
-    private String descricaoFoto;
+    private Date dataHora;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public Exercicio(int id, String nome, String descricaoFoto, Date dataCriacao, Date dataModificacao) {
+    public EntradaAluno(int id, Date dataHora, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.nome = nome;
-        this.descricaoFoto = descricaoFoto;
+        this.dataHora = dataHora;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -25,20 +23,12 @@ public class Exercicio {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Date getDataHora() {
+        return dataHora;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricaoFoto() {
-        return descricaoFoto;
-    }
-
-    public void setDescricaoFoto(String descricaoFoto) {
-        this.descricaoFoto = descricaoFoto;
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
     }
 
     public Date getDataCriacao() {
@@ -57,12 +47,12 @@ public class Exercicio {
         this.dataModificacao = dataModificacao;
     }
 
+    
     @Override
     public String toString() {
-        return "Exercicio{" +
+        return "EntradaAluno{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricaoFoto='" + descricaoFoto + '\'' +
+                ", dataHora=" + dataHora +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

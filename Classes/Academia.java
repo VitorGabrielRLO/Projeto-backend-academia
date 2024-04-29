@@ -8,7 +8,7 @@ public class Academia {
     private Date dataCriacao;
     private Date dataModificacao;
     
-    // Construtor privado
+    
     private Academia(int id, String nome, String endereco, Date dataCriacao, Date dataModificacao) {
         this.id = id;
         this.nome = nome;
@@ -40,7 +40,7 @@ public class Academia {
         System.out.println("Data de Modificação: " + dataModificacao);
     }
     
-    // Método para permitir que o usuário insira informações da academia
+    // usuário insira informações da academia
     private void adicionarInformacoesDoUsuario() {
         Scanner scanner = new Scanner(System.in);
         
@@ -54,7 +54,7 @@ public class Academia {
         System.out.print("\nPor favor, insira o endereço da academia: ");
         String endereco = scanner.nextLine();
         
-        // Supondo que a data de criação e modificação seja a data atual
+        // data atual
         Date dataAtual = new Date();
         
         // Chamando o método para adicionar as informações inseridas pelo usuário
