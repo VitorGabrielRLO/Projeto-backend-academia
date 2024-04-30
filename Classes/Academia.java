@@ -2,24 +2,34 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Academia {
+    private static int proximoId = 0;
     private int id;
     private String nome;
     private String endereco;
     private Date dataCriacao;
     private Date dataModificacao;
+    private AcademiaDAO academiaDAO;
 
-
-    // Método para adicionar informações da academia
-    private void adicionarInformacoes(int id, String nome, String endereco, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
+    public Academia() {
+        this.id = proximoId++;
+        this.nome = "";
+        this.endereco = "";
+        this.dataCriacao = new Date();
+        this.dataModificacao = new Date();
+        this.academiaDAO = new AcademiaDAO(100); // Cada Academia tem seu próprio AcademiaDAO
     }
 
-    // Método para exibir informações da academia
-    protected void exibirInformacoes() {
+    public void adicionarInformacoes(String nome, String endereco, Date dataCriacao, Date dataModificacao) {
+        Academia novaAcademia = new Academia(); // Criar uma nova instância de Academia
+        novaAcademia.id = proximoId++; // Definir o ID da nova academia
+        novaAcademia.nome = nome;
+        novaAcademia.endereco = endereco;
+        novaAcademia.dataCriacao = dataCriacao;
+        novaAcademia.dataModificacao = dataModificacao;
+        academiaDAO.adicionarAcademia(novaAcademia); // Adicionar a nova academia ao DAO
+    }
+
+    public void exibirInformacoes() {
         System.out.println("\nID: " + id);
         System.out.println("Nome: " + nome);
         System.out.println("Endereço: " + endereco);
@@ -27,7 +37,6 @@ public class Academia {
         System.out.println("Data de Modificação: " + dataModificacao);
     }
 
-    // Método para permitir que o usuário escolha entre exibir e adicionar informações da academia
     public void selecionarOpc() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -35,7 +44,8 @@ public class Academia {
             System.out.println("Selecione a operação desejada:");
             System.out.println("1. Adicionar informações da academia");
             System.out.println("2. Exibir informações da academia");
-            System.out.println("3. Voltar");
+            System.out.println("3. Exibir todas as academias");
+            System.out.println("4. Voltar");
             System.out.print("Opção: ");
 
             int opc = scanner.nextInt();
@@ -50,9 +60,11 @@ public class Academia {
                     break;
 
                 case 3:
-                
-                    // System.out.println("Encerrando o programa...");
-                    return ;
+                    academiaDAO.exibirTodasAsAcademias();
+                    break;
+
+                case 4:
+                    return;
 
                 default:
                     System.out.println("Opção inválida.");
@@ -61,13 +73,8 @@ public class Academia {
         }
     }
 
-    // Método para permitir que o usuário insira informações da academia
-    protected void adicionarInformacoesDoUsuario() {
+    public void adicionarInformacoesDoUsuario() {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("\nPor favor, insira o ID da academia: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer de entrada
 
         System.out.print("\nPor favor, insira o nome da academia: ");
         String nome = scanner.nextLine();
@@ -75,11 +82,9 @@ public class Academia {
         System.out.print("\nPor favor, insira o endereço da academia: ");
         String endereco = scanner.nextLine();
 
-        // data atual
         Date dataAtual = new Date();
 
-        // Chamando o método para adicionar as informações inseridas pelo usuário
-        adicionarInformacoes(id, nome, endereco, dataAtual, dataAtual);
+        adicionarInformacoes(nome, endereco, dataAtual, dataAtual);
 
         System.out.println("\nInformações da academia adicionadas com sucesso!\n");
     }

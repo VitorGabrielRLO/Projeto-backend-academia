@@ -1,9 +1,8 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Criando uma instância da classe MenuSelecao
-        MenuSelecao menuSelecao = new MenuSelecao();
-        
-        // Permitindo que o usuário selecione uma opção
+        MenuSelecao menuSelecao = new MenuSelecao(); // Cria uma instância de MenuSelecao, que cria uma instância de Academia
         menuSelecao.selecioneOpc();
     }
 }
