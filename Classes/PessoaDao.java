@@ -1,3 +1,4 @@
+
 public class PessoaDao {
 
     Pessoa[] pessoa = new Pessoa[10];
@@ -38,8 +39,8 @@ public class PessoaDao {
 
     public boolean alterarNome(String nome, String novoNome) {
         for (Pessoa pessoas : pessoa) {
-            if (pessoas != null && pessoas.getNome().equals(nome)) {
-                pessoas.setNome(novoNome);
+            if (pessoas != null && pessoas.getNomePessoa().equals(nome)) {
+                pessoas.setNomePessoa(novoNome);
                 return true;
             }
         }
@@ -49,7 +50,7 @@ public class PessoaDao {
 
     Pessoa buscaPorNome(String nome) {
         for (Pessoa pessoas : pessoa) {
-            if (pessoas != null && pessoas.getNome().equals(nome)) {
+            if (pessoas != null && pessoas.getNomePessoa().equals(nome)) {
                 return pessoas;
             }
         }
@@ -59,7 +60,7 @@ public class PessoaDao {
 
     public boolean remover(String nome) {
         for (int i = 0; i < pessoa.length; i++) {
-            if (pessoa[i] != null && pessoa[i].getNome().equals(nome)) {
+            if (pessoa[i] != null && pessoa[i].getNomePessoa().equals(nome)) {
                 pessoa[i] = null;
                 return true;
             }
