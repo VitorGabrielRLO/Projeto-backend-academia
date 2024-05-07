@@ -1,17 +1,17 @@
 import java.util.Date;
 
-public class Exercicio {
+public class DivisaoTreino {
     private int id;
     private String nome;
-    private String descricaoFoto;
+    private String nomeDetalhado;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public Exercicio(int id, String nome, String descricaoFoto, Date dataCriacao, Date dataModificacao) {
+    public DivisaoTreino(int id, String nome, String nomeDetalhado, Date dataCriacao, Date dataModificacao) {
         this.id = id;
         this.nome = nome;
-        this.descricaoFoto = descricaoFoto;
+        this.nomeDetalhado = nomeDetalhado;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -33,12 +33,12 @@ public class Exercicio {
         this.nome = nome;
     }
 
-    public String getDescricaoFoto() {
-        return descricaoFoto;
+    public String getNomeDetalhado() {
+        return nomeDetalhado;
     }
 
-    public void setDescricaoFoto(String descricaoFoto) {
-        this.descricaoFoto = descricaoFoto;
+    public void setNomeDetalhado(String nomeDetalhado) {
+        this.nomeDetalhado = nomeDetalhado;
     }
 
     public Date getDataCriacao() {
@@ -57,16 +57,13 @@ public class Exercicio {
         this.dataModificacao = dataModificacao;
     }
 
-<<<<<<< HEAD
-    // Método toString para representação do Exercicio em String
-=======
->>>>>>> vitor
+    
     @Override
     public String toString() {
-        return "Exercicio{" +
+        return "DivisaoTreino{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", descricaoFoto='" + descricaoFoto + '\'' +
+                ", nomeDetalhado='" + nomeDetalhado + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

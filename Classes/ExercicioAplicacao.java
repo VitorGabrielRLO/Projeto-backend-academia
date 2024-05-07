@@ -57,7 +57,11 @@ public class ExercicioAplicacao {
         this.dataModificacao = dataModificacao;
     }
 
+<<<<<<< HEAD
     // Método toString para representação da ExercicioAplicacao em String
+=======
+    
+>>>>>>> vitor
     @Override
     public String toString() {
         return "ExercicioAplicacao{" +

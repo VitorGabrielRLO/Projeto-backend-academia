@@ -1,17 +1,19 @@
 import java.util.Date;
 
-public class Exercicio {
+public class MensalidadeVigente {
     private int id;
-    private String nome;
-    private String descricaoFoto;
+    private double valor;
+    private Date inicio;
+    private Date termino;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public Exercicio(int id, String nome, String descricaoFoto, Date dataCriacao, Date dataModificacao) {
+    public MensalidadeVigente(int id, double valor, Date inicio, Date termino, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.nome = nome;
-        this.descricaoFoto = descricaoFoto;
+        this.valor = valor;
+        this.inicio = inicio;
+        this.termino = termino;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -25,20 +27,28 @@ public class Exercicio {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public double getValor() {
+        return valor;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public String getDescricaoFoto() {
-        return descricaoFoto;
+    public Date getInicio() {
+        return inicio;
     }
 
-    public void setDescricaoFoto(String descricaoFoto) {
-        this.descricaoFoto = descricaoFoto;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getTermino() {
+        return termino;
+    }
+
+    public void setTermino(Date termino) {
+        this.termino = termino;
     }
 
     public Date getDataCriacao() {
@@ -57,16 +67,14 @@ public class Exercicio {
         this.dataModificacao = dataModificacao;
     }
 
-<<<<<<< HEAD
-    // Método toString para representação do Exercicio em String
-=======
->>>>>>> vitor
+    
     @Override
     public String toString() {
-        return "Exercicio{" +
+        return "MensalidadeVigente{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricaoFoto='" + descricaoFoto + '\'' +
+                ", valor=" + valor +
+                ", inicio=" + inicio +
+                ", termino=" + termino +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';
