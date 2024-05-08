@@ -43,9 +43,8 @@ public class Academia {
             System.out.println("");
             System.out.println("Selecione a operação desejada:");
             System.out.println("1. Adicionar informações da academia");
-            System.out.println("2. Exibir informações da academia");
-            System.out.println("3. Exibir todas as academias");
-            System.out.println("4. Voltar");
+            System.out.println("2. Exibir todas as academias");
+            System.out.println("3. Voltar");
             System.out.print("Opção: ");
 
             int opc = scanner.nextInt();
@@ -56,14 +55,10 @@ public class Academia {
                     break;
 
                 case 2:
-                    exibirInformacoes();
-                    break;
+                academiaDAO.exibirTodasAsAcademias();
+                break;
 
                 case 3:
-                    academiaDAO.exibirTodasAsAcademias();
-                    break;
-
-                case 4:
                     return;
 
                 default:

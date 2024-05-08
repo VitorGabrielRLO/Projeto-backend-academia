@@ -2,8 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pessoaTeste;
-
 import java.util.Scanner;
 import java.util.Date;
 
@@ -92,7 +90,7 @@ public class programaPessoa{
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 cadastrar");
+        System.out.println("\n\n1 cadastrar");
         System.out.println("2 mostrar todos");
         System.out.println("3 alterar o nome da pessoa");
         System.out.println("4 excluir pelo id");

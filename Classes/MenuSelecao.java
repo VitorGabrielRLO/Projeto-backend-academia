@@ -4,10 +4,12 @@ import java.util.Scanner;
 public class MenuSelecao {
     private Academia academia;
     private Pessoa pessoa;
+    private Treino treino;
 
     public MenuSelecao() {
         this.academia = new Academia(); // Instanciando um objeto da classe Academia
         this.pessoa = new Pessoa();
+        this.treino = new Treino(exercicioDAO); // Inicializando a variável treino
     }
 
     public void selecioneOpc() {
@@ -16,7 +18,8 @@ public class MenuSelecao {
             System.out.println("");
             System.out.println("1. Acessar Area da Academia");
             System.out.println("2. Acessar informações do Aluno");
-            System.out.println("3. Sair");
+            System.out.println("3. Adicionar Exercicios");
+            System.out.println("4. Sair");
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
@@ -27,10 +30,14 @@ public class MenuSelecao {
                     break;
 
                 case 2:
-                    pessoa.selecionarOpc(); // Chama o método para exibir informações
+                    new programaPessoa(); // Chama o método para exibir informações
                     break;
 
                 case 3:
+                    treino.menuOpcoes();
+                    break;
+
+                case 4:
                     System.out.println("Encerrando o programa...");
                     return; // Encerra o método e o loop while
 
