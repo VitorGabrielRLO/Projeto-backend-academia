@@ -27,7 +27,7 @@ public class MenuSelecao {
                     break;
 
                 case 2:
-                    pessoa.selecionarOpc(); // Chama o método para exibir informações
+                    programaPessoa.programaPessoa(); // Chama o método para exibir informações
                     break;
 
                 case 3:
