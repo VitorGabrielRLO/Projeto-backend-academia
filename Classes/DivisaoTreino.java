@@ -7,15 +7,6 @@ public class DivisaoTreino {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public DivisaoTreino(int id, String nome, String nomeDetalhado, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.nomeDetalhado = nomeDetalhado;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
     public int getId() {
         return id;

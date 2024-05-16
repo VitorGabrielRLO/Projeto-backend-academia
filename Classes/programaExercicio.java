@@ -7,7 +7,7 @@ public class programaExercicio{
     ExercicioDao ExercicioDao = new ExercicioDao();
     Scanner s = new Scanner(System.in);
 
-    public programaExercicio(){
+    public void mostrarMenu(){
 
 
         int opcaoUsuario;
