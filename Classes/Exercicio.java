@@ -7,15 +7,6 @@ public class Exercicio {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public Exercicio(int id, String nome, String descricaoFoto, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.descricaoFoto = descricaoFoto;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
     public int getId() {
         return id;

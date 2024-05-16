@@ -30,14 +30,6 @@ public class Treino {
         exercicios.add(exercicio);
     }
 
-    // Método para adicionar exercícios do exemplo
-    public void adicionarExerciciosExemplo() {
-        Exercicio supino = new Exercicio(1, "Supino Reto", "foto_supino.jpg", new Date(), new Date());
-        Exercicio agachamento = new Exercicio(2, "Agachamento Livre", "foto_agachamento.jpg", new Date(), new Date());
-        exercicios.add(supino);
-        exercicios.add(agachamento);
-    }
-
     // Método para exibir o menu de opções
     public void menuOpcoes() {
         Scanner scanner = new Scanner(System.in);
@@ -91,8 +83,7 @@ public class Treino {
             String nome = scanner.nextLine();
             System.out.print("Descrição/Foto: ");
             String descricaoFoto = scanner.nextLine();
-            Exercicio exercicio = new Exercicio(i + 3, nome, descricaoFoto, new Date(), new Date()); // ID começa em 3 para evitar conflitos com os exemplos
-            exercicios.add(exercicio);
+            
         }
     }
 

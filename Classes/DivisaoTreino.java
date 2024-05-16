@@ -1,71 +1,41 @@
-import java.util.Date;
-
 public class DivisaoTreino {
-    private int id;
-    private String nome;
-    private String nomeDetalhado;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private String nomeDivisao;
+    private String descricao;
 
-    // Construtor
-    public DivisaoTreino(int id, String nome, String nomeDetalhado, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.nomeDetalhado = nomeDetalhado;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
+    // Construtor padrão
+    public DivisaoTreino() {
+        this.nomeDivisao = "Divisão Padrão";
+        this.descricao = "Descrição Padrão";
+    }
+
+    // Construtor com parâmetros
+    public DivisaoTreino(String nomeDivisao, String descricao) {
+        this.nomeDivisao = nomeDivisao;
+        this.descricao = descricao;
     }
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public String getNomeDivisao() {
+        return nomeDivisao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNomeDivisao(String nomeDivisao) {
+        this.nomeDivisao = nomeDivisao;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getNomeDetalhado() {
-        return nomeDetalhado;
-    }
-
-    public void setNomeDetalhado(String nomeDetalhado) {
-        this.nomeDetalhado = nomeDetalhado;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public Date getDataModificacao() {
-        return dataModificacao;
-    }
-
-    public void setDataModificacao(Date dataModificacao) {
-        this.dataModificacao = dataModificacao;
-    }
-
-    
     @Override
     public String toString() {
         return "DivisaoTreino{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", nomeDetalhado='" + nomeDetalhado + '\'' +
-                ", dataCriacao=" + dataCriacao +
-                ", dataModificacao=" + dataModificacao +
+                "nomeDivisao='" + nomeDivisao + '\'' +
+                ", descricao='" + descricao + '\'' +
                 '}';
     }
 }

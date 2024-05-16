@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 public class MenuSelecao {
     private Academia academia;
-    private programaPessoa programaPessoa; // Mantém uma única instância
+    private programaPessoa programaPessoa; 
     private Treino treino;
-    private Exercicio exercicio;
 
     public MenuSelecao() {
         this.academia = new Academia(); // Supondo que você tenha uma classe Academia
@@ -17,9 +16,9 @@ public class MenuSelecao {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("");
-            System.out.println("1. Acessar Area da Academia");
+            System.out.println("1. Acessar Área da Academia");
             System.out.println("2. Acessar informações do Aluno");
-            System.out.println("3. Adicionar Exercicios");
+            System.out.println("3. Mostrar Exercícios");
             System.out.println("4. Sair");
             System.out.print("Selecione a opção desejada: ");
 
@@ -36,12 +35,12 @@ public class MenuSelecao {
                     break;
 
                 case 3:
-                    // new programaExercicio(); // Supondo que esta seja outra classe que você tem
+                    treino.menuOpcoes(); // Chama o menu de opções do Treino para mostrar exercícios
                     break;
 
                 case 4:
                     System.out.println("Encerrando o programa...");
-                    return; // Encerra o método e o loop while
+                    return;
 
                 default:
                     System.out.println("Opção inválida.");
