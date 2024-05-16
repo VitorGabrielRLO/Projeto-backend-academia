@@ -3,13 +3,14 @@ import java.util.Scanner;
 
 public class MenuSelecao {
     private Academia academia;
-    private Pessoa pessoa;
+    private programaPessoa programaPessoa; // Mantém uma única instância
     private Treino treino;
+    private Exercicio exercicio;
 
     public MenuSelecao() {
-        this.academia = new Academia(); // Instanciando um objeto da classe Academia
-        this.pessoa = new Pessoa();
-        this.treino = new Treino(exercicioDAO); // Inicializando a variável treino
+        this.academia = new Academia(); // Supondo que você tenha uma classe Academia
+        this.programaPessoa = new programaPessoa(); // Inicializa a instância de programaPessoa
+        // Inicialize outras variáveis se necessário
     }
 
     public void selecioneOpc() {
@@ -23,6 +24,7 @@ public class MenuSelecao {
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
+            scanner.nextLine(); // Consome o caractere de nova linha
 
             switch (opc) {
                 case 1:
@@ -30,11 +32,11 @@ public class MenuSelecao {
                     break;
 
                 case 2:
-                    new programaPessoa(); // Chama o método para exibir informações
+                    programaPessoa.mostrarMenu(); // Chama o método para exibir o menu de programaPessoa
                     break;
 
                 case 3:
-                    treino.menuOpcoes();
+                    // new programaExercicio(); // Supondo que esta seja outra classe que você tem
                     break;
 
                 case 4:
