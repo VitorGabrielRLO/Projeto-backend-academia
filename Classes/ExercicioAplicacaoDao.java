@@ -1,4 +1,4 @@
-
+import java.util.Date;
 public class ExercicioAplicacaoDao {
 
     ExercicioAplicacao[] exercicioAplicacao = new ExercicioAplicacao[10];
@@ -23,50 +23,55 @@ public class ExercicioAplicacaoDao {
         return true;
 
     }
-
     public void mostrarTodos() {
-        boolean temJogador = false;
+        boolean temExercicio = false;
         for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
             if (exercicioAplicacaos != null) {
-                System.out.println(exercicioAplicacaos);
-                temJogador = true;
+                System.out.println("ID: " + exercicioAplicacaos.getId());
+                System.out.println("Descrição: " + exercicioAplicacaos.getDescricao());
+                System.out.println("Data de Criação: " + exercicioAplicacaos.getDataCriacao());
+                System.out.println("Data de Modificação: " + exercicioAplicacaos.getDataModificacao());
+                System.out.println("--------------------------");
+                temExercicio = true;
             }
         }
-        if (!temJogador) {
-            System.out.println("Não existe pessoa cadastrada");
+        if (!temExercicio) {
+            System.out.println("Não existem exercícios cadastrados.");
         }
     }
 
-    public boolean alterarNome(String nome, String novoNome) {
-        for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
-            if (exercicioAplicacaos != null && exercicioAplicacaos.getNome().equals(nome)) {
-                exercicioAplicacaos.setNome(novoNome);
-                return true;
-            }
+
+
+public boolean alterarDescricao(int id, String novaDescricao) {
+    for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
+        if (exercicioAplicacaos != null && exercicioAplicacaos.getId() == id) {
+            exercicioAplicacaos.setDescricao(novaDescricao);
+            return true;
         }
-        return false;
-
     }
+    return false;
+}
 
-    ExercicioAplicacao buscaPorNome(String nome) {
+
+    ExercicioAplicacao buscaPorId(int id) {
         for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
-            if (exercicioAplicacaos != null && exercicioAplicacaos.getNome().equals(nome)) {
+            if (exercicioAplicacaos != null && exercicioAplicacaos.getId() == id) {
                 return exercicioAplicacaos;
             }
         }
+        
         return null;
 
     }
 
-    public boolean remover(String nome) {
+    public boolean remover(int id) {
         for (int i = 0; i < exercicioAplicacao.length; i++) {
-            if (exercicioAplicacao[i] != null && exercicioAplicacao[i].getNome().equals(nome)) {
+            if (exercicioAplicacao[i] != null && exercicioAplicacao[i].getId() == id) {
                 exercicioAplicacao[i] = null;
                 return true;
             }
         }
         return false;
-
     }
 
     private int proximaPosicaoLivre() {
@@ -85,32 +90,30 @@ public class ExercicioAplicacaoDao {
         ExercicioAplicacao exApli2 = new ExercicioAplicacao();
         ExercicioAplicacao exApli3 = new ExercicioAplicacao();
         ExercicioAplicacao exApli4 = new ExercicioAplicacao();
-        /* 
-        exApli1.setNomePessoa("Virginia");
-        exApli1.setSexoPessoa("Mulher");
-        exApli1.setLoginPessoa("Virg");
-        exApli1.setSenhaPessoa("123");
 
-        exApli2.setNomePessoa("Maicon");
-        exApli2.setSexoPessoa("Homem");
-        exApli2.setLoginPessoa("Maiquim");
-        exApli2.setSenhaPessoa("321");
 
-        exApli3.setNomePessoa("James");
-        exApli3.setSexoPessoa("Homem");
-        exApli3.setLoginPessoa("Salada");
-        exApli3.setSenhaPessoa("299");
+        exApli1.setDescricao("4x12");
+        exApli1.setDataCriacao(new Date());
+        exApli1.setDataModificacao(new Date());
 
-        exApli4.setNomePessoa("Louders");
-        exApli4.setSexoPessoa("Mulher");
-        exApli4.setLoginPessoa("Lou");
-        exApli4.setSenhaPessoa("2222");
-        */
+
+        exApli2.setDescricao("4x10");
+        exApli2.setDataCriacao(new Date());
+        exApli2.setDataModificacao(new Date());
+
+
+        exApli3.setDescricao("5x5");
+        exApli3.setDataCriacao(new Date());
+        exApli3.setDataModificacao(new Date());
+
+
+        exApli4.setDescricao("123");
+        exApli4.setDataCriacao(new Date());
+        exApli4.setDataModificacao(new Date());
 
         adiciona(exApli1);
         adiciona(exApli2);
         adiciona(exApli3);
         adiciona(exApli4);
-
     }
 }

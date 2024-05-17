@@ -3,8 +3,7 @@ import java.util.Date;
 public class ExercicioAplicacao {
     private static long serial;
     private long id;
-    private String nome;
-    private String nomeDetalhado;
+    private String descricao;
     private Date dataCriacao;
     private Date dataModificacao;
 
@@ -16,21 +15,14 @@ public class ExercicioAplicacao {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getDescricao(){
+        return descricao;
     }
 
-    public String getNomeDetalhado() {
-        return nomeDetalhado;
-    }
-
-    public void setNomeDetalhado(String nomeDetalhado) {
-        this.nomeDetalhado = nomeDetalhado;
-    }
 
     public Date getDataCriacao() {
         return dataCriacao;
@@ -53,8 +45,7 @@ public class ExercicioAplicacao {
     public String toString() {
         return "ExercicioAplicacao{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", nomeDetalhado='" + nomeDetalhado + '\'' +
+                ", descricao='" + descricao + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

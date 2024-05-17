@@ -62,6 +62,7 @@ public class programaExercicio{
     
     private Exercicio criaExercicio() {
         Exercicio j = new Exercicio();
+        Date dataAtual = new Date();
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
@@ -69,18 +70,23 @@ public class programaExercicio{
         System.out.print("\nDescriçao: ");
         String descricao = s.nextLine();
         j.setDescricaoFoto(descricao);
+        j.setDataCriacao(dataAtual);
+
 
         return j;
     }
 
     private int pegaOpcaoUsuario() {
 
+        System.out.println("\n\n");
+        System.out.println("----------------------------------");
         System.out.println("1 cadastrar");
         System.out.println("2 mostrar todos");
         System.out.println("3 alterar o nome da pessoa");
         System.out.println("4 excluir pelo id");
         System.out.println("5 sair");
         System.out.print("Qual sua opcao ?R: ");
+
         return Integer.parseInt(s.nextLine());
 
     }

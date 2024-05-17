@@ -1,14 +1,11 @@
-
-
 import java.util.Scanner;
 import java.util.Date;
 
 public class programaExercicioAplicacao{
-    ExercicioAplicacaoDao ExercicioAplicacaoDao = new ExercicioAplicacaoDao();
+    ExercicioAplicacaoDao exercicioAplicacaoDao = new ExercicioAplicacaoDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
-
 
         int opcaoUsuario;
 
@@ -18,7 +15,7 @@ public class programaExercicioAplicacao{
                 case 1:
                     ExercicioAplicacao j = criaExercicio();
 
-                    boolean pessoaFoiInserida = ExercicioAplicacaoDao.adiciona(j);
+                    boolean pessoaFoiInserida = exercicioAplicacaoDao.adiciona(j);
                     if (pessoaFoiInserida) {
                         System.out.println("Pessoa inserida com sucesso");
                     } else {
@@ -28,54 +25,50 @@ public class programaExercicioAplicacao{
 
                     break;
                 case 2:
-                    ExercicioAplicacaoDao.mostrarTodos();
+                    exercicioAplicacaoDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Pessoa a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    if (ExercicioAplicacaoDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Pessoa alterado");
+                    System.out.println("ID do exercício a ser procurado:");
+                    int idProcurado = Integer.parseInt(s.nextLine());
+                    System.out.println("Nova descrição:");
+                    String novaDescricao = s.nextLine();
+                    if (exercicioAplicacaoDao.alterarDescricao(idProcurado, novaDescricao)) {
+                        System.out.println("Descrição alterada com sucesso");
                     } else {
-                        System.out.println("Pessoa não encontrado");
+                        System.out.println("Exercício não encontrado");
                     }
 
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
-                    String nomeExclusao = s.nextLine();
+                    System.out.println("ID do exercício a ser excluído:");
+                    int idExclusao = Integer.parseInt(s.nextLine());
 
-                    if (ExercicioAplicacaoDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
+                    if (exercicioAplicacaoDao.remover(idExclusao)) {
+                        System.out.println("Exercício excluído com sucesso");
                     } else {
-                        System.out.println("Pessoa não excluída");
+                        System.out.println("Exercício não encontrado");
                     }
 
                     break;
                 case 5:
-                    System.out.println("5");
-
+                    System.out.println("Saindo...");
                     break;
 
                 default:
-                    System.out.println("sair");
-
+                    System.out.println("Opção inválida. Tente novamente.");
                     break;
 
             }
-        }while (opcaoUsuario != 5);
+        } while (opcaoUsuario != 5);
     }
     
     private ExercicioAplicacao criaExercicio() {
         ExercicioAplicacao j = new ExercicioAplicacao();
 
-        System.out.print("\nNome: ");
-        String nome = s.nextLine();
-        j.setNome(nome);
-        System.out.print("\nNome detalhado: ");
+        System.out.print("\nDescricao: ");
         String descricao = s.nextLine();
-        j.setNomeDetalhado(descricao);
+        j.setDescricao(descricao);
+
 
         return j;
     }
@@ -87,9 +80,8 @@ public class programaExercicioAplicacao{
         System.out.println("3 alterar o nome da pessoa");
         System.out.println("4 excluir pelo id");
         System.out.println("5 sair");
-        System.out.print("Qual sua opcao ?R: ");
+        System.out.print("Qual sua opcao? R: ");
         return Integer.parseInt(s.nextLine());
 
     }
-    
 }

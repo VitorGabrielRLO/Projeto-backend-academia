@@ -1,18 +1,19 @@
 import java.util.Date;
 
 public class Exercicio {
-    private int id;
+    private static long serial;
+    private long id;
     private String nomeExercicio;
     private String descricaoFoto;
     private Date dataCriacao;
+    private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public Exercicio() { 
+        id = Exercicio.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public String getNomeExercicio() {
@@ -37,6 +38,9 @@ public class Exercicio {
 
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+    public Date getDataModificacao() {
+        return dataModificacao;
     }
 
     @Override

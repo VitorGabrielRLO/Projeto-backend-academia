@@ -26,12 +26,17 @@ public class ExercicioDao {
         boolean temExercicio = false;
         for (Exercicio exercicios : exercicio) {
             if (exercicios != null) {
-                System.out.println(exercicios);
+                System.out.println("ID: " + exercicios.getId());
+                System.out.println("Nome: " + exercicios.getNomeExercicio());
+                System.out.println("Descricao: " + exercicios.getDescricaoFoto());
+                System.out.println("Data de Criação: " + exercicios.getDataCriacao());
+                System.out.println("Data de Modificação: " + exercicios.getDataModificacao());
+                System.out.println("--------------------------");
                 temExercicio = true;
             }
         }
         if (!temExercicio) {
-            System.out.println("Não existe exercício cadastrado");
+            System.out.println("Não existem exercícios cadastrados.");
         }
     }
 
@@ -80,22 +85,22 @@ public class ExercicioDao {
         Exercicio exercicio3 = new Exercicio();
         Exercicio exercicio4 = new Exercicio();
 
-        exercicio1.setId(0);
+        
         exercicio1.setNomeExercicio("Supino");
         exercicio1.setDescricaoFoto("Peito");
         exercicio1.setDataCriacao(dataAtual);
 
-        exercicio2.setId(1);
+        
         exercicio2.setNomeExercicio("Rosca");
         exercicio2.setDescricaoFoto("Biceps");
         exercicio2.setDataCriacao(dataAtual);
 
-        exercicio3.setId(2);
+        
         exercicio3.setNomeExercicio("Agachamento");
         exercicio3.setDescricaoFoto("Perna");
         exercicio3.setDataCriacao(dataAtual);
 
-        exercicio4.setId(3);
+        
         exercicio4.setNomeExercicio("Elevacao lateral ");
         exercicio4.setDescricaoFoto("Triceps");
         exercicio4.setDataCriacao(dataAtual);
