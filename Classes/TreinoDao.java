@@ -1,12 +1,12 @@
 
-public class PessoaDao {
+public class TreinoDao {
 
-    Pessoa[] pessoa = new Pessoa[10];
+    Treino[] treino = new Treino[10];
 
-    boolean adiciona(Pessoa p) {
+    boolean adiciona(Treino p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
-            pessoa[proximaPosicaoLivre] = p;
+            treino[proximaPosicaoLivre] = p;
             return true;
         } else {
             return false;
@@ -15,8 +15,8 @@ public class PessoaDao {
     }
 
     public boolean ehVazio() {
-        for (Pessoa pessoas : pessoa) {
-            if (pessoas != null) {
+        for (Treino treinos : treino) {
+            if (treinos != null) {
                 return false;
             }
         }
@@ -26,9 +26,9 @@ public class PessoaDao {
 
     public void mostrarTodos() {
         boolean temJogador = false;
-        for (Pessoa pessoas : pessoa) {
-            if (pessoas != null) {
-                System.out.println(pessoas);
+        for (Treino treinos : treino) {
+            if (treinos != null) {
+                System.out.println(treinos);
                 temJogador = true;
             }
         }
@@ -38,9 +38,9 @@ public class PessoaDao {
     }
 
     public boolean alterarNome(String nome, String novoNome) {
-        for (Pessoa pessoas : pessoa) {
-            if (pessoas != null && pessoas.getNomePessoa().equals(nome)) {
-                pessoas.setNomePessoa(novoNome);
+        for (Treino treinos : treino) {
+            if (treinos != null && treinos.getNomePessoa().equals(nome)) {
+                treinos.setNomePessoa(novoNome);
                 return true;
             }
         }
@@ -48,10 +48,10 @@ public class PessoaDao {
 
     }
 
-    Pessoa buscaPorNome(String nome) {
-        for (Pessoa pessoas : pessoa) {
-            if (pessoas != null && pessoas.getNomePessoa().equals(nome)) {
-                return pessoas;
+    Treino buscaPorNome(String nome) {
+        for (Treino treinos : treino) {
+            if (treinos != null && treinos.getNomePessoa().equals(nome)) {
+                return treinos;
             }
         }
         return null;
@@ -59,9 +59,9 @@ public class PessoaDao {
     }
 
     public boolean remover(String nome) {
-        for (int i = 0; i < pessoa.length; i++) {
-            if (pessoa[i] != null && pessoa[i].getNomePessoa().equals(nome)) {
-                pessoa[i] = null;
+        for (int i = 0; i < treino.length; i++) {
+            if (treino[i] != null && treino[i].getNomePessoa().equals(nome)) {
+                treino[i] = null;
                 return true;
             }
         }
@@ -70,8 +70,8 @@ public class PessoaDao {
     }
 
     private int proximaPosicaoLivre() {
-        for (int i = 0; i < pessoa.length; i++) {
-            if (pessoa[i] == null) {
+        for (int i = 0; i < treino.length; i++) {
+            if (treino[i] == null) {
                 return i;
             }
 
@@ -80,12 +80,13 @@ public class PessoaDao {
 
     }
 
-    public PessoaDao() {
-        Pessoa pessoa1 = new Pessoa();
-        Pessoa pessoa2 = new Pessoa();
-        Pessoa pessoa3 = new Pessoa();
-        Pessoa pessoa4 = new Pessoa();
+    public TreinoDao() {
+        Treino treino1 = new Treino();
+        Treino treino2 = new Treino();
+        Treino treino3 = new Treino();
+        Treino treino4 = new Treino();
 
+        /* 
         pessoa1.setNomePessoa("Virginia");
         pessoa1.setSexoPessoa("Mulher");
         pessoa1.setLoginPessoa("Virg");
@@ -105,12 +106,12 @@ public class PessoaDao {
         pessoa4.setSexoPessoa("Mulher");
         pessoa4.setLoginPessoa("Lou");
         pessoa4.setSenhaPessoa("2222");
+        */
 
-
-        adiciona(pessoa1);
-        adiciona(pessoa2);
-        adiciona(pessoa3);
-        adiciona(pessoa4);
+        adiciona(treino1);
+        adiciona(treino2);
+        adiciona(treino3);
+        adiciona(treino4);
 
     }
 }

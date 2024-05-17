@@ -3,20 +3,22 @@
 import java.util.Scanner;
 import java.util.Date;
 
-public class programaPessoa{
-    PessoaDao PessoaDao = new PessoaDao();
+public class programaTreino{
+    TreinoDao TreinoDao = new TreinoDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
+
+
         int opcaoUsuario;
 
         do {
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    Pessoa j = criaPessoa();
+                    Treino j = criaTreino();
 
-                    boolean pessoaFoiInserida = PessoaDao.adiciona(j);
+                    boolean pessoaFoiInserida = TreinoDao.adiciona(j);
                     if (pessoaFoiInserida) {
                         System.out.println("Pessoa inserida com sucesso");
                     } else {
@@ -26,14 +28,14 @@ public class programaPessoa{
 
                     break;
                 case 2:
-                    PessoaDao.mostrarTodos();
+                    TreinoDao.mostrarTodos();
                     break;
                 case 3:
                     System.out.println("Pessoa a procurada:");
                     String procurado = s.nextLine();
                     System.out.println("Novo nome:");
                     String novoNome = s.nextLine();
-                    if (PessoaDao.alterarNome(procurado, novoNome)) {
+                    if (TreinoDao.alterarNome(procurado, novoNome)) {
                         System.out.println("Pessoa alterado");
                     } else {
                         System.out.println("Pessoa não encontrado");
@@ -44,7 +46,7 @@ public class programaPessoa{
                     System.out.println("Pessoa procurada:");
                     String nomeExclusao = s.nextLine();
 
-                    if (PessoaDao.remover(nomeExclusao)) {
+                    if (TreinoDao.remover(nomeExclusao)) {
                         System.out.println("Pessoa excluída");
                     } else {
                         System.out.println("Pessoa não excluída");
@@ -65,21 +67,15 @@ public class programaPessoa{
         }while (opcaoUsuario != 5);
     }
     
-    private Pessoa criaPessoa() {
-        Pessoa j = new Pessoa();
+    private Treino criaTreino() {
+        Treino j = new Treino();
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
-        j.setNomePessoa(nome);
-        System.out.print("\nSexo: ");
-        String sexo = s.nextLine();
-        j.setSexoPessoa(sexo);
-        System.out.print("\nLogin: ");
-        String login = s.nextLine();
-        j.setLoginPessoa(login);
-        System.out.print("\nSenha: ");
-        String senha = s.nextLine();
-        j.setSenhaPessoa(senha);
+        //j.setNome(nome);
+        System.out.print("\nDescriçao: ");
+        String descricao = s.nextLine();
+       // j.setDescricaoFoto(descricao);
 
         return j;
     }

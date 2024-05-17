@@ -1,92 +1,82 @@
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
 
 public class Treino {
     private int id;
     private Date dataInicio;
     private Date dataTermino;
-    private List<Exercicio> exercicios;
+    private Exercicio exercicio;
     private DivisaoTreino divisaoTreino;
     private Date dataCriacao;
     private Date dataModificacao;
-    private ExercicioDAO exercicioDAO;
-
-    // Construtor
-    public Treino(int id, Date dataInicio, Date dataTermino, DivisaoTreino divisaoTreino, Date dataCriacao, Date dataModificacao, ExercicioDAO exercicioDAO) {
-        this.id = id;
-        this.dataInicio = dataInicio;
-        this.dataTermino = dataTermino;
-        this.exercicios = new ArrayList<>();
-        this.divisaoTreino = divisaoTreino;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-        this.exercicioDAO = exercicioDAO;
-    }
-
-    // Método para adicionar exercício
-    public void adicionarExercicio(Exercicio exercicio) {
-        exercicios.add(exercicio);
-    }
-
-    // Método para exibir o menu de opções
-    public void menuOpcoes() {
-        Scanner scanner = new Scanner(System.in);
-        int opcao;
-        do {
-            System.out.println("\nMenu de Opções:");
-            System.out.println("1. Adicionar Exercícios");
-            System.out.println("2. Mostrar Todos Exercícios");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            switch (opcao) {
-                case 1:
-                    adicionarExerciciosUsuario();
-                    break;
-                case 2:
-                    mostrarExerciciosDAO();
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
-            }
-        } while (opcao != 0);
-        scanner.close(); // Fechando o objeto Scanner
-    }
-
-    // Método para mostrar exercícios salvos na ExercicioDAO
-    public void mostrarExerciciosDAO() {
-        int indice = 0;
-        Exercicio exercicio = exercicioDAO.obterExercicioPorIndice(indice);
-        while (exercicio != null) {
-            System.out.println(exercicio);
-            indice++;
-            exercicio = exercicioDAO.obterExercicioPorIndice(indice);
-        }
-    }
-
-    // Método para adicionar exercícios pelo usuário
-    public void adicionarExerciciosUsuario() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Quantos exercícios deseja adicionar? ");
-        int quantidade = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer
-
-        for (int i = 0; i < quantidade; i++) {
-            System.out.println("Exercício " + (i + 1) + ":");
-            System.out.print("Nome: ");
-            String nome = scanner.nextLine();
-            System.out.print("Descrição/Foto: ");
-            String descricaoFoto = scanner.nextLine();
-            
-        }
-    }
 
     // Getters e Setters
-    // toString() para representação textual do objeto
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public Date getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(Date dataTermino) {
+        this.dataTermino = dataTermino;
+    }
+
+    public Exercicio getExercicio() {
+        return exercicio;
+    }
+
+    public void setExercicio(Exercicio exercicio) {
+        this.exercicio = exercicio;
+    }
+
+    public DivisaoTreino getDivisaoTreino() {
+        return divisaoTreino;
+    }
+
+    public void setDivisaoTreino(DivisaoTreino divisaoTreino) {
+        this.divisaoTreino = divisaoTreino;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataModificacao() {
+        return dataModificacao;
+    }
+
+    public void setDataModificacao(Date dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Treino{" +
+                "id=" + id +
+                ", dataInicio=" + dataInicio +
+                ", dataTermino=" + dataTermino +
+                ", exercicio=" + exercicio +
+                ", divisaoTreino=" + divisaoTreino +
+                ", dataCriacao=" + dataCriacao +
+                ", dataModificacao=" + dataModificacao +
+                '}';
+    }
 }

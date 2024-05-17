@@ -1,41 +1,66 @@
+import java.util.Date;
+
 public class DivisaoTreino {
-    private String nomeDivisao;
-    private String descricao;
-
-    // Construtor padrão
-    public DivisaoTreino() {
-        this.nomeDivisao = "Divisão Padrão";
-        this.descricao = "Descrição Padrão";
-    }
-
-    // Construtor com parâmetros
-    public DivisaoTreino(String nomeDivisao, String descricao) {
-        this.nomeDivisao = nomeDivisao;
-        this.descricao = descricao;
-    }
+    private static long serial;
+    private long id;
+    private String nome;
+    private String nomeDetalhado;
+    private Date dataCriacao;
+    private Date dataModificacao;
 
     // Getters e Setters
-    public String getNomeDivisao() {
-        return nomeDivisao;
+    public DivisaoTreino() { 
+        id = DivisaoTreino.serial++;
+    }
+    public long getId() {
+        return id;
     }
 
-    public void setNomeDivisao(String nomeDivisao) {
-        this.nomeDivisao = nomeDivisao;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
+    public String getNomeDetalhado() {
+        return nomeDetalhado;
+    }
+
+    public void setNomeDetalhado(String nomeDetalhado) {
+        this.nomeDetalhado = nomeDetalhado;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataModificacao() {
+        return dataModificacao;
+    }
+
+    public void setDataModificacao(Date dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
+
+    
     @Override
     public String toString() {
         return "DivisaoTreino{" +
-                "nomeDivisao='" + nomeDivisao + '\'' +
-                ", descricao='" + descricao + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", nomeDetalhado='" + nomeDetalhado + '\'' +
+                ", dataCriacao=" + dataCriacao +
+                ", dataModificacao=" + dataModificacao +
                 '}';
     }
 }
