@@ -1,39 +1,83 @@
-import java.util.ArrayList;
-import java.util.List;
 
-public class ExercicioDAO {
-    private List<Exercicio> exercicios;
+public class ExercicioDao {
 
-    // Construtor
-    public ExercicioDAO() {
-        this.exercicios = new ArrayList<>();
+    Exercicio[] exercicio = new Exercicio[10];
+
+    boolean adiciona(Exercicio p) {
+        int proximaPosicaoLivre = this.proximaPosicaoLivre();
+        if (proximaPosicaoLivre != -1) {
+            exercicio[proximaPosicaoLivre] = p;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
-    // Método para adicionar um exercício
-    public boolean adicionarExercicio(Exercicio exercicio) {
-        return exercicios.add(exercicio);
+    public boolean ehVazio() {
+        for (Exercicio exercicios : exercicio) {
+            if (exercicios != null) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
-    // Método para remover um exercício pelo ID
-    public boolean removerExercicio(int id) {
-        for (Exercicio exercicio : exercicios) {
-            if (exercicio.getId() == id) {
-                return exercicios.remove(exercicio);
+    public void mostrarTodos() {
+        boolean temExercicio = false;
+        for (Exercicio exercicios : exercicio) {
+            if (exercicios != null) {
+                System.out.println(exercicios);
+                temExercicio = true;
+            }
+        }
+        if (!temExercicio) {
+            System.out.println("Não existe pessoa cadastrada");
+        }
+    }
+
+    public boolean alterarNome(String nome, String novoNome) {
+        for (Exercicio exercicios : exercicio) {
+            if (exercicios != null && exercicios.getNome().equals(nome)) {
+                exercicios.setNome(novoNome);
+                return true;
             }
         }
         return false;
+
     }
 
-    // Método para obter todos os exercícios
-    public List<Exercicio> obterTodosExercicios() {
-        return new ArrayList<>(exercicios); // Retorna uma cópia da lista para evitar a modificação direta da lista original
-    }
-    
-    // Método para obter um exercício pelo índice
-    public Exercicio obterExercicioPorIndice(int indice) {
-        if (indice >= 0 && indice < exercicios.size()) {
-            return exercicios.get(indice);
+    Exercicio buscaPorNome(String nome) {
+        for (Exercicio exercicios : exercicio) {
+            if (exercicios != null && exercicios.getNome().equals(nome)) {
+                return exercicios;
+            }
         }
         return null;
+
     }
+
+    public boolean remover(String nome) {
+        for (int i = 0; i < exercicio.length; i++) {
+            if (exercicio[i] != null && exercicio[i].getNome().equals(nome)) {
+                exercicio[i] = null;
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    private int proximaPosicaoLivre() {
+        for (int i = 0; i < exercicio.length; i++) {
+            if (exercicio[i] == null) {
+                return i;
+            }
+
+        }
+        return -1;
+
+    }
+
 }
