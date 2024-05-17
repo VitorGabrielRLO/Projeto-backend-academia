@@ -1,27 +1,26 @@
 import java.util.Date;
 
 public class Exercicio {
-    private static long serial;
-    private long id;
-    private String nome;
+    private int id;
+    private String nomeExercicio;
     private String descricaoFoto;
     private Date dataCriacao;
-    private Date dataModificacao;
 
     // Getters e Setters
-    public Exercicio() { 
-        id = Exercicio.serial++;
-    }
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getNomeExercicio() {
+        return nomeExercicio;
+    }
+
+    public void setNomeExercicio(String nomeExercicio) {
+        this.nomeExercicio = nomeExercicio;
     }
 
     public String getDescricaoFoto() {
@@ -40,22 +39,13 @@ public class Exercicio {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
-        return dataModificacao;
-    }
-
-    public void setDataModificacao(Date dataModificacao) {
-        this.dataModificacao = dataModificacao;
-    }
-
     @Override
     public String toString() {
         return "Exercicio{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
+                ", nomeExercicio='" + nomeExercicio + '\'' +
                 ", descricaoFoto='" + descricaoFoto + '\'' +
                 ", dataCriacao=" + dataCriacao +
-                ", dataModificacao=" + dataModificacao +
                 '}';
     }
 }

@@ -1,4 +1,3 @@
-
 public class TreinoDao {
 
     Treino[] treino = new Treino[10];
@@ -11,7 +10,6 @@ public class TreinoDao {
         } else {
             return false;
         }
-
     }
 
     public boolean ehVazio() {
@@ -21,52 +19,38 @@ public class TreinoDao {
             }
         }
         return true;
-
     }
 
     public void mostrarTodos() {
-        boolean temJogador = false;
+        boolean temTreino = false;
         for (Treino treinos : treino) {
             if (treinos != null) {
                 System.out.println(treinos);
-                temJogador = true;
+                temTreino = true;
             }
         }
-        if (!temJogador) {
-            System.out.println("Não existe pessoa cadastrada");
+        if (!temTreino) {
+            System.out.println("Não existe treino cadastrado");
         }
     }
 
-    public boolean alterarNome(String nome, String novoNome) {
+    Treino buscaPorId(int id) {
         for (Treino treinos : treino) {
-            if (treinos != null && treinos.getNomePessoa().equals(nome)) {
-                treinos.setNomePessoa(novoNome);
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    Treino buscaPorNome(String nome) {
-        for (Treino treinos : treino) {
-            if (treinos != null && treinos.getNomePessoa().equals(nome)) {
+            if (treinos != null && treinos.getId() == id) {
                 return treinos;
             }
         }
         return null;
-
     }
 
-    public boolean remover(String nome) {
+    public boolean remover(int id) {
         for (int i = 0; i < treino.length; i++) {
-            if (treino[i] != null && treino[i].getNomePessoa().equals(nome)) {
+            if (treino[i] != null && treino[i].getId() == id) {
                 treino[i] = null;
                 return true;
             }
         }
         return false;
-
     }
 
     private int proximaPosicaoLivre() {
@@ -74,10 +58,8 @@ public class TreinoDao {
             if (treino[i] == null) {
                 return i;
             }
-
         }
         return -1;
-
     }
 
     public TreinoDao() {
@@ -86,32 +68,14 @@ public class TreinoDao {
         Treino treino3 = new Treino();
         Treino treino4 = new Treino();
 
-        /* 
-        pessoa1.setNomePessoa("Virginia");
-        pessoa1.setSexoPessoa("Mulher");
-        pessoa1.setLoginPessoa("Virg");
-        pessoa1.setSenhaPessoa("123");
-
-        pessoa2.setNomePessoa("Maicon");
-        pessoa2.setSexoPessoa("Homem");
-        pessoa2.setLoginPessoa("Maiquim");
-        pessoa2.setSenhaPessoa("321");
-
-        pessoa3.setNomePessoa("James");
-        pessoa3.setSexoPessoa("Homem");
-        pessoa3.setLoginPessoa("Salada");
-        pessoa3.setSenhaPessoa("299");
-
-        pessoa4.setNomePessoa("Louders");
-        pessoa4.setSexoPessoa("Mulher");
-        pessoa4.setLoginPessoa("Lou");
-        pessoa4.setSenhaPessoa("2222");
-        */
+        treino1.setId(1);
+        treino2.setId(2);
+        treino3.setId(3);
+        treino4.setId(4);
 
         adiciona(treino1);
         adiciona(treino2);
         adiciona(treino3);
         adiciona(treino4);
-
     }
 }

@@ -43,14 +43,7 @@ public class programaExercicio{
 
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
-                    String nomeExclusao = s.nextLine();
 
-                    if (ExercicioDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
-                    } else {
-                        System.out.println("Pessoa não excluída");
-                    }
 
                     break;
                 case 5:
@@ -72,7 +65,7 @@ public class programaExercicio{
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
-        j.setNome(nome);
+        j.setNomeExercicio(nome);
         System.out.print("\nDescriçao: ");
         String descricao = s.nextLine();
         j.setDescricaoFoto(descricao);
