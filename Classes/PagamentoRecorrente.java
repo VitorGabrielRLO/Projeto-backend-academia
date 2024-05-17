@@ -11,19 +11,6 @@ public class PagamentoRecorrente {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    
-    public PagamentoRecorrente(int id, Pessoa aluno, Date data, String cartaoDeCredito, Double valor, Date dataInicio, int numeroMeses, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.aluno = aluno;
-        this.data = data;
-        this.cartaoDeCredito = cartaoDeCredito;
-        this.valor = valor;
-        this.dataInicio = dataInicio;
-        this.numeroMeses = numeroMeses;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
     public int getId() {
         return id;

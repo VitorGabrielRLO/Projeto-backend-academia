@@ -8,16 +8,6 @@ public class MensalidadeVigente {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public MensalidadeVigente(int id, double valor, Date inicio, Date termino, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.valor = valor;
-        this.inicio = inicio;
-        this.termino = termino;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
     public int getId() {
         return id;

@@ -8,16 +8,6 @@ public class MovFinanceira {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public MovFinanceira(int id, double valor, int tipo, String descricao, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.valor = valor;
-        this.tipo = tipo;
-        this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
     public int getId() {
         return id;
