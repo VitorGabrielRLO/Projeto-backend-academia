@@ -1,23 +1,18 @@
 import java.util.Date;
 
 public class DivisaoTreino {
-    private int id;
+    private static long serial;
+    private long id;
     private String nome;
     private String nomeDetalhado;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public DivisaoTreino(int id, String nome, String nomeDetalhado, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.nomeDetalhado = nomeDetalhado;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
+    public DivisaoTreino() { 
+        id = DivisaoTreino.serial++;
+    }
+    public long getId() {
         return id;
     }
 

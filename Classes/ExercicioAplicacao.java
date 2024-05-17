@@ -1,28 +1,19 @@
 import java.util.Date;
 
 public class ExercicioAplicacao {
-    private int id;
+    private static long serial;
+    private long id;
     private String nome;
     private String nomeDetalhado;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public ExercicioAplicacao(int id, String nome, String nomeDetalhado, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.nome = nome;
-        this.nomeDetalhado = nomeDetalhado;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
-        return id;
+    public ExercicioAplicacao() { 
+        id = ExercicioAplicacao.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public String getNome() {

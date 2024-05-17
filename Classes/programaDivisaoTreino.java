@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
+
 import java.util.Scanner;
 import java.util.Date;
 
-public class programaPessoa{
-    PessoaDao PessoaDao = new PessoaDao();
+public class programaDivisaoTreino{
+    DivisaoTreinoDao DivisaoTreinoDao = new DivisaoTreinoDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
@@ -16,29 +14,29 @@ public class programaPessoa{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    Pessoa j = criaPessoa();
+                    DivisaoTreino j = criaTreino();
 
-                    boolean pessoaFoiInserida = PessoaDao.adiciona(j);
+                    boolean pessoaFoiInserida = DivisaoTreinoDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Pessoa inserida com sucesso");
+                        System.out.println("Divisao inserida com sucesso");
                     } else {
-                        System.out.println("Pessoa nao inserida");
+                        System.out.println("Divisao nao inserida");
 
                     }
 
                     break;
                 case 2:
-                    PessoaDao.mostrarTodos();
+                    DivisaoTreinoDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Pessoa a procurada:");
+                    System.out.println("Divisao a procurada:");
                     String procurado = s.nextLine();
                     System.out.println("Novo nome:");
                     String novoNome = s.nextLine();
-                    if (PessoaDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Pessoa alterado");
+                    if (DivisaoTreinoDao.alterarNome(procurado, novoNome)) {
+                        System.out.println("Divisao alterado");
                     } else {
-                        System.out.println("Pessoa não encontrado");
+                        System.out.println("Divisao não encontrado");
                     }
 
                     break;
@@ -46,7 +44,7 @@ public class programaPessoa{
                     System.out.println("Pessoa procurada:");
                     String nomeExclusao = s.nextLine();
 
-                    if (PessoaDao.remover(nomeExclusao)) {
+                    if (DivisaoTreinoDao.remover(nomeExclusao)) {
                         System.out.println("Pessoa excluída");
                     } else {
                         System.out.println("Pessoa não excluída");
@@ -67,32 +65,26 @@ public class programaPessoa{
         }while (opcaoUsuario != 5);
     }
     
-    private Pessoa criaPessoa() {
-        Pessoa j = new Pessoa();
+    private DivisaoTreino criaTreino() {
+        DivisaoTreino j = new DivisaoTreino();
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
-        j.setNomePessoa(nome);
-        System.out.print("\nSexo: ");
-        String sexo = s.nextLine();
-        j.setSexoPessoa(sexo);
-        System.out.print("\nLogin: ");
-        String login = s.nextLine();
-        j.setLoginPessoa(login);
-        System.out.print("\nSenha: ");
-        String senha = s.nextLine();
-        j.setSenhaPessoa(senha);
+        j.setNome(nome);
+        System.out.print("\nNome Detalhado: ");
+        String nomeDet = s.nextLine();
+        j.setNomeDetalhado(nomeDet);
 
         return j;
     }
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("\n\n1 cadastrar");
-        System.out.println("2 mostrar todos");
-        System.out.println("3 alterar o nome da pessoa");
-        System.out.println("4 excluir pelo id");
-        System.out.println("5 sair");
+        System.out.println("1 - Cadastrar divisao de treino");
+        System.out.println("2 - Mostrar todas as divisoes");
+        System.out.println("3 - Alterar o nome da divisao");
+        System.out.println("4 - Excluir divisao pelo nome");
+        System.out.println("5 - Voltar");
         System.out.print("Qual sua opcao ?R: ");
         return Integer.parseInt(s.nextLine());
 

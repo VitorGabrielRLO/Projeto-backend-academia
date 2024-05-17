@@ -1,19 +1,19 @@
 import java.util.Date;
 
 public class Exercicio {
-    private int id;
+    private static long serial;
+    private long id;
     private String nome;
     private String descricaoFoto;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public Exercicio() { 
+        id = Exercicio.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public String getNome() {
