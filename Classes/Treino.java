@@ -9,17 +9,6 @@ public class Treino {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public Treino(int id, Date dataInicio, Date dataTermino, Exercicio exercicio, DivisaoTreino divisaoTreino, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.dataInicio = dataInicio;
-        this.dataTermino = dataTermino;
-        this.exercicio = exercicio;
-        this.divisaoTreino = divisaoTreino;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
     public int getId() {
         return id;

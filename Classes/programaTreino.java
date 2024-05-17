@@ -3,40 +3,42 @@
 import java.util.Scanner;
 import java.util.Date;
 
-public class programaDivisaoTreino{
-    DivisaoTreinoDao DivisaoTreinoDao = new DivisaoTreinoDao();
+public class programaTreino{
+    TreinoDao TreinoDao = new TreinoDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
+
+
         int opcaoUsuario;
 
         do {
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    DivisaoTreino j = criaTreino();
+                    Treino j = criaTreino();
 
-                    boolean pessoaFoiInserida = DivisaoTreinoDao.adiciona(j);
+                    boolean pessoaFoiInserida = TreinoDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Divisao inserida com sucesso");
+                        System.out.println("Pessoa inserida com sucesso");
                     } else {
-                        System.out.println("Divisao nao inserida");
+                        System.out.println("Pessoa nao inserida");
 
                     }
 
                     break;
                 case 2:
-                    DivisaoTreinoDao.mostrarTodos();
+                    TreinoDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Divisao a procurada:");
+                    System.out.println("Pessoa a procurada:");
                     String procurado = s.nextLine();
                     System.out.println("Novo nome:");
                     String novoNome = s.nextLine();
-                    if (DivisaoTreinoDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Divisao alterado");
+                    if (TreinoDao.alterarNome(procurado, novoNome)) {
+                        System.out.println("Pessoa alterado");
                     } else {
-                        System.out.println("Divisao não encontrado");
+                        System.out.println("Pessoa não encontrado");
                     }
 
                     break;
@@ -44,7 +46,7 @@ public class programaDivisaoTreino{
                     System.out.println("Pessoa procurada:");
                     String nomeExclusao = s.nextLine();
 
-                    if (DivisaoTreinoDao.remover(nomeExclusao)) {
+                    if (TreinoDao.remover(nomeExclusao)) {
                         System.out.println("Pessoa excluída");
                     } else {
                         System.out.println("Pessoa não excluída");
@@ -65,26 +67,26 @@ public class programaDivisaoTreino{
         }while (opcaoUsuario != 5);
     }
     
-    private DivisaoTreino criaTreino() {
-        DivisaoTreino j = new DivisaoTreino();
+    private Treino criaTreino() {
+        Treino j = new Treino();
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
-        j.setNome(nome);
-        System.out.print("\nNome Detalhado: ");
-        String nomeDet = s.nextLine();
-        j.setNomeDetalhado(nomeDet);
+        //j.setNome(nome);
+        System.out.print("\nDescriçao: ");
+        String descricao = s.nextLine();
+       // j.setDescricaoFoto(descricao);
 
         return j;
     }
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 - Cadastrar divisao de treino");
-        System.out.println("2 - Mostrar todas as divisoes");
-        System.out.println("3 - Alterar o nome da divisao");
-        System.out.println("4 - Excluir divisao pelo nome");
-        System.out.println("5 - Voltar");
+        System.out.println("1 cadastrar");
+        System.out.println("2 mostrar todos");
+        System.out.println("3 alterar o nome da pessoa");
+        System.out.println("4 excluir pelo id");
+        System.out.println("5 sair");
         System.out.print("Qual sua opcao ?R: ");
         return Integer.parseInt(s.nextLine());
 

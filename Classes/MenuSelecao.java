@@ -6,6 +6,7 @@ public class MenuSelecao {
     private programaPessoa programaPessoa; // Mantém uma única instância
     private programaExercicio programaExercicio;
     private programaDivisaoTreino programaDivisaoTreino;
+    private programaExercicioAplicacao programaExercicioAplicacao;
     private Treino treino;
 
     public MenuSelecao() {
@@ -13,6 +14,7 @@ public class MenuSelecao {
         this.programaPessoa = new programaPessoa(); // Inicializa a instância de programaPessoa
         this.programaExercicio = new programaExercicio();
         this.programaDivisaoTreino = new programaDivisaoTreino();
+        this.programaExercicioAplicacao = new programaExercicioAplicacao();
        // this.treino = new Treino();
         // Inicialize outras variáveis se necessário
     }
@@ -25,7 +27,8 @@ public class MenuSelecao {
             System.out.println("2. Acessar informações do Aluno");
             System.out.println("3. Mostrar Exercícios");
             System.out.println("4. Mostrar divisoes de treino");
-            System.out.println("5. Sair");
+            System.out.println("5. Acessar Exercicios Aplicação");
+            System.out.println("6. Sair");
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
@@ -49,8 +52,11 @@ public class MenuSelecao {
                     break;
 
                 case 5:
-                    System.out.println("Encerrando o programa...");
-                    return;
+                    programaExercicioAplicacao.mostrarMenu();
+                    break;
+                case 6:
+                System.out.println("Encerrando o programa...");
+                return;
 
                 default:
                     System.out.println("Opção inválida.");
