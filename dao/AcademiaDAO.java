@@ -1,9 +1,12 @@
+package dao;
 
-public class DivisaoTreinoDao {
+import entities.Academia;
 
-    DivisaoTreino[] divisao = new DivisaoTreino[10];
+public class AcademiaDAO {
 
-    boolean adiciona(DivisaoTreino p) {
+    Academia[] divisao = new Academia[10];
+
+    public boolean adiciona(Academia p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             divisao[proximaPosicaoLivre] = p;
@@ -15,7 +18,7 @@ public class DivisaoTreinoDao {
     }
 
     public boolean ehVazio() {
-        for (DivisaoTreino divisoes : divisao) {
+        for (Academia divisoes : divisao) {
             if (divisoes != null) {
                 return false;
             }
@@ -26,7 +29,7 @@ public class DivisaoTreinoDao {
 
     public void mostrarTodos() {
         boolean temJogador = false;
-        for (DivisaoTreino divisoes : divisao) {
+        for (Academia divisoes : divisao) {
             if (divisoes != null) {
                 System.out.println(divisoes);
                 temJogador = true;
@@ -38,7 +41,7 @@ public class DivisaoTreinoDao {
     }
 
     public boolean alterarNome(String nome, String novoNome) {
-        for (DivisaoTreino divisoes : divisao) {
+        for (Academia divisoes : divisao) {
             if (divisoes != null && divisoes.getNome().equals(nome)) {
                 divisoes.setNome(novoNome);
                 return true;
@@ -48,8 +51,8 @@ public class DivisaoTreinoDao {
 
     }
 
-    DivisaoTreino buscaPorNome(String nome) {
-        for (DivisaoTreino divisoes : divisao) {
+    Academia buscaPorNome(String nome) {
+        for (Academia divisoes : divisao) {
             if (divisoes != null && divisoes.getNome().equals(nome)) {
                 return divisoes;
             }
@@ -80,28 +83,28 @@ public class DivisaoTreinoDao {
 
     }
 
-    public DivisaoTreinoDao() {
-        DivisaoTreino divisao1 = new DivisaoTreino();
-        DivisaoTreino divisao2 = new DivisaoTreino();
-        DivisaoTreino divisao3 = new DivisaoTreino();
-        DivisaoTreino divisao4 = new DivisaoTreino();
+    public AcademiaDAO() {
+        Academia divisao1 = new Academia();
+        Academia divisao2 = new Academia();
+        Academia divisao3 = new Academia();
+        Academia divisao4 = new Academia();
 
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
+        // divisao1.setNome("Virginia");
+        // divisao1.setNomeDetalhado("Mulher");
 
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
+        // divisao1.setNome("Virginia");
+        // divisao1.setNomeDetalhado("Mulher");
 
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
+        // divisao1.setNome("Virginia");
+        // divisao1.setNomeDetalhado("Mulher");
 
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
+        // divisao1.setNome("Virginia");
+        // divisao1.setNomeDetalhado("Mulher");
 
-        adiciona(divisao1);
-        adiciona(divisao2);
-        adiciona(divisao3);
-        adiciona(divisao4);
+        // adiciona(divisao1);
+        // adiciona(divisao2);
+        // adiciona(divisao3);
+        // adiciona(divisao4);
 
     }
 }

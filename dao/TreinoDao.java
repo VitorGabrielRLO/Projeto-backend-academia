@@ -1,8 +1,13 @@
+package dao;
+
+
+import entities.Treino;
+
 public class TreinoDao {
 
     Treino[] treino = new Treino[10];
 
-    boolean adiciona(Treino p) {
+    public boolean adiciona(Treino p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             treino[proximaPosicaoLivre] = p;

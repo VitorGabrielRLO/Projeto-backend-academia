@@ -1,4 +1,9 @@
+
+package general;
+
 import java.util.Date;
+
+import entities.Pessoa;
 
 public class MensalidadeAluno {
     private int id;

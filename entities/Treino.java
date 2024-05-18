@@ -1,4 +1,10 @@
+package entities;
+
 import java.util.Date;
+
+
+// import DivisaoTreino;
+// import Exercicio;
 
 public class Treino {
     private int id;

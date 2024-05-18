@@ -1,15 +1,22 @@
+package general;
+
+
 import java.util.Date;
 
-public class EntradaAluno {
+public class MensalidadeVigente {
     private int id;
-    private Date dataHora;
+    private double valor;
+    private Date inicio;
+    private Date termino;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public EntradaAluno(int id, Date dataHora, Date dataCriacao, Date dataModificacao) {
+    public MensalidadeVigente(int id, double valor, Date inicio, Date termino, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.dataHora = dataHora;
+        this.valor = valor;
+        this.inicio = inicio;
+        this.termino = termino;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -23,12 +30,28 @@ public class EntradaAluno {
         this.id = id;
     }
 
-    public Date getDataHora() {
-        return dataHora;
+    public double getValor() {
+        return valor;
     }
 
-    public void setDataHora(Date dataHora) {
-        this.dataHora = dataHora;
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getTermino() {
+        return termino;
+    }
+
+    public void setTermino(Date termino) {
+        this.termino = termino;
     }
 
     public Date getDataCriacao() {
@@ -50,9 +73,11 @@ public class EntradaAluno {
     
     @Override
     public String toString() {
-        return "EntradaAluno{" +
+        return "MensalidadeVigente{" +
                 "id=" + id +
-                ", dataHora=" + dataHora +
+                ", valor=" + valor +
+                ", inicio=" + inicio +
+                ", termino=" + termino +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

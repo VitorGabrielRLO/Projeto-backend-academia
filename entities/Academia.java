@@ -1,54 +1,52 @@
+package entities;
+
 import java.util.Date;
 
-public class Exercicio {
+public class Academia {
     private static long serial;
     private long id;
-    private String nomeExercicio;
-    private String descricaoFoto;
+    private String nome;
+    private String endereco;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Getters e Setters
-    public Exercicio() { 
-        id = Exercicio.serial++;
+    public Academia() { 
+        id = Academia.serial++;
     }
     public long getId() {
         return id;
     }
-
-    public String getNomeExercicio() {
-        return nomeExercicio;
+    public String getNome() {
+        return nome;
     }
-
-    public void setNomeExercicio(String nomeExercicio) {
-        this.nomeExercicio = nomeExercicio;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-
-    public String getDescricaoFoto() {
-        return descricaoFoto;
+    public String getEndereco() {
+        return endereco;
     }
-
-    public void setDescricaoFoto(String descricaoFoto) {
-        this.descricaoFoto = descricaoFoto;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
-
     public Date getDataCriacao() {
         return dataCriacao;
     }
-
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
     public Date getDataModificacao() {
         return dataModificacao;
     }
+    public void setDataModificacao(Date dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
 
     @Override
     public String toString() {
         return "Exercicio{" +
                 "id=" + id +
-                ", nomeExercicio='" + nomeExercicio + '\'' +
-                ", descricaoFoto='" + descricaoFoto + '\'' +
+                ", nomeExercicio='" + nome + '\'' +
+                ", descricaoFoto='" + endereco + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 '}';
     }

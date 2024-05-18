@@ -1,6 +1,11 @@
+package general;
 
 
 import java.util.Scanner;
+
+import entities.Treino;
+import dao.TreinoDao;
+
 import java.util.Date;
 
 public class programaTreino{
@@ -35,18 +40,18 @@ public class programaTreino{
                     String procurado = s.nextLine();
                     System.out.println("Novo nome:");
                     String novoNome = s.nextLine();
-                    if (TreinoDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Pessoa alterado");
-                    } else {
-                        System.out.println("Pessoa não encontrado");
-                    }
+                    // if (TreinoDao.alterarNome(procurado, novoNome)) {
+                    //     System.out.println("Pessoa alterado");
+                    // } else {
+                    //     System.out.println("Pessoa não encontrado");
+                    // }
 
                     break;
                 case 4:
                     System.out.println("Pessoa procurada:");
-                    String nomeExclusao = s.nextLine();
+                    int id = s.nextInt();
 
-                    if (TreinoDao.remover(nomeExclusao)) {
+                    if (TreinoDao.remover(id)) {
                         System.out.println("Pessoa excluída");
                     } else {
                         System.out.println("Pessoa não excluída");

@@ -1,7 +1,10 @@
-
+package general;
 
 import java.util.Scanner;
 import java.util.Date;
+
+import dao.ExercicioDao;
+import entities.Exercicio;
 
 public class programaExercicio{
     ExercicioDao ExercicioDao = new ExercicioDao();

@@ -1,9 +1,12 @@
+package dao;
+
 import java.util.Date;
+import entities.Exercicio;
 public class ExercicioDao {
 
     Exercicio[] exercicio = new Exercicio[10];
 
-    boolean adiciona(Exercicio p) {
+    public boolean adiciona(Exercicio p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             exercicio[proximaPosicaoLivre] = p;

@@ -1,9 +1,13 @@
+package dao; // Definindo qual pacote esta classe pertence
+
+import general.ExercicioAplicacao; // Adicionando uma referencia ao pacote com a classe Exercicio Aplicação
 import java.util.Date;
+
 public class ExercicioAplicacaoDao {
 
     ExercicioAplicacao[] exercicioAplicacao = new ExercicioAplicacao[10];
 
-    boolean adiciona(ExercicioAplicacao p) {
+    public boolean adiciona(ExercicioAplicacao p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             exercicioAplicacao[proximaPosicaoLivre] = p;

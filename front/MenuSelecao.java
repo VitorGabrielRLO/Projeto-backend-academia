@@ -1,20 +1,26 @@
-import java.util.Date;
+package front;
+
+
 import java.util.Scanner;
 
+import entities.*;
+import general.*;
+
 public class MenuSelecao {
-    private Academia academia;
+    private programaAcademia programaAcademia;
     private programaPessoa programaPessoa; // Mantém uma única instância
     private programaExercicio programaExercicio;
     private programaDivisaoTreino programaDivisaoTreino;
     private programaExercicioAplicacao programaExercicioAplicacao;
-    private Treino treino;
+    
+    //private Treino treino;
 
     public MenuSelecao() {
-        this.academia = new Academia(); // Supondo que você tenha uma classe Academia
         this.programaPessoa = new programaPessoa(); // Inicializa a instância de programaPessoa
         this.programaExercicio = new programaExercicio();
         this.programaDivisaoTreino = new programaDivisaoTreino();
         this.programaExercicioAplicacao = new programaExercicioAplicacao();
+        this.programaAcademia = new programaAcademia();
        // this.treino = new Treino();
         // Inicialize outras variáveis se necessário
     }
@@ -36,7 +42,7 @@ public class MenuSelecao {
 
             switch (opc) {
                 case 1:
-                    academia.selecionarOpc(); // Chama o método para adicionar informações
+                    programaAcademia.mostrarMenu(); // Chama o método para adicionar informações
                     break;
 
                 case 2:

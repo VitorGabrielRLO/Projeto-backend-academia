@@ -1,9 +1,12 @@
+package dao;
+
+import entities.Pessoa;
 
 public class PessoaDao {
 
     Pessoa[] pessoa = new Pessoa[10];
 
-    boolean adiciona(Pessoa p) {
+    public boolean adiciona(Pessoa p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             pessoa[proximaPosicaoLivre] = p;

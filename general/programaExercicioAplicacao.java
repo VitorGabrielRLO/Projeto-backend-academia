@@ -1,4 +1,10 @@
+package general;
+
 import java.util.Scanner;
+
+import dao.ExercicioAplicacaoDao;
+import entities.Exercicio;
+
 import java.util.Date;
 
 public class programaExercicioAplicacao{
