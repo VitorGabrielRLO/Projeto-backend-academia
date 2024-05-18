@@ -1,25 +1,15 @@
-package general;
+package entities;
 
 
 import java.util.Date;
 
-public class MensalidadeVigente {
+public class MovFinanceira {
     private int id;
     private double valor;
-    private Date inicio;
-    private Date termino;
+    private int tipo;
+    private String descricao;
     private Date dataCriacao;
     private Date dataModificacao;
-
-    // Construtor
-    public MensalidadeVigente(int id, double valor, Date inicio, Date termino, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.valor = valor;
-        this.inicio = inicio;
-        this.termino = termino;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
 
     // Getters e Setters
     public int getId() {
@@ -38,20 +28,20 @@ public class MensalidadeVigente {
         this.valor = valor;
     }
 
-    public Date getInicio() {
-        return inicio;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
-    public Date getTermino() {
-        return termino;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setTermino(Date termino) {
-        this.termino = termino;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Date getDataCriacao() {
@@ -73,11 +63,11 @@ public class MensalidadeVigente {
     
     @Override
     public String toString() {
-        return "MensalidadeVigente{" +
+        return "MovFinanceira{" +
                 "id=" + id +
                 ", valor=" + valor +
-                ", inicio=" + inicio +
-                ", termino=" + termino +
+                ", tipo=" + tipo +
+                ", descricao='" + descricao + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

@@ -1,10 +1,7 @@
-package general;
+package entities;
 
 
 import java.util.Date;
-
-import entities.Pessoa;
-import entities.Treino;
 
 public class AvaliacaoFisica {
     private int id;

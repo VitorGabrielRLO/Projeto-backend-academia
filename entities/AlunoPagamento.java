@@ -1,24 +1,23 @@
-
-package general;
+package entities;
 
 import java.util.Date;
 
-import entities.Pessoa;
-
-public class MensalidadeAluno {
+public class AlunoPagamento {
     private int id;
-    private Pessoa aluno;
-    private Date vencimento;
     private MensalidadeVigente mensalidade;
+    private Date data;
+    private Pessoa aluno;
+    private int modalidade;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public MensalidadeAluno(int id, Pessoa aluno, Date vencimento, MensalidadeVigente mensalidade, Date dataCriacao, Date dataModificacao) {
+    
+    public AlunoPagamento(int id, MensalidadeVigente mensalidade, Date data, Pessoa aluno, int modalidade, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.aluno = aluno;
-        this.vencimento = vencimento;
         this.mensalidade = mensalidade;
+        this.data = data;
+        this.aluno = aluno;
+        this.modalidade = modalidade;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -32,6 +31,22 @@ public class MensalidadeAluno {
         this.id = id;
     }
 
+    public MensalidadeVigente getMensalidade() {
+        return mensalidade;
+    }
+
+    public void setMensalidade(MensalidadeVigente mensalidade) {
+        this.mensalidade = mensalidade;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
     public Pessoa getAluno() {
         return aluno;
     }
@@ -40,20 +55,12 @@ public class MensalidadeAluno {
         this.aluno = aluno;
     }
 
-    public Date getVencimento() {
-        return vencimento;
+    public int getModalidade() {
+        return modalidade;
     }
 
-    public void setVencimento(Date vencimento) {
-        this.vencimento = vencimento;
-    }
-
-    public MensalidadeVigente getMensalidade() {
-        return mensalidade;
-    }
-
-    public void setMensalidade(MensalidadeVigente mensalidade) {
-        this.mensalidade = mensalidade;
+    public void setModalidade(int modalidade) {
+        this.modalidade = modalidade;
     }
 
     public Date getDataCriacao() {
@@ -75,11 +82,12 @@ public class MensalidadeAluno {
     
     @Override
     public String toString() {
-        return "MensalidadeAluno{" +
+        return "AlunoPagamento{" +
                 "id=" + id +
-                ", aluno=" + aluno +
-                ", vencimento=" + vencimento +
                 ", mensalidade=" + mensalidade +
+                ", data=" + data +
+                ", aluno=" + aluno +
+                ", modalidade=" + modalidade +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

@@ -1,22 +1,17 @@
-package general;
-
+package entities;
 
 import java.util.Date;
 
-public class MovFinanceira {
+public class EntradaAluno {
     private int id;
-    private double valor;
-    private int tipo;
-    private String descricao;
+    private Date dataHora;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public MovFinanceira(int id, double valor, int tipo, String descricao, Date dataCriacao, Date dataModificacao) {
+    public EntradaAluno(int id, Date dataHora, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.valor = valor;
-        this.tipo = tipo;
-        this.descricao = descricao;
+        this.dataHora = dataHora;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -30,28 +25,12 @@ public class MovFinanceira {
         this.id = id;
     }
 
-    public double getValor() {
-        return valor;
+    public Date getDataHora() {
+        return dataHora;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
     }
 
     public Date getDataCriacao() {
@@ -73,11 +52,9 @@ public class MovFinanceira {
     
     @Override
     public String toString() {
-        return "MovFinanceira{" +
+        return "EntradaAluno{" +
                 "id=" + id +
-                ", valor=" + valor +
-                ", tipo=" + tipo +
-                ", descricao='" + descricao + '\'' +
+                ", dataHora=" + dataHora +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

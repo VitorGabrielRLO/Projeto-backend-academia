@@ -1,7 +1,8 @@
 package dao; // Definindo qual pacote esta classe pertence
 
-import general.ExercicioAplicacao; // Adicionando uma referencia ao pacote com a classe Exercicio Aplicação
 import java.util.Date;
+
+import entities.ExercicioAplicacao;
 
 public class ExercicioAplicacaoDao {
 

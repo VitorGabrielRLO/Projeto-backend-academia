@@ -1,37 +1,31 @@
-package general;
+package entities;
+
 
 import java.util.Date;
 
-public class EntradaAluno {
-    private int id;
-    private Date dataHora;
+public class ExercicioAplicacao {
+    private static long serial;
+    private long id;
+    private String descricao;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public EntradaAluno(int id, Date dataHora, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.dataHora = dataHora;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
+    public ExercicioAplicacao() { 
+        id = ExercicioAplicacao.serial++;
+    }
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public Date getDataHora() {
-        return dataHora;
+    public String getDescricao(){
+        return descricao;
     }
 
-    public void setDataHora(Date dataHora) {
-        this.dataHora = dataHora;
-    }
 
     public Date getDataCriacao() {
         return dataCriacao;
@@ -52,9 +46,9 @@ public class EntradaAluno {
     
     @Override
     public String toString() {
-        return "EntradaAluno{" +
+        return "ExercicioAplicacao{" +
                 "id=" + id +
-                ", dataHora=" + dataHora +
+                ", descricao='" + descricao + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';
