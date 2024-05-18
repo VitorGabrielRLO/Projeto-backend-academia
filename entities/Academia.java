@@ -46,7 +46,7 @@ public class Academia {
         return "Exercicio{" +
                 "id=" + id +
                 ", nomeExercicio='" + nome + '\'' +
-                ", descricaoFoto='" + endereco + '\'' +
+                ", endereco='" + endereco + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 '}';
     }

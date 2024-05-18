@@ -20,7 +20,7 @@ public class programaTreinoAplicacao{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    TreinoAplicacao j = criaExercicio();
+                    TreinoAplicacao j = criaAcademia();
 
                     boolean pessoaFoiInserida = TreinoAplicacaoDao.adiciona(j);
                     if (pessoaFoiInserida) {
@@ -71,7 +71,7 @@ public class programaTreinoAplicacao{
         }while (opcaoUsuario != 5);
     }
     
-    private TreinoAplicacao criaExercicio() {
+    private TreinoAplicacao criaAcademia() {
         TreinoAplicacao j = new TreinoAplicacao();
 
         System.out.print("\nNome: ");

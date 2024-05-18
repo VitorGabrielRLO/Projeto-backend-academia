@@ -1,15 +1,20 @@
 package dao;
 
+import java.util.Date;
+
 import entities.Academia;
+
+
+// import entities.Exercicio;
 
 public class AcademiaDAO {
 
-    Academia[] divisao = new Academia[10];
+    Academia[] academia = new Academia[10];
 
     public boolean adiciona(Academia p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
-            divisao[proximaPosicaoLivre] = p;
+            academia[proximaPosicaoLivre] = p;
             return true;
         } else {
             return false;
@@ -18,8 +23,8 @@ public class AcademiaDAO {
     }
 
     public boolean ehVazio() {
-        for (Academia divisoes : divisao) {
-            if (divisoes != null) {
+        for (Academia academias : academia) {
+            if (academias != null) {
                 return false;
             }
         }
@@ -28,22 +33,27 @@ public class AcademiaDAO {
     }
 
     public void mostrarTodos() {
-        boolean temJogador = false;
-        for (Academia divisoes : divisao) {
-            if (divisoes != null) {
-                System.out.println(divisoes);
-                temJogador = true;
+        boolean temAcademia = false;
+        for (Academia academias : academia) {
+            if (academias != null) {
+                System.out.println("ID: " + academias.getId());
+                System.out.println("Nome: " + academias.getNome());
+                System.out.println("Endereco: " + academias.getEndereco());
+                System.out.println("Data de Criação: " + academias.getDataCriacao());
+                System.out.println("Data de Modificação: " + academias.getDataModificacao());
+                System.out.println("--------------------------");
+                temAcademia = true;
             }
         }
-        if (!temJogador) {
-            System.out.println("Não existe divisao cadastrada");
+        if (!temAcademia) {
+            System.out.println("Não existem exercícios cadastrados.");
         }
     }
 
     public boolean alterarNome(String nome, String novoNome) {
-        for (Academia divisoes : divisao) {
-            if (divisoes != null && divisoes.getNome().equals(nome)) {
-                divisoes.setNome(novoNome);
+        for (Academia academias : academia) {
+            if (academias != null && academias.getNome().equals(nome)) {
+                academias.setNome(novoNome);
                 return true;
             }
         }
@@ -52,9 +62,9 @@ public class AcademiaDAO {
     }
 
     Academia buscaPorNome(String nome) {
-        for (Academia divisoes : divisao) {
-            if (divisoes != null && divisoes.getNome().equals(nome)) {
-                return divisoes;
+        for (Academia academias : academia) {
+            if (academias != null && academias.getNome().equals(nome)) {
+                return academias;
             }
         }
         return null;
@@ -62,9 +72,9 @@ public class AcademiaDAO {
     }
 
     public boolean remover(String nome) {
-        for (int i = 0; i < divisao.length; i++) {
-            if (divisao[i] != null && divisao[i].getNome().equals(nome)) {
-                divisao[i] = null;
+        for (int i = 0; i < academia.length; i++) {
+            if (academia[i] != null && academia[i].getNome().equals(nome)) {
+                academia[i] = null;
                 return true;
             }
         }
@@ -73,8 +83,8 @@ public class AcademiaDAO {
     }
 
     private int proximaPosicaoLivre() {
-        for (int i = 0; i < divisao.length; i++) {
-            if (divisao[i] == null) {
+        for (int i = 0; i < academia.length; i++) {
+            if (academia[i] == null) {
                 return i;
             }
 
@@ -84,27 +94,35 @@ public class AcademiaDAO {
     }
 
     public AcademiaDAO() {
-        Academia divisao1 = new Academia();
-        Academia divisao2 = new Academia();
-        Academia divisao3 = new Academia();
-        Academia divisao4 = new Academia();
+        Date dataAtual = new Date();
 
-        // divisao1.setNome("Virginia");
-        // divisao1.setNomeDetalhado("Mulher");
+        Academia academia1 = new Academia();
+        Academia academia2 = new Academia();
+        Academia academia3 = new Academia();
+        Academia academia4 = new Academia();
 
-        // divisao1.setNome("Virginia");
-        // divisao1.setNomeDetalhado("Mulher");
+        academia1.setNome("Gym");
+        academia1.setEndereco("Rua 123");
+        academia1.setDataCriacao(dataAtual);
+        
+        academia2.setNome("treino");
+        academia2.setEndereco("Rua 321");
+        academia1.setDataCriacao(dataAtual);
+        
+        academia3.setNome("Fitcorps");
+        academia3.setEndereco("Rua visconde");
+        academia1.setDataCriacao(dataAtual);
+        
+        academia4.setNome("SmartFit");
+        academia4.setEndereco("Rua Leopoldino");
+        academia1.setDataCriacao(dataAtual);
 
-        // divisao1.setNome("Virginia");
-        // divisao1.setNomeDetalhado("Mulher");
 
-        // divisao1.setNome("Virginia");
-        // divisao1.setNomeDetalhado("Mulher");
 
-        // adiciona(divisao1);
-        // adiciona(divisao2);
-        // adiciona(divisao3);
-        // adiciona(divisao4);
+        adiciona(academia1);
+        adiciona(academia2);
+        adiciona(academia3);
+        adiciona(academia4);
 
     }
 }

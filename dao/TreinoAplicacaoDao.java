@@ -5,7 +5,7 @@ public class TreinoAplicacaoDao {
 
     TreinoAplicacao[] treinoAplicacao = new TreinoAplicacao[10];
 
-    boolean adiciona(TreinoAplicacao p) {
+    public boolean adiciona(TreinoAplicacao p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             treinoAplicacao[proximaPosicaoLivre] = p;
@@ -39,10 +39,10 @@ public class TreinoAplicacaoDao {
         }
     }
 
-    public boolean alterarNome(String nome, String novoNome) {
+    public boolean alterarNome(String treino, String novoTreino) {
         for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
-            if (treinoAplicacaos != null && treinoAplicacaos.getNome().equals(nome)) {
-                treinoAplicacaos.setNome(novoNome);
+            if (treinoAplicacaos != null && treinoAplicacaos.getTreino().equals(treino)) {
+                treinoAplicacaos.setTreino(novoTreino);
                 return true;
             }
         }
@@ -50,9 +50,10 @@ public class TreinoAplicacaoDao {
 
     }
 
-    TreinoAplicacao buscaPorNome(String nome) {
+    @SuppressWarnings("unlikely-arg-type")
+    TreinoAplicacao buscaPorNome(String treino) {
         for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
-            if (treinoAplicacaos != null && treinoAplicacaos.getNome().equals(nome)) {
+            if (treinoAplicacaos != null && treinoAplicacaos.getTreino().equals(treino)) {
                 return treinoAplicacaos;
             }
         }
@@ -62,7 +63,7 @@ public class TreinoAplicacaoDao {
 
     public boolean remover(String nome) {
         for (int i = 0; i < treinoAplicacao.length; i++) {
-            if (treinoAplicacao[i] != null && treinoAplicacao[i].getNome().equals(nome)) {
+            if (treinoAplicacao[i] != null && treinoAplicacao[i].getTreino().equals(nome)) {
                 treinoAplicacao[i] = null;
                 return true;
             }
