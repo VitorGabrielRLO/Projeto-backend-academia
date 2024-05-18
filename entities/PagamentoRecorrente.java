@@ -1,9 +1,7 @@
-package general;
+package entities;
 
 
 import java.util.Date;
-
-import entities.Pessoa;
 
 public class PagamentoRecorrente {
     private int id;

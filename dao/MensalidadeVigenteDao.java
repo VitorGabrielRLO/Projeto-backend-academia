@@ -1,10 +1,13 @@
-public class MovFinanceiraDao {
-    MovFinanceira[] movFinanceira = new MovFinanceira[10];
+import entities.MensalidadeVigente;
 
-    boolean adiciona(MovFinanceira p) {
+package dao;
+public class MensalidadeVigenteDao {
+    MensalidadeVigente[] mensalidadeVigente = new MensalidadeVigente[10];
+
+    boolean adiciona(MensalidadeVigente p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
-            movFinanceira[proximaPosicaoLivre] = p;
+            mensalidadeVigente[proximaPosicaoLivre] = p;
             return true;
         } else {
             return false;
@@ -13,8 +16,8 @@ public class MovFinanceiraDao {
     }
 
     public boolean ehVazio() {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
+        for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null) {
                 return false;
             }
         }
@@ -24,9 +27,9 @@ public class MovFinanceiraDao {
 
     public void mostrarTodos() {
         boolean temJogador = false;
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
-                System.out.println(movFinanceiras);
+        for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null) {
+                System.out.println(mensalidadeVigentes);
                 temJogador = true;
             }
         }
@@ -36,9 +39,9 @@ public class MovFinanceiraDao {
     }
 
     public boolean alterarNome(String nome, String novoNome) {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null && movFinanceiras.getNomePessoa().equals(nome)) {
-                movFinanceiras.setNomePessoa(novoNome);
+        for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null && mensalidadeVigentes.getNomePessoa().equals(nome)) {
+                mensalidadeVigentes.setNomePessoa(novoNome);
                 return true;
             }
         }
@@ -46,10 +49,10 @@ public class MovFinanceiraDao {
 
     }
 
-    MovFinanceira buscaPorNome(String nome) {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null && movFinanceiras.getNomePessoa().equals(nome)) {
-                return movFinanceiras;
+    MensalidadeVigente buscaPorNome(String nome) {
+        for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null && mensalidadeVigentes.getNomePessoa().equals(nome)) {
+                return mensalidadeVigentes;
             }
         }
         return null;
@@ -57,9 +60,9 @@ public class MovFinanceiraDao {
     }
 
     public boolean remover(String nome) {
-        for (int i = 0; i < movFinanceira.length; i++) {
-            if (movFinanceira[i] != null && movFinanceira[i].getNomePessoa().equals(nome)) {
-                movFinanceira[i] = null;
+        for (int i = 0; i < mensalidadeVigente.length; i++) {
+            if (mensalidadeVigente[i] != null && mensalidadeVigente[i].getNomePessoa().equals(nome)) {
+                mensalidadeVigente[i] = null;
                 return true;
             }
         }
@@ -68,8 +71,8 @@ public class MovFinanceiraDao {
     }
 
     private int proximaPosicaoLivre() {
-        for (int i = 0; i < movFinanceira.length; i++) {
-            if (movFinanceira[i] == null) {
+        for (int i = 0; i < mensalidadeVigente.length; i++) {
+            if (mensalidadeVigente[i] == null) {
                 return i;
             }
 

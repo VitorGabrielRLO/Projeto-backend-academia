@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import dao.ExercicioAplicacaoDao;
 import entities.Exercicio;
+import entities.ExercicioAplicacao;
 
 import java.util.Date;
 

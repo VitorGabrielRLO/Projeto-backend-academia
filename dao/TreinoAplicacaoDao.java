@@ -1,3 +1,5 @@
+package dao;
+import entities.TreinoAplicacao;
 
 public class TreinoAplicacaoDao {
 

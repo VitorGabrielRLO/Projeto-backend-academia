@@ -1,8 +1,4 @@
-package general;
-
 import java.util.Date;
-
-import entities.Pessoa;
 
 public class AlunoPagamento {
     private int id;
@@ -12,17 +8,6 @@ public class AlunoPagamento {
     private int modalidade;
     private Date dataCriacao;
     private Date dataModificacao;
-
-    
-    public AlunoPagamento(int id, MensalidadeVigente mensalidade, Date data, Pessoa aluno, int modalidade, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.mensalidade = mensalidade;
-        this.data = data;
-        this.aluno = aluno;
-        this.modalidade = modalidade;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
 
     // Getters e Setters
     public int getId() {

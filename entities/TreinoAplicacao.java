@@ -1,8 +1,7 @@
-package general;
+package entities;
 
 
 import java.util.Date;
-import entities.*;
 
 public class TreinoAplicacao {
     private int id;

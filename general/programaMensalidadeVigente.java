@@ -1,6 +1,10 @@
 
 
 import java.util.Scanner;
+
+import dao.MensalidadeVigenteDao;
+import entities.MensalidadeVigente;
+
 import java.util.Date;
 
 public class programaMensalidadeVigente{

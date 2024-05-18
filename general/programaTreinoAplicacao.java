@@ -1,6 +1,10 @@
 
 
 import java.util.Scanner;
+
+import dao.TreinoAplicacaoDao;
+import entities.TreinoAplicacao;
+
 import java.util.Date;
 
 public class programaTreinoAplicacao{

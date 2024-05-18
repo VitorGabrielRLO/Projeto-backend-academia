@@ -1,6 +1,10 @@
 
 
 import java.util.Scanner;
+
+import dao.MovFinanceiraDao;
+import entities.MovFinanceira;
+
 import java.util.Date;
 
 public class programaMovFinanceira{
