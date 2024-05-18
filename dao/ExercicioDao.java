@@ -32,7 +32,6 @@ public class ExercicioDao {
                 System.out.println("ID: " + exercicios.getId());
                 System.out.println("Nome: " + exercicios.getNomeExercicio());
                 System.out.println("Descricao: " + exercicios.getDescricaoFoto());
-                System.out.println("Area Afetada: " + exercicios.getAreaAfetada());
                 System.out.println("Data de Criação: " + exercicios.getDataCriacao());
                 System.out.println("Data de Modificação: " + exercicios.getDataModificacao());
                 System.out.println("--------------------------");
@@ -91,26 +90,22 @@ public class ExercicioDao {
 
         
         exercicio1.setNomeExercicio("Supino");
-        exercicio1.setDescricaoFoto("Foto");
-        exercicio1.setAreaAfetada("Peito");
+        exercicio1.setDescricaoFoto("Peito");
         exercicio1.setDataCriacao(dataAtual);
 
         
         exercicio2.setNomeExercicio("Rosca");
-        exercicio2.setDescricaoFoto("Foto");
-        exercicio2.setAreaAfetada("Biceps");
+        exercicio2.setDescricaoFoto("Biceps");
         exercicio2.setDataCriacao(dataAtual);
 
         
         exercicio3.setNomeExercicio("Agachamento");
-        exercicio3.setDescricaoFoto("Foto");
-        exercicio3.setAreaAfetada("Perna");
+        exercicio3.setDescricaoFoto("Perna");
         exercicio3.setDataCriacao(dataAtual);
 
         
         exercicio4.setNomeExercicio("Elevacao lateral ");
-        exercicio4.setDescricaoFoto("Foto");
-        exercicio4.setAreaAfetada("Triceps");
+        exercicio4.setDescricaoFoto("Triceps");
         exercicio4.setDataCriacao(dataAtual);
 
         adiciona(exercicio1);

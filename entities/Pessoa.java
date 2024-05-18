@@ -10,7 +10,7 @@ public class Pessoa {
     private String loginPessoa;
     private String senhaPessoa;
     private int tipoUsuarioPessoa;
-    // private Date dataCriacaoPessoa;
+    private Date dataCriacaoPessoa;
     private Date dataModificacaoPessoa;
 
     // Construtor

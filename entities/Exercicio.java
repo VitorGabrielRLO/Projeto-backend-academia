@@ -7,7 +7,6 @@ public class Exercicio {
     private long id;
     private String nomeExercicio;
     private String descricaoFoto;
-    private String area;
     private Date dataCriacao;
     private Date dataModificacao;
 
@@ -33,16 +32,6 @@ public class Exercicio {
 
     public void setDescricaoFoto(String descricaoFoto) {
         this.descricaoFoto = descricaoFoto;
-    }
-
-    public void setAreaAfetada(String area)
-    {
-        this.area = area;
-    }
-
-    public String getAreaAfetada()
-    {
-        return area;
     }
 
     public Date getDataCriacao() {
