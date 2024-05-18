@@ -2,13 +2,13 @@ package general;
 
 import java.util.Scanner;
 
-import dao.MovFinanceiraDao;
-import entities.MovFinanceira;
+import dao.EntradaAlunoDao;
+import entities.EntradaAluno;
 
 import java.util.Date;
 
-public class programaMovFinanceira{
-    MovFinanceiraDao MovFinanceiraDao = new MovFinanceiraDao();
+public class ProgramaEntradaAluno{
+    EntradaAlunoDao EntradaAlunoDao = new EntradaAlunoDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
@@ -20,9 +20,9 @@ public class programaMovFinanceira{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    MovFinanceira j = criaTreino();
+                    EntradaAluno j = criaTreino();
 
-                    boolean pessoaFoiInserida = MovFinanceiraDao.adiciona(j);
+                    boolean pessoaFoiInserida = EntradaAlunoDao.adiciona(j);
                     if (pessoaFoiInserida) {
                         System.out.println("Pessoa inserida com sucesso");
                     } else {
@@ -32,13 +32,13 @@ public class programaMovFinanceira{
 
                     break;
                 case 2:
-                  MovFinanceiraDao.mostrarTodos();
+                  EntradaAlunoDao.mostrarTodos();
                     break;
                 case 4:
                     System.out.println("Id da movimentaçao financeira a ser deletada:");
                     long idExclusao = s.nextLong();
 
-                    if (MovFinanceiraDao.remover(idExclusao)) {
+                    if (EntradaAlunoDao.remover(idExclusao)) {
                         System.out.println("Movimentacao excluída");
                     } else {
                         System.out.println("Movimentacao excluída");
@@ -59,8 +59,9 @@ public class programaMovFinanceira{
         }while (opcaoUsuario != 5);
     }
     
-    private MovFinanceira criaTreino() {
-        MovFinanceira j = new MovFinanceira();
+    private EntradaAluno criaTreino() {
+        EntradaAluno j = new EntradaAluno();
+        Date dataAtual = new Date();
 
         System.out.print("\nValor: ");
         double valor = s.nextDouble();
@@ -72,6 +73,7 @@ public class programaMovFinanceira{
         int tipo = s.nextInt();
         j.setTipo(tipo);
         MovFinanceiraDao.movimentacaoFin(valor, tipo);
+        
 
         return j;
     }

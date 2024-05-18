@@ -3,7 +3,6 @@ package general;
 import java.util.Scanner;
 
 import dao.ExercicioAplicacaoDao;
-import entities.Exercicio;
 import entities.ExercicioAplicacao;
 
 import java.util.Date;
@@ -82,11 +81,11 @@ public class programaExercicioAplicacao{
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 cadastrar");
-        System.out.println("2 mostrar todos");
-        System.out.println("3 alterar o nome da pessoa");
-        System.out.println("4 excluir pelo id");
-        System.out.println("5 sair");
+        System.out.println("1 - Cadastrar exercicio aplicação");
+        System.out.println("2 - Mostrar todos exercicios aplicação");
+        System.out.println("3 - Alterar o nome do exercicio aplicação");
+        System.out.println("4 - Excluir pelo id");
+        System.out.println("5 - Voltar");
         System.out.print("Qual sua opcao? R: ");
         return Integer.parseInt(s.nextLine());
 

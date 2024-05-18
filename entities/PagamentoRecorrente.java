@@ -4,7 +4,8 @@ package entities;
 import java.util.Date;
 
 public class PagamentoRecorrente {
-    private int id;
+    private static long serial;
+    private long id;
     private Pessoa aluno;
     private Date data;
     private String cartaoDeCredito;
@@ -15,12 +16,11 @@ public class PagamentoRecorrente {
     private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public PagamentoRecorrente() { 
+        id = PagamentoRecorrente.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public Pessoa getAluno() {

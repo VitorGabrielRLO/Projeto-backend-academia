@@ -1,6 +1,9 @@
-import entities.MensalidadeVigente;
-
 package dao;
+
+import entities.MensalidadeVigente;
+// import entities.Pessoa;
+
+
 public class MensalidadeVigenteDao {
     MensalidadeVigente[] mensalidadeVigente = new MensalidadeVigente[10];
 
@@ -38,10 +41,10 @@ public class MensalidadeVigenteDao {
         }
     }
 
-    public boolean alterarNome(String nome, String novoNome) {
+    public boolean alterarDescricao(String descricao, String novoDescricao) {
         for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
-            if (mensalidadeVigentes != null && mensalidadeVigentes.getNomePessoa().equals(nome)) {
-                mensalidadeVigentes.setNomePessoa(novoNome);
+            if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
+                mensalidadeVigentes.setDescricao(novoDescricao);
                 return true;
             }
         }
@@ -49,9 +52,9 @@ public class MensalidadeVigenteDao {
 
     }
 
-    MensalidadeVigente buscaPorNome(String nome) {
+    MensalidadeVigente buscaPorId(long id) {
         for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
-            if (mensalidadeVigentes != null && mensalidadeVigentes.getNomePessoa().equals(nome)) {
+            if (mensalidadeVigentes != null && mensalidadeVigentes.getId()==id) {
                 return mensalidadeVigentes;
             }
         }
@@ -59,9 +62,9 @@ public class MensalidadeVigenteDao {
 
     }
 
-    public boolean remover(String nome) {
+    public boolean remover(long id) {
         for (int i = 0; i < mensalidadeVigente.length; i++) {
-            if (mensalidadeVigente[i] != null && mensalidadeVigente[i].getNomePessoa().equals(nome)) {
+            if (mensalidadeVigente[i] != null && mensalidadeVigente[i].getId()==id) {
                 mensalidadeVigente[i] = null;
                 return true;
             }

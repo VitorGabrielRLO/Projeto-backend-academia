@@ -4,36 +4,23 @@ package entities;
 import java.util.Date;
 
 public class AvaliacaoFisica {
-    private int id;
+    private static long serial;
+    private long id;
     private Pessoa pessoa;
     private Treino ultimoTreino;
     private double peso;
     private double altura;
-    private double IMC;
+    private double imc;
     private double indiceSatisfacao;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public AvaliacaoFisica(int id, Pessoa pessoa, Treino ultimoTreino, double peso, double altura, double IMC, double indiceSatisfacao, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.pessoa = pessoa;
-        this.ultimoTreino = ultimoTreino;
-        this.peso = peso;
-        this.altura = altura;
-        this.IMC = IMC;
-        this.indiceSatisfacao = indiceSatisfacao;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
-        return id;
+    public AvaliacaoFisica() { 
+        id = AvaliacaoFisica.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public Pessoa getPessoa() {
@@ -69,12 +56,13 @@ public class AvaliacaoFisica {
     }
 
     public double getIMC() {
-        return IMC;
+        return imc;
     }
 
     public void setIMC(double IMC) {
-        this.IMC = IMC;
+        this.imc = IMC;
     }
+
 
     public double getIndiceSatisfacao() {
         return indiceSatisfacao;
@@ -109,7 +97,7 @@ public class AvaliacaoFisica {
                 ", ultimoTreino=" + ultimoTreino +
                 ", peso=" + peso +
                 ", altura=" + altura +
-                ", IMC=" + IMC +
+                ", imc=" + imc +
                 ", indiceSatisfacao=" + indiceSatisfacao +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +

@@ -4,7 +4,7 @@ import entities.Pessoa;
 
 public class PessoaDao {
 
-    Pessoa[] pessoa = new Pessoa[10];
+    Pessoa[] pessoa = new Pessoa[1000];
 
     public boolean adiciona(Pessoa p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();

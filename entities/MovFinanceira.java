@@ -4,7 +4,8 @@ package entities;
 import java.util.Date;
 
 public class MovFinanceira {
-    private int id;
+    private static long serial;
+    private long id;
     private double valor;
     private int tipo;
     private String descricao;
@@ -12,12 +13,11 @@ public class MovFinanceira {
     private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public MovFinanceira() { 
+        id = MovFinanceira.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public double getValor() {
@@ -59,6 +59,8 @@ public class MovFinanceira {
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
+
+   
 
     
     @Override

@@ -4,30 +4,20 @@ package entities;
 import java.util.Date;
 
 public class MensalidadeAluno {
-    private int id;
+    private static long serial;
+    private long id;
     private Pessoa aluno;
     private Date vencimento;
     private MensalidadeVigente mensalidade;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public MensalidadeAluno(int id, Pessoa aluno, Date vencimento, MensalidadeVigente mensalidade, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.aluno = aluno;
-        this.vencimento = vencimento;
-        this.mensalidade = mensalidade;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
-        return id;
+    public MensalidadeAluno() { 
+        id = MensalidadeAluno.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public Pessoa getAluno() {

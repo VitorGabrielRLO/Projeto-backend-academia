@@ -3,26 +3,18 @@ package entities;
 import java.util.Date;
 
 public class EntradaAluno {
-    private int id;
+    private static long serial;
+    private long id;
     private Date dataHora;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public EntradaAluno(int id, Date dataHora, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.dataHora = dataHora;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
-        return id;
+    public EntradaAluno() { 
+        id = EntradaAluno.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public Date getDataHora() {

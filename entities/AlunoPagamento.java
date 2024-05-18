@@ -3,7 +3,8 @@ package entities;
 import java.util.Date;
 
 public class AlunoPagamento {
-    private int id;
+    private static long serial;
+    private long id;
     private MensalidadeVigente mensalidade;
     private Date data;
     private Pessoa aluno;
@@ -11,24 +12,12 @@ public class AlunoPagamento {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    
-    public AlunoPagamento(int id, MensalidadeVigente mensalidade, Date data, Pessoa aluno, int modalidade, Date dataCriacao, Date dataModificacao) {
-        this.id = id;
-        this.mensalidade = mensalidade;
-        this.data = data;
-        this.aluno = aluno;
-        this.modalidade = modalidade;
-        this.dataCriacao = dataCriacao;
-        this.dataModificacao = dataModificacao;
-    }
-
     // Getters e Setters
-    public int getId() {
-        return id;
+    public AlunoPagamento() { 
+        id = AlunoPagamento.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public MensalidadeVigente getMensalidade() {
@@ -92,4 +81,5 @@ public class AlunoPagamento {
                 ", dataModificacao=" + dataModificacao +
                 '}';
     }
+
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import entities.*;
 import general.*;
+import dao.*;
 
 public class MenuSelecao {
     private programaAcademia programaAcademia;
@@ -12,6 +13,7 @@ public class MenuSelecao {
     private programaExercicio programaExercicio;
     private programaDivisaoTreino programaDivisaoTreino;
     private programaExercicioAplicacao programaExercicioAplicacao;
+    private programaAvaliacaoFisica programaAvaliacaoFisica;
     
     //private Treino treino;
 
@@ -21,7 +23,7 @@ public class MenuSelecao {
         this.programaDivisaoTreino = new programaDivisaoTreino();
         this.programaExercicioAplicacao = new programaExercicioAplicacao();
         this.programaAcademia = new programaAcademia();
-       // this.treino = new Treino();
+        this.programaAvaliacaoFisica = new programaAvaliacaoFisica();
         // Inicialize outras variáveis se necessário
     }
 
@@ -34,7 +36,8 @@ public class MenuSelecao {
             System.out.println("3. Mostrar Exercícios");
             System.out.println("4. Mostrar divisoes de treino");
             System.out.println("5. Acessar Exercicios Aplicação");
-            System.out.println("6. Sair");
+            System.out.println("6. Avaliacao Fisica");
+            System.out.println("7. Sair");
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
@@ -58,9 +61,13 @@ public class MenuSelecao {
                     break;
 
                 case 5:
-                    programaExercicioAplicacao.mostrarMenu();
-                    break;
+                programaExercicioAplicacao.mostrarMenu();
+                break;
+                
                 case 6:
+                programaAvaliacaoFisica.mostrarMenu();
+                    break;
+                case 7:
                 System.out.println("Encerrando o programa...");
                 return;
 

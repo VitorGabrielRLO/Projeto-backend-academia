@@ -1,15 +1,15 @@
 package dao;
 import entities.Treino;
-import entities.TreinoAplicacao;
+import entities.PagamentoRecorrente;
 
-public class TreinoAplicacaoDao {
+public class PagamentoRecorrenteDao {
 
-    TreinoAplicacao[] treinoAplicacao = new TreinoAplicacao[10];
+    PagamentoRecorrente[] treinoAplicacao = new PagamentoRecorrente[10];
 
-    public boolean adiciona(TreinoAplicacao p) {
+    public boolean adiciona(PagamentoRecorrente p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
-            treinoAplicacao[proximaPosicaoLivre] = p;
+            PagamentoRecorrente[proximaPosicaoLivre] = p;
             return true;
         } else {
             return false;
@@ -18,7 +18,7 @@ public class TreinoAplicacaoDao {
     }
 
     public boolean ehVazio() {
-        for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
+        for (PagamentoRecorrente treinoAplicacaos : treinoAplicacao) {
             if (treinoAplicacaos != null) {
                 return false;
             }

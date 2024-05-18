@@ -43,9 +43,9 @@ public class Academia {
 
     @Override
     public String toString() {
-        return "Exercicio{" +
+        return "Academia{" +
                 "id=" + id +
-                ", nomeExercicio='" + nome + '\'' +
+                ", Nome='" + nome + '\'' +
                 ", endereco='" + endereco + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 '}';

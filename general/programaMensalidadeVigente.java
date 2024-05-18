@@ -1,4 +1,4 @@
-
+package general;
 
 import java.util.Scanner;
 
@@ -24,9 +24,9 @@ public class programaMensalidadeVigente{
 
                     boolean pessoaFoiInserida = MensalidadeVigenteDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Pessoa inserida com sucesso");
+                        System.out.println("Mensalidade vigente inserida com sucesso");
                     } else {
-                        System.out.println("Pessoa nao inserida");
+                        System.out.println("Mensalidade vigente nao inserida");
 
                     }
 

@@ -1,14 +1,13 @@
 package dao; // Definindo qual pacote esta classe pertence
 
 
-import entities.AvaliacaoFisica;
+import entities.AlunoPagamento;
 
+public class AlunoPagamentoDao {
 
-public class AvaliacaoFisicaDao {
+    AlunoPagamento[] avaliacaoFisica = new AlunoPagamento[10];
 
-    AvaliacaoFisica[] avaliacaoFisica = new AvaliacaoFisica[10];
-
-    public boolean adiciona(AvaliacaoFisica p) {
+    public boolean adiciona(AlunoPagamento p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             avaliacaoFisica[proximaPosicaoLivre] = p;
@@ -20,7 +19,7 @@ public class AvaliacaoFisicaDao {
     }
 
     public boolean ehVazio() {
-        for (AvaliacaoFisica avaliacaoFisicas : avaliacaoFisica) {
+        for (AlunoPagamento avaliacaoFisicas : avaliacaoFisica) {
             if (avaliacaoFisicas != null) {
                 return false;
             }
@@ -30,7 +29,7 @@ public class AvaliacaoFisicaDao {
     }
     public void mostrarTodos() {
         boolean temExercicio = false;
-        for (AvaliacaoFisica avaliacaoFisicas : avaliacaoFisica) {
+        for (AlunoPagamento avaliacaoFisicas : avaliacaoFisica) {
             if (avaliacaoFisicas != null) {
                 System.out.println("ID: " + avaliacaoFisicas.getId());
                 System.out.println("IMC: " + avaliacaoFisicas.getIMC());
@@ -48,8 +47,8 @@ public class AvaliacaoFisicaDao {
 
 
 
-    AvaliacaoFisica buscaPorId(int id) {
-        for (AvaliacaoFisica avaliacaoFisicas : avaliacaoFisica) {
+    AlunoPagamento buscaPorId(int id) {
+        for (AlunoPagamento avaliacaoFisicas : avaliacaoFisica) {
             if (avaliacaoFisicas != null && avaliacaoFisicas.getId() == id) {
                 return avaliacaoFisicas;
             }

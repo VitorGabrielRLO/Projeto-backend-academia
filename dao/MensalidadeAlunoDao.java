@@ -1,16 +1,16 @@
 package dao;
 
-import entities.MovFinanceira;
+import entities.MensalidadeAluno;
+// import entities.Pessoa;
 
 
-public class MovFinanceiraDao {
-    MovFinanceira[] movFinanceira = new MovFinanceira[10];
-    double grana = 0;
+public class MensalidadeAlunoDao {
+     MensalidadeAluno[] mensalidadeVigente = new MensalidadeAluno[10];
 
-    public boolean adiciona(MovFinanceira p) {
+    boolean adiciona(MensalidadeAluno p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
-            movFinanceira[proximaPosicaoLivre] = p;
+            mensalidadeVigente[proximaPosicaoLivre] = p;
             return true;
         } else {
             return false;
@@ -19,8 +19,8 @@ public class MovFinanceiraDao {
     }
 
     public boolean ehVazio() {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
+        for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null) {
                 return false;
             }
         }
@@ -30,31 +30,42 @@ public class MovFinanceiraDao {
 
     public void mostrarTodos() {
         boolean temJogador = false;
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
-                System.out.println(movFinanceiras);
+        for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null) {
+                System.out.println(mensalidadeVigentes);
                 temJogador = true;
             }
         }
         if (!temJogador) {
-            System.out.println("Não existe movimentaçao financeira cadastrada");
+            System.out.println("Não existe pessoa cadastrada");
         }
     }
 
-    MovFinanceira buscaPorId(long idBuscado) {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null && movFinanceiras.getId() == idBuscado) {
-                return movFinanceiras;
+    public boolean alterarDescricao(String descricao, String novoDescricao) {
+        for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
+                mensalidadeVigentes.setDescricao(novoDescricao);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    MensalidadeAluno buscaPorId(long id) {
+        for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
+            if (mensalidadeVigentes != null && mensalidadeVigentes.getId()==id) {
+                return mensalidadeVigentes;
             }
         }
         return null;
 
     }
 
-    public boolean remover(long idBuscado) {
-        for (int i = 0; i < movFinanceira.length; i++) {
-            if (movFinanceira[i] != null && movFinanceira[i].getId() == idBuscado) {
-                movFinanceira[i] = null;
+    public boolean remover(long id) {
+        for (int i = 0; i < mensalidadeVigente.length; i++) {
+            if (mensalidadeVigente[i] != null && mensalidadeVigente[i].getId()==id) {
+                mensalidadeVigente[i] = null;
                 return true;
             }
         }
@@ -63,23 +74,14 @@ public class MovFinanceiraDao {
     }
 
     private int proximaPosicaoLivre() {
-        for (int i = 0; i < movFinanceira.length; i++) {
-            if (movFinanceira[i] == null) {
+        for (int i = 0; i < mensalidadeVigente.length; i++) {
+            if (mensalidadeVigente[i] == null) {
                 return i;
             }
 
         }
         return -1;
 
-    }
-
-     public void movimentacaoFin(double valor, int tipo){
-        if(tipo == 1){
-            this.grana += valor;
-        }
-        if(tipo == 0){
-            this.grana -= valor;
-        }
     }
     /* 
     public PessoaDao() {

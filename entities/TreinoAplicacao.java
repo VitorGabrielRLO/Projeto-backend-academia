@@ -4,7 +4,8 @@ package entities;
 import java.util.Date;
 
 public class TreinoAplicacao {
-    private int id;
+    private static long serial;
+    private long id;
     private Treino treino;
     private Exercicio exercicio;
     private ExercicioAplicacao exercicioAplicacao;
@@ -13,12 +14,11 @@ public class TreinoAplicacao {
     private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public TreinoAplicacao() { 
+        id = TreinoAplicacao.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public Treino getTreino() {

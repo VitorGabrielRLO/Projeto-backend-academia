@@ -3,11 +3,11 @@ package general;
 import java.util.Scanner;
 import java.util.Date;
 
-import dao.ExercicioDao;
-import entities.Exercicio;
+import dao.MensalidadeAlunoDao;
+import entities.MensalidadeAluno;
 
-public class programaExercicio{
-    ExercicioDao ExercicioDao = new ExercicioDao();
+public class programaMensalidadeAluno{
+    MensalidadeAlunoDao MensalidadeAlunoDao = new MensalidadeAlunoDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
@@ -19,9 +19,9 @@ public class programaExercicio{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    Exercicio j = criaExercicio();
+                    MensalidadeAluno j = criaExercicio();
 
-                    boolean pessoaFoiInserida = ExercicioDao.adiciona(j);
+                    boolean pessoaFoiInserida = MensalidadeAlunoDao.adiciona(j);
                     if (pessoaFoiInserida) {
                         System.out.println("Exercicio inserido com sucesso");
                     } else {
@@ -31,14 +31,14 @@ public class programaExercicio{
 
                     break;
                 case 2:
-                    ExercicioDao.mostrarTodos();
+                    MensalidadeAlunoDao.mostrarTodos();
                     break;
                 case 3:
                     System.out.println("Exercicio a ser procurado:");
                     String procurado = s.nextLine();
                     System.out.println("Novo nome:");
                     String novoNome = s.nextLine();
-                    if (ExercicioDao.alterarNome(procurado, novoNome)) {
+                    if (MensalidadeAlunoDao.alterarNome(procurado, novoNome)) {
                         System.out.println("Exercicio alterado");
                     } else {
                         System.out.println("Exercicio não encontrado");
@@ -63,8 +63,8 @@ public class programaExercicio{
         }while (opcaoUsuario != 5);
     }
     
-    private Exercicio criaExercicio() {
-        Exercicio j = new Exercicio();
+    private MensalidadeAluno criaExercicio() {
+        MensalidadeAluno j = new MensalidadeAluno();
         Date dataAtual = new Date();
 
         System.out.print("\nNome: ");

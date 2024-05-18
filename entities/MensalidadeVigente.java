@@ -4,20 +4,21 @@ package entities;
 import java.util.Date;
 
 public class MensalidadeVigente {
-    private int id;
+    private static long serial;
+    private long id;
     private double valor;
+    private String descricao;
     private Date inicio;
     private Date termino;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public MensalidadeVigente() { 
+        id = MensalidadeVigente.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public double getValor() {
@@ -42,6 +43,16 @@ public class MensalidadeVigente {
 
     public void setTermino(Date termino) {
         this.termino = termino;
+    }
+
+    public void setDescricao(String descricao)
+    {
+        this.descricao = descricao;
+    }
+
+    public String getDescricao()
+    {
+        return descricao;
     }
 
     public Date getDataCriacao() {

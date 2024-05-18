@@ -6,11 +6,11 @@ public class Pessoa {
     private long idPessoa;
     private String nomePessoa;
     private String sexoPessoa;
-    private Date nascimentoPessoa;
+    private String nascimentoPessoa;
     private String loginPessoa;
     private String senhaPessoa;
     private int tipoUsuarioPessoa;
-    private Date dataCriacaoPessoa;
+    // private Date dataCriacaoPessoa;
     private Date dataModificacaoPessoa;
 
     // Construtor

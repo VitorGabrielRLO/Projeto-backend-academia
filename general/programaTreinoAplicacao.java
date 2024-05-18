@@ -1,4 +1,4 @@
-
+package general;
 
 import java.util.Scanner;
 
@@ -20,7 +20,7 @@ public class programaTreinoAplicacao{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    TreinoAplicacao j = criaAcademia();
+                    TreinoAplicacao j = criaExercicio();
 
                     boolean pessoaFoiInserida = TreinoAplicacaoDao.adiciona(j);
                     if (pessoaFoiInserida) {
@@ -71,6 +71,11 @@ public class programaTreinoAplicacao{
         }while (opcaoUsuario != 5);
     }
     
+    private TreinoAplicacao criaExercicio() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'criaExercicio'");
+    }
+
     private TreinoAplicacao criaAcademia() {
         TreinoAplicacao j = new TreinoAplicacao();
 

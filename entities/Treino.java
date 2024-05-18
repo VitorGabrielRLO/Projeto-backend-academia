@@ -7,7 +7,8 @@ import java.util.Date;
 // import Exercicio;
 
 public class Treino {
-    private int id;
+    private static long serial;
+    private long id;
     private Date dataInicio;
     private Date dataTermino;
     private Exercicio exercicio;
@@ -16,12 +17,11 @@ public class Treino {
     private Date dataModificacao;
 
     // Getters e Setters
-    public int getId() {
-        return id;
+    public Treino() { 
+        id = Treino.serial++;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     public Date getDataInicio() {
