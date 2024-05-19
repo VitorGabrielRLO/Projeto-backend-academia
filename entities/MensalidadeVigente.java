@@ -7,7 +7,6 @@ public class MensalidadeVigente {
     private static long serial;
     private long id;
     private double valor;
-    private String descricao;
     private Date inicio;
     private Date termino;
     private Date dataCriacao;
@@ -43,16 +42,6 @@ public class MensalidadeVigente {
 
     public void setTermino(Date termino) {
         this.termino = termino;
-    }
-
-    public void setDescricao(String descricao)
-    {
-        this.descricao = descricao;
-    }
-
-    public String getDescricao()
-    {
-        return descricao;
     }
 
     public Date getDataCriacao() {

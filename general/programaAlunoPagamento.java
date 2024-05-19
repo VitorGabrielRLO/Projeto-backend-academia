@@ -31,15 +31,7 @@ public class programaAlunoPagamento{
                     AlunoPagamentoDao.mostrarTodos();
                     break;
                 case 3:
-                    // System.out.println("Divisao a procurada:");
-                    // String procurado = s.nextLine();
-                    // System.out.println("Novo nome:");
-                    // String novoNome = s.nextLine();
-                    // if (AvaliacaoFisicaDao.alterarNome(procurado, novoNome)) {
-                    //     System.out.println("Divisao alterado");
-                    // } else {
-                    //     System.out.println("Divisao não encontrado");
-                    // }
+
 
                     break;
                 case 4:

@@ -8,7 +8,7 @@ import entities.MensalidadeAluno;
 public class MensalidadeAlunoDao {
      MensalidadeAluno[] mensalidadeVigente = new MensalidadeAluno[10];
 
-    boolean adiciona(MensalidadeAluno p) {
+    public boolean adiciona(MensalidadeAluno p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             mensalidadeVigente[proximaPosicaoLivre] = p;
@@ -33,7 +33,7 @@ public class MensalidadeAlunoDao {
         boolean temMensalidade = false;
         for (MensalidadeAluno mensalidades : mensalidadeVigente) {
             if (mensalidades != null) {
-                System.out.println("Plano: " + mensalidades.getPlano());
+                System.out.println(mensalidades);
                 System.out.println("--------------------------");
                 temMensalidade = true;
             }

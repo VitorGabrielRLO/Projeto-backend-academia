@@ -1,7 +1,7 @@
 
 package entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MensalidadeAluno {
     private static long serial;
@@ -9,13 +9,13 @@ public class MensalidadeAluno {
     private Pessoa aluno;
     private double valor;
     private int plano;
-    private Date dataPagamento;
+    private LocalDate dataPagamento;
     private MensalidadeVigente mensalidade;
-    private Date dataVencimento;
-    private Date dataModificacao;
+    private LocalDate dataVencimento;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public void MensalidadeVigente(double valor, Date dataVencimento) {
+    public void MensalidadeVigente(double valor, LocalDate dataVencimento) {
         this.valor = valor;
         this.dataVencimento = dataVencimento;
     }
@@ -41,7 +41,7 @@ public class MensalidadeAluno {
     //     this.aluno = aluno;
     // }
 
-    public Date getVencimento() {
+    public LocalDate getVencimento() {
         return dataVencimento;
     }
 
@@ -54,7 +54,7 @@ public class MensalidadeAluno {
         return valor;
     }
 
-    public void setVencimento(Date vencimento) {
+    public void setVencimento(LocalDate vencimento) {
         this.dataVencimento = vencimento;
     }
 
@@ -66,19 +66,19 @@ public class MensalidadeAluno {
         this.mensalidade = mensalidade;
     }
 
-    public Date getDataPagamento() {
+    public LocalDate getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
+    public void setDataPagamento(LocalDate dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -89,6 +89,7 @@ public class MensalidadeAluno {
                 "id=" + id +
                 ", aluno=" + aluno +
                 ", dataVencimento=" + dataVencimento +
+                ", valor=" + valor +
                 ", mensalidade=" + mensalidade +
                 ", dataPagamento=" + dataPagamento +
                 ", dataModificacao=" + dataModificacao +

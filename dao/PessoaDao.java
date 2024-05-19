@@ -29,6 +29,14 @@ public class PessoaDao {
         return true;
 
     }
+    public Pessoa buscaLogin(String login){
+        for(var pessoas : pessoa){
+            if (pessoas.getLoginPessoa().equals(login) ) {
+                return pessoas;   
+            }
+        }
+        return null;
+    }
 
     public void mostrarTodos() {
         boolean temJogador = false;
