@@ -70,10 +70,12 @@ public class programaExercicioAplicacao{
     
     private ExercicioAplicacao criaExercicio() {
         ExercicioAplicacao j = new ExercicioAplicacao();
-
+        Date dataAtual = new Date();
+        
         System.out.print("\nDescricao: ");
         String descricao = s.nextLine();
         j.setDescricao(descricao);
+        j.setDataCriacao(dataAtual);
 
 
         return j;

@@ -1,5 +1,6 @@
 package dao;
 
+import entities.Academia;
 import entities.MensalidadeAluno;
 // import entities.Pessoa;
 
@@ -29,28 +30,29 @@ public class MensalidadeAlunoDao {
     }
 
     public void mostrarTodos() {
-        boolean temJogador = false;
-        for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
-            if (mensalidadeVigentes != null) {
-                System.out.println(mensalidadeVigentes);
-                temJogador = true;
+        boolean temMensalidade = false;
+        for (MensalidadeAluno mensalidades : mensalidadeVigente) {
+            if (mensalidades != null) {
+                System.out.println("Plano: " + mensalidades.getPlano());
+                System.out.println("--------------------------");
+                temMensalidade = true;
             }
         }
-        if (!temJogador) {
-            System.out.println("Não existe pessoa cadastrada");
+        if (!temMensalidade) {
+            System.out.println("Não existem exercícios cadastrados.");
         }
     }
 
-    public boolean alterarDescricao(String descricao, String novoDescricao) {
-        for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
-            if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
-                mensalidadeVigentes.setDescricao(novoDescricao);
-                return true;
-            }
-        }
-        return false;
+    // public boolean alterarDescricao(String descricao, String novoDescricao) {
+    //     for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {
+    //         if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
+    //             mensalidadeVigentes.setDescricao(novoDescricao);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
 
-    }
+    // }
 
     MensalidadeAluno buscaPorId(long id) {
         for (MensalidadeAluno mensalidadeVigentes : mensalidadeVigente) {

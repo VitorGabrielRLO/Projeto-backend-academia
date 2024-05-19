@@ -4,7 +4,11 @@ import dao.AcademiaDAO;
 import entities.Academia;
 
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class programaAcademia{
     AcademiaDAO AcademiaDAO = new AcademiaDAO();
@@ -69,7 +73,10 @@ public class programaAcademia{
     }
     
     private Academia criaAcademia() {
+
         Date dataCriacao = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
         Academia j = new Academia();
 
         System.out.print("\nNome: ");
@@ -78,7 +85,8 @@ public class programaAcademia{
         System.out.print("\nEndereco: ");
         String endereco = s.nextLine();
         j.setEndereco(endereco);
-        j.setDataCriacao(dataCriacao);
+        j.setDataCriacao(sdf.format(dataCriacao));
+
 
         return j;
     }

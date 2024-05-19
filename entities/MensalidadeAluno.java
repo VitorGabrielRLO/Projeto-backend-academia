@@ -7,33 +7,55 @@ public class MensalidadeAluno {
     private static long serial;
     private long id;
     private Pessoa aluno;
-    private Date vencimento;
+    private double valor;
+    private int plano;
+    private Date dataPagamento;
     private MensalidadeVigente mensalidade;
-    private Date dataCriacao;
+    private Date dataVencimento;
     private Date dataModificacao;
 
     // Getters e Setters
-    public MensalidadeAluno() { 
-        id = MensalidadeAluno.serial++;
+    public void MensalidadeVigente(double valor, Date dataVencimento) {
+        this.valor = valor;
+        this.dataVencimento = dataVencimento;
     }
     public long getId() {
         return id;
     }
 
-    public Pessoa getAluno() {
-        return aluno;
+    public void setPlano(int plano)
+    {
+        this.plano = plano;
     }
 
-    public void setAluno(Pessoa aluno) {
-        this.aluno = aluno;
+    public int  getPlano()
+    {
+        return plano;
     }
+
+    // public Pessoa getAluno() {
+    //     return aluno;
+    // }
+
+    // public void setAluno(Pessoa aluno) {
+    //     this.aluno = aluno;
+    // }
 
     public Date getVencimento() {
-        return vencimento;
+        return dataVencimento;
+    }
+
+    public void setValor(Double valor)
+    {
+        this.valor = valor;
+    }
+
+    public double getValor(){
+        return valor;
     }
 
     public void setVencimento(Date vencimento) {
-        this.vencimento = vencimento;
+        this.dataVencimento = vencimento;
     }
 
     public MensalidadeVigente getMensalidade() {
@@ -44,12 +66,12 @@ public class MensalidadeAluno {
         this.mensalidade = mensalidade;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
+    public Date getDataPagamento() {
+        return dataPagamento;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataPagamento(Date dataPagamento) {
+        this.dataPagamento = dataPagamento;
     }
 
     public Date getDataModificacao() {
@@ -66,9 +88,9 @@ public class MensalidadeAluno {
         return "MensalidadeAluno{" +
                 "id=" + id +
                 ", aluno=" + aluno +
-                ", vencimento=" + vencimento +
+                ", dataVencimento=" + dataVencimento +
                 ", mensalidade=" + mensalidade +
-                ", dataCriacao=" + dataCriacao +
+                ", dataPagamento=" + dataPagamento +
                 ", dataModificacao=" + dataModificacao +
                 '}';
     }

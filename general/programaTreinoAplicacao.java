@@ -20,7 +20,7 @@ public class programaTreinoAplicacao{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    TreinoAplicacao j = criaExercicio();
+                    TreinoAplicacao j = criaTreinoApp();
 
                     boolean pessoaFoiInserida = TreinoAplicacaoDao.adiciona(j);
                     if (pessoaFoiInserida) {
@@ -35,15 +35,7 @@ public class programaTreinoAplicacao{
                 TreinoAplicacaoDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Pessoa a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    if (TreinoAplicacaoDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Pessoa alterado");
-                    } else {
-                        System.out.println("Pessoa não encontrado");
-                    }
+
 
                     break;
                 case 4:
@@ -71,20 +63,19 @@ public class programaTreinoAplicacao{
         }while (opcaoUsuario != 5);
     }
     
-    private TreinoAplicacao criaExercicio() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criaExercicio'");
-    }
 
-    private TreinoAplicacao criaAcademia() {
+    private TreinoAplicacao criaTreinoApp() {
         TreinoAplicacao j = new TreinoAplicacao();
+        Date dataAtual = new Date();
 
-        System.out.print("\nNome: ");
-        String nome = s.nextLine();
-       // j.setNome(nome);
-        System.out.print("\nDescriçao: ");
-        String descricao = s.nextLine();
-       // j.setDescricaoFoto(descricao);
+        j.setDataCriacao(dataAtual);
+
+    //     System.out.print("\nNome: ");
+    //     String nome = s.nextLine();
+    //    // j.setNome(nome);
+    //     System.out.print("\nDescriçao: ");
+    //     String descricao = s.nextLine();
+    //    // j.setDescricaoFoto(descricao);
 
         return j;
     }

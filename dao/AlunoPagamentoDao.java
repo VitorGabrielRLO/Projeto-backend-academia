@@ -32,8 +32,6 @@ public class AlunoPagamentoDao {
         for (AlunoPagamento avaliacaoFisicas : avaliacaoFisica) {
             if (avaliacaoFisicas != null) {
                 System.out.println("ID: " + avaliacaoFisicas.getId());
-                System.out.println("IMC: " + avaliacaoFisicas.getIMC());
-                System.out.println("Indice de satisfacao:" + avaliacaoFisicas.getIndiceSatisfacao());
                 System.out.println("Data de Criação: " + avaliacaoFisicas.getDataCriacao());
                 System.out.println("Data de Modificação: " + avaliacaoFisicas.getDataModificacao());
                 System.out.println("--------------------------");

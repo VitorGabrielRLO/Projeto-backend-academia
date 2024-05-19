@@ -72,12 +72,7 @@ public class TreinoDao {
         Treino treino2 = new Treino();
         Treino treino3 = new Treino();
         Treino treino4 = new Treino();
-
-        treino1.setId(1);
-        treino2.setId(2);
-        treino3.setId(3);
-        treino4.setId(4);
-
+        
         adiciona(treino1);
         adiciona(treino2);
         adiciona(treino3);

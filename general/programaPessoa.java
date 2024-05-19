@@ -71,7 +71,8 @@ public class programaPessoa{
     
     private Pessoa criaPessoa() {
         Pessoa j = new Pessoa();
-
+        Date dataAtual = new Date();
+        
         System.out.print("\nNome: ");
         String nome = s.nextLine();
         j.setNomePessoa(nome);
@@ -84,6 +85,7 @@ public class programaPessoa{
         System.out.print("\nSenha: ");
         String senha = s.nextLine();
         j.setSenhaPessoa(senha);
+        j.setDataCriacao(dataAtual);
 
         return j;
     }

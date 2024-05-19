@@ -7,7 +7,7 @@ public class Academia {
     private long id;
     private String nome;
     private String endereco;
-    private Date dataCriacao;
+    private String dataCriacao;
     private Date dataModificacao;
 
     public Academia() { 
@@ -28,10 +28,10 @@ public class Academia {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public Date getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
     public Date getDataModificacao() {

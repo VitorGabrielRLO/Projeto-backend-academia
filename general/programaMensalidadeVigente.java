@@ -20,7 +20,7 @@ public class programaMensalidadeVigente{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    MensalidadeVigente j = criaExercicio();
+                    MensalidadeVigente j = mensalidadeVigente();
 
                     boolean pessoaFoiInserida = MensalidadeVigenteDao.adiciona(j);
                     if (pessoaFoiInserida) {
@@ -35,26 +35,26 @@ public class programaMensalidadeVigente{
                     MensalidadeVigenteDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Pessoa a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    if (MensalidadeVigenteDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Pessoa alterado");
-                    } else {
-                        System.out.println("Pessoa não encontrado");
-                    }
+                    // System.out.println("Pessoa a procurada:");
+                    // String procurado = s.nextLine();
+                    // System.out.println("Novo nome:");
+                    // String novoNome = s.nextLine();
+                    // if (MensalidadeVigenteDao.alterarNome(procurado, novoNome)) {
+                    //     System.out.println("Pessoa alterado");
+                    // } else {
+                    //     System.out.println("Pessoa não encontrado");
+                    // }
 
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
-                    String nomeExclusao = s.nextLine();
+                    // System.out.println("Pessoa procurada:");
+                    // String nomeExclusao = s.nextLine();
 
-                    if (MensalidadeVigenteDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
-                    } else {
-                        System.out.println("Pessoa não excluída");
-                    }
+                    // if (MensalidadeVigenteDao.remover(nomeExclusao)) {
+                    //     System.out.println("Pessoa excluída");
+                    // } else {
+                    //     System.out.println("Pessoa não excluída");
+                    // }
 
                     break;
                 case 5:
@@ -71,15 +71,13 @@ public class programaMensalidadeVigente{
         }while (opcaoUsuario != 5);
     }
     
-    private MensalidadeVigente criaExercicio() {
+    private MensalidadeVigente mensalidadeVigente() {
         MensalidadeVigente j = new MensalidadeVigente();
+        Date dataAtual = new Date();
+        j.setDataCriacao(dataAtual);
 
-        System.out.print("\nNome: ");
-        String nome = s.nextLine();
-        //j.setNome(nome);
-        System.out.print("\nDescriçao: ");
-        String descricao = s.nextLine();
-        //j.setDescricaoFoto(descricao);
+
+
 
         return j;
     }

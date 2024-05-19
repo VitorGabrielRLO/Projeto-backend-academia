@@ -61,7 +61,8 @@ public class programaMovFinanceira{
     
     private MovFinanceira criaTreino() {
         MovFinanceira j = new MovFinanceira();
-
+        Date dataAtual = new Date();
+        
         System.out.print("\nValor: ");
         double valor = s.nextDouble();
         j.setValor(valor);
@@ -72,6 +73,7 @@ public class programaMovFinanceira{
         int tipo = s.nextInt();
         j.setTipo(tipo);
         MovFinanceiraDao.movimentacaoFin(valor, tipo);
+        j.setDataCriacao(dataAtual);
 
         return j;
     }

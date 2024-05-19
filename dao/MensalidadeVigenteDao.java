@@ -7,7 +7,7 @@ import entities.MensalidadeVigente;
 public class MensalidadeVigenteDao {
     MensalidadeVigente[] mensalidadeVigente = new MensalidadeVigente[10];
 
-    boolean adiciona(MensalidadeVigente p) {
+    public boolean adiciona(MensalidadeVigente p) {
         int proximaPosicaoLivre = this.proximaPosicaoLivre();
         if (proximaPosicaoLivre != -1) {
             mensalidadeVigente[proximaPosicaoLivre] = p;
@@ -41,16 +41,16 @@ public class MensalidadeVigenteDao {
         }
     }
 
-    public boolean alterarDescricao(String descricao, String novoDescricao) {
-        for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
-            if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
-                mensalidadeVigentes.setDescricao(novoDescricao);
-                return true;
-            }
-        }
-        return false;
+    // public boolean alterarDescricao(String descricao, String novoDescricao) {
+    //     for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {
+    //         if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
+    //             mensalidadeVigentes.setDescricao(novoDescricao);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
 
-    }
+    // }
 
     MensalidadeVigente buscaPorId(long id) {
         for (MensalidadeVigente mensalidadeVigentes : mensalidadeVigente) {

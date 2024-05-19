@@ -1,5 +1,6 @@
 package dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import entities.Academia;
@@ -95,6 +96,8 @@ public class AcademiaDAO {
 
     public AcademiaDAO() {
         Date dataAtual = new Date();
+        Date dataCriacao = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         Academia academia1 = new Academia();
         Academia academia2 = new Academia();
@@ -103,20 +106,19 @@ public class AcademiaDAO {
 
         academia1.setNome("Gym");
         academia1.setEndereco("Rua 123");
-        academia1.setDataCriacao(dataAtual);
+        academia1.setDataCriacao(sdf.format(dataAtual));
         
         academia2.setNome("treino");
         academia2.setEndereco("Rua 321");
-        academia1.setDataCriacao(dataAtual);
-        
+        academia2.setDataCriacao(sdf.format(dataAtual));
+
         academia3.setNome("Fitcorps");
         academia3.setEndereco("Rua visconde");
-        academia1.setDataCriacao(dataAtual);
+        academia3.setDataCriacao(sdf.format(dataAtual));
         
         academia4.setNome("SmartFit");
         academia4.setEndereco("Rua Leopoldino");
-        academia1.setDataCriacao(dataAtual);
-
+        academia4.setDataCriacao(sdf.format(dataAtual));
 
 
         adiciona(academia1);

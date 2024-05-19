@@ -14,6 +14,7 @@ public class MenuSelecao {
     private programaDivisaoTreino programaDivisaoTreino;
     private programaExercicioAplicacao programaExercicioAplicacao;
     private programaAvaliacaoFisica programaAvaliacaoFisica;
+    private programaMensalidadeAluno programaMensalidadeAluno;
     
     //private Treino treino;
 
@@ -24,6 +25,7 @@ public class MenuSelecao {
         this.programaExercicioAplicacao = new programaExercicioAplicacao();
         this.programaAcademia = new programaAcademia();
         this.programaAvaliacaoFisica = new programaAvaliacaoFisica();
+        this.programaMensalidadeAluno = new programaMensalidadeAluno();
         // Inicialize outras variáveis se necessário
     }
 
@@ -37,7 +39,8 @@ public class MenuSelecao {
             System.out.println("4. Mostrar divisoes de treino");
             System.out.println("5. Acessar Exercicios Aplicação");
             System.out.println("6. Avaliacao Fisica");
-            System.out.println("7. Sair");
+            System.out.println("7. Mensalidade");
+            System.out.println("8. Sair");
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
@@ -61,13 +64,16 @@ public class MenuSelecao {
                     break;
 
                 case 5:
-                programaExercicioAplicacao.mostrarMenu();
+                    programaExercicioAplicacao.mostrarMenu();
                 break;
                 
                 case 6:
-                programaAvaliacaoFisica.mostrarMenu();
+                    programaAvaliacaoFisica.mostrarMenu();
                     break;
                 case 7:
+                    programaMensalidadeAluno.mostrarMenu();
+                    break;
+                case 8:
                 System.out.println("Encerrando o programa...");
                 return;
 

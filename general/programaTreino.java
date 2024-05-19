@@ -36,15 +36,6 @@ public class programaTreino{
                     TreinoDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Pessoa a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    // if (TreinoDao.alterarNome(procurado, novoNome)) {
-                    //     System.out.println("Pessoa alterado");
-                    // } else {
-                    //     System.out.println("Pessoa não encontrado");
-                    // }
 
                     break;
                 case 4:
@@ -75,12 +66,9 @@ public class programaTreino{
     private Treino criaTreino() {
         Treino j = new Treino();
 
-        System.out.print("\nNome: ");
-        String nome = s.nextLine();
-        //j.setNome(nome);
-        System.out.print("\nDescriçao: ");
-        String descricao = s.nextLine();
-       // j.setDescricaoFoto(descricao);
+        Date dataAtual = new Date();
+        j.setDataCriacao(dataAtual);
+
 
         return j;
     }

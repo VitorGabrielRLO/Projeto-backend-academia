@@ -41,16 +41,16 @@ public class PagamentoRecorrenteDao {
         }
     }
 
-    public boolean alterarDescricao(String descricao, String novoDescricao) {
-        for (PagamentoRecorrente mensalidadeVigentes : mensalidadeVigente) {
-            if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
-                mensalidadeVigentes.setDescricao(novoDescricao);
-                return true;
-            }
-        }
-        return false;
+    // public boolean alterarDescricao(String descricao, String novoDescricao) {
+    //     for (PagamentoRecorrente mensalidadeVigentes : mensalidadeVigente) {
+    //         if (mensalidadeVigentes != null && mensalidadeVigentes.getDescricao().equals(descricao)) {
+    //             mensalidadeVigentes.setDescricao(novoDescricao);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
 
-    }
+    // }
 
     PagamentoRecorrente buscaPorId(long id) {
         for (PagamentoRecorrente mensalidadeVigentes : mensalidadeVigente) {

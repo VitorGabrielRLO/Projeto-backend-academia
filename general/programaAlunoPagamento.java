@@ -2,6 +2,7 @@ package general;
 
 import dao.AlunoPagamentoDao;
 import entities.AlunoPagamento;
+import entities.MensalidadeVigente;
 
 import java.util.Scanner;
 import java.util.Date;
@@ -17,7 +18,7 @@ public class programaAlunoPagamento{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    AlunoPagamento j = avaliaFisico();
+                    AlunoPagamento j = AlunoPagamento();
 
                     boolean pessoaFoiInserida = AlunoPagamentoDao.adiciona(j);
                     if (pessoaFoiInserida) {
@@ -44,7 +45,7 @@ public class programaAlunoPagamento{
 
                     break;
                 case 4:
-                    calculaIMC(opcaoUsuario, opcaoUsuario);
+  
 
                     break;
                 case 5:
@@ -61,23 +62,26 @@ public class programaAlunoPagamento{
         }while (opcaoUsuario != 5);
     }
     
-    private AlunoPagamento avaliaFisico() {
+    private AlunoPagamento AlunoPagamento() {
         AlunoPagamento j = new AlunoPagamento();
-
-        System.out.print("\nPeso: ");
-        double peso = s.nextDouble();
-        j.setPeso(peso);
-        System.out.print("\nAltura: ");
-        double altura = s.nextDouble();
-        j.setAltura(altura);
+        Date dataAtual = new Date();
+        //     //Resolver o que fazer
+        
+        //     // AlunoPagamento j = new AlunoPagamento();
+        
+        //     // System.out.print("\nPeso: ");
+        //     // MensalidadeVigente mensalidade = s.nextDouble();
+        //     // j.setMensalidade(mensalidade);
+        
+        j.setDataCriacao(dataAtual);
 
         
-        return j;
-    }
+         return j;
+     }
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 - Cadastrar avaliacao fisica");
+        System.out.println("1 - Registrar Pagamento");
         System.out.println("2 - Mostrar todas as avaliacoes");
         System.out.println("3 - Atualizar avaliacao");
         System.out.println("4 - Excluir avaliacao pelo id");
@@ -87,12 +91,6 @@ public class programaAlunoPagamento{
 
     }
     
-    private double calculaIMC(double peso, double altura)
-    {
-        return peso / (altura * altura);
-    }
-
-
 
 
 }

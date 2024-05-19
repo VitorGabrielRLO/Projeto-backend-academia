@@ -5,6 +5,7 @@ import java.util.Date;
 public class EntradaAluno {
     private static long serial;
     private long id;
+    private String nome;
     private Date dataHora;
     private Date dataCriacao;
     private Date dataModificacao;
@@ -19,6 +20,14 @@ public class EntradaAluno {
 
     public Date getDataHora() {
         return dataHora;
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
     }
 
     public void setDataHora(Date dataHora) {

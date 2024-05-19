@@ -20,7 +20,7 @@ public class programaPagamentoRecorrente{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    PagamentoRecorrente j = criaExercicio();
+                    PagamentoRecorrente j = pagaRecorrente();
 
                     boolean pessoaFoiInserida = PagamentoRecorrenteDao.adiciona(j);
                     if (pessoaFoiInserida) {
@@ -35,26 +35,26 @@ public class programaPagamentoRecorrente{
                 PagamentoRecorrenteDao.mostrarTodos();
                     break;
                 case 3:
-                    System.out.println("Pessoa a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    if (PagamentoRecorrenteDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Pessoa alterado");
-                    } else {
-                        System.out.println("Pessoa não encontrado");
-                    }
+                    // System.out.println("Pessoa a procurada:");
+                    // String procurado = s.nextLine();
+                    // System.out.println("Novo nome:");
+                    // String novoNome = s.nextLine();
+                    // if (PagamentoRecorrenteDao.alterarNome(procurado, novoNome)) {
+                    //     System.out.println("Pessoa alterado");
+                    // } else {
+                    //     System.out.println("Pessoa não encontrado");
+                    // }
 
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
-                    String nomeExclusao = s.nextLine();
+                    // System.out.println("Pessoa procurada:");
+                    // String nomeExclusao = s.nextLine();
 
-                    if (PagamentoRecorrenteDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
-                    } else {
-                        System.out.println("Pessoa não excluída");
-                    }
+                    // if (PagamentoRecorrenteDao.remover(nomeExclusao)) {
+                    //     System.out.println("Pessoa excluída");
+                    // } else {
+                    //     System.out.println("Pessoa não excluída");
+                    // }
 
                     break;
                 case 5:
@@ -71,20 +71,16 @@ public class programaPagamentoRecorrente{
         }while (opcaoUsuario != 5);
     }
     
-    private PagamentoRecorrente criaExercicio() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criaExercicio'");
-    }
-
-    private PagamentoRecorrente criaAcademia() {
-        PagamentoRecorrente j = new PagamentoRecorrente();
-
-        System.out.print("\nNome: ");
-        String nome = s.nextLine();
-       // j.setNome(nome);
-        System.out.print("\nDescriçao: ");
-        String descricao = s.nextLine();
-       // j.setDescricaoFoto(descricao);
+    private PagamentoRecorrente pagaRecorrente() {
+      PagamentoRecorrente j = new PagamentoRecorrente();
+      Date dataAtual = new Date();
+      j.setDataCriacao(dataAtual);
+    //     System.out.print("\nNome: ");
+    //     String nome = s.nextLine();
+    //    // j.setNome(nome);
+    //     System.out.print("\nDescriçao: ");
+    //     String descricao = s.nextLine();
+    //    // j.setDescricaoFoto(descricao);
 
         return j;
     }
