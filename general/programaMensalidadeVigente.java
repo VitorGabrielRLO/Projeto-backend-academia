@@ -35,27 +35,13 @@ public class programaMensalidadeVigente{
                     MensalidadeVigenteDao.mostrarTodos();
                     break;
                 case 3:
-                    // System.out.println("Pessoa a procurada:");
-                    // String procurado = s.nextLine();
-                    // System.out.println("Novo nome:");
-                    // String novoNome = s.nextLine();
-                    // if (MensalidadeVigenteDao.alterarNome(procurado, novoNome)) {
-                    //     System.out.println("Pessoa alterado");
-                    // } else {
-                    //     System.out.println("Pessoa não encontrado");
-                    // }
+                    System.out.println("ID da Mensalidade a ser excluida");
+                    long id = s.nextLong();
+                    MensalidadeVigenteDao.remover(id);
 
                     break;
                 case 4:
-                    // System.out.println("Pessoa procurada:");
-                    // String nomeExclusao = s.nextLine();
-
-                    // if (MensalidadeVigenteDao.remover(nomeExclusao)) {
-                    //     System.out.println("Pessoa excluída");
-                    // } else {
-                    //     System.out.println("Pessoa não excluída");
-                    // }
-
+                    System.out.println("4");
                     break;
                 case 5:
                     System.out.println("5");
@@ -84,11 +70,10 @@ public class programaMensalidadeVigente{
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 cadastrar");
-        System.out.println("2 mostrar todos");
-        System.out.println("3 alterar o nome da pessoa");
-        System.out.println("4 excluir pelo id");
-        System.out.println("5 sair");
+        System.out.println("1. Cadastrar mensalidade vigente");
+        System.out.println("2. Mostrar todas as mensalidades vigentes");
+        System.out.println("3. Excluir pelo id");
+        System.out.println("4. Sair");
         System.out.print("Qual sua opcao ?R: ");
         return Integer.parseInt(s.nextLine());
 

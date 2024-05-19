@@ -117,7 +117,15 @@ public class programaMensalidadeAluno{
             mov.setDescricao("Mensalidade plano 6 meses");
             mov.setDataCriacao(dataAtual);
         }
-        MovFinanceiraDao.adiciona(mov);
+        boolean movFoiInserida = MovFinanceiraDao.adiciona(mov);
+        if (movFoiInserida) {
+            System.out.println("Exercicio inserido com sucesso");
+        } else {
+            System.out.println("Exercicio nao inserido");
+
+        }
+
+
         return j;
     }
 
@@ -131,7 +139,7 @@ public class programaMensalidadeAluno{
         System.out.println("3 - Alterar o nome do exercicio");
         System.out.println("4 - Excluir exercicio pelo id");
         System.out.println("5 sair");
-        System.out.print("Qual sua opcao ?R: ");
+        System.out.println("Qual sua opcao ?R: ");
 
         opc = s.nextInt();
         return opc;

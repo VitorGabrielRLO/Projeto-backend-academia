@@ -37,9 +37,6 @@ public class programaTreino{
                     TreinoDao.mostrarTodos();
                     break;
                 case 3:
-
-                    break;
-                case 4:
                     System.out.println("Treino procurada:");
                     int id = s.nextInt();
 
@@ -50,9 +47,8 @@ public class programaTreino{
                     }
 
                     break;
-                case 5:
+                case 4:
                     System.out.println("5");
-
                     break;
 
                 default:
@@ -79,9 +75,8 @@ public class programaTreino{
 
         System.out.println("1 - Cadastrar treino");
         System.out.println("2 - Mostrar todos");
-        System.out.println("3 - Alterar o nome da pessoa");
-        System.out.println("4 - Excluir pelo id");
-        System.out.println("5 - Sair");
+        System.out.println("3 - Excluir treino pelo id");
+        System.out.println("4 - Sair");
         System.out.print("Qual sua opcao ?R: ");
         return Integer.parseInt(s.nextLine());
 

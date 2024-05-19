@@ -24,9 +24,9 @@ public class programaAvaliacaoFisica{
 
                     boolean pessoaFoiInserida = AvaliacaoFisicaDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Divisao inserida com sucesso");
+                        System.out.println("Avaliação inserida com sucesso");
                     } else {
-                        System.out.println("Divisao nao inserida");
+                        System.out.println("Avaliação nao inserida");
 
                     }
 

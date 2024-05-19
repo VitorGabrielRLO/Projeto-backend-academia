@@ -23,9 +23,9 @@ public class programaExercicioAplicacao{
 
                     boolean pessoaFoiInserida = exercicioAplicacaoDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Pessoa inserida com sucesso");
+                        System.out.println("Exercicio aplicação inserido com sucesso");
                     } else {
-                        System.out.println("Pessoa nao inserida");
+                        System.out.println("Exercicio aplicação nao inserido");
 
                     }
 

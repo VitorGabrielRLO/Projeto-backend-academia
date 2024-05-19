@@ -3,7 +3,6 @@ package front;
 import java.util.Scanner;
 import dao.PessoaDao;
 
-
 public class Login {
     private PessoaDao pessoaDao;
     private MenuAdmin menuAdmin;

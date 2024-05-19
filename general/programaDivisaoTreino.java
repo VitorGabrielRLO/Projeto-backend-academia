@@ -45,13 +45,13 @@ public class programaDivisaoTreino{
 
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
+                    System.out.println("Divisao procurada:");
                     String nomeExclusao = s.nextLine();
 
                     if (DivisaoTreinoDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
+                        System.out.println("Divisao excluída");
                     } else {
-                        System.out.println("Pessoa não excluída");
+                        System.out.println("Divisao não excluída");
                     }
 
                     break;

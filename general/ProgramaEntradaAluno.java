@@ -26,7 +26,7 @@ public class ProgramaEntradaAluno{
                     if (entradaAluno) {
                         System.out.println("Entrada registrada");
                     } else {
-                        System.out.println("Entraada nao inserida");
+                        System.out.println("Entrada nao inserida");
 
                     }
 

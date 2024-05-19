@@ -20,9 +20,9 @@ public class programaAlunoPagamento{
 
                     boolean pessoaFoiInserida = AlunoPagamentoDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Divisao inserida com sucesso");
+                        System.out.println("Pagamento inserido com sucesso");
                     } else {
-                        System.out.println("Divisao nao inserida");
+                        System.out.println("Pagamento nao inserido");
 
                     }
 
@@ -72,7 +72,7 @@ public class programaAlunoPagamento{
     private int pegaOpcaoUsuario() {
 
         System.out.println("1 - Registrar Pagamento");
-        System.out.println("2 - Mostrar todas as avaliacoes");
+        System.out.println("2 - Mostrar pagamentos");
         System.out.println("3 - Atualizar avaliacao");
         System.out.println("4 - Excluir avaliacao pelo id");
         System.out.println("5 - Voltar");

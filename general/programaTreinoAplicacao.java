@@ -24,9 +24,9 @@ public class programaTreinoAplicacao{
 
                     boolean pessoaFoiInserida = TreinoAplicacaoDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Pessoa inserida com sucesso");
+                        System.out.println("Treino aplicaçao inserido com sucesso");
                     } else {
-                        System.out.println("Pessoa nao inserida");
+                        System.out.println("Treino aplicaçao nao inserido");
 
                     }
 
@@ -39,13 +39,13 @@ public class programaTreinoAplicacao{
 
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
+                    System.out.println("Treino aplicaçao procurada:");
                     String nomeExclusao = s.nextLine();
 
                     if (TreinoAplicacaoDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
+                        System.out.println("Treino aplicaçao excluída");
                     } else {
-                        System.out.println("Pessoa não excluída");
+                        System.out.println("Treino aplicaçao não excluída");
                     }
 
                     break;
@@ -82,11 +82,11 @@ public class programaTreinoAplicacao{
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 cadastrar");
-        System.out.println("2 mostrar todos");
-        System.out.println("3 alterar o nome da pessoa");
-        System.out.println("4 excluir pelo id");
-        System.out.println("5 sair");
+        System.out.println("1. Cadastrar Treino aplicaçao");
+        System.out.println("2. mostrar todos");
+        System.out.println("3. alterar o nome da pessoa");
+        System.out.println("4. excluir pelo id");
+        System.out.println("5. sair");
         System.out.print("Qual sua opcao ?R: ");
         return Integer.parseInt(s.nextLine());
 
