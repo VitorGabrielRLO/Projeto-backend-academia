@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import entities.Pessoa;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import dao.PessoaDao;
 
@@ -72,6 +73,7 @@ public class programaPessoa{
     private Pessoa criaPessoa() {
         Pessoa j = new Pessoa();
         Date dataAtual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         System.out.print("\nNome: ");
         String nome = s.nextLine();
@@ -85,7 +87,7 @@ public class programaPessoa{
         System.out.print("\nSenha: ");
         String senha = s.nextLine();
         j.setSenhaPessoa(senha);
-        j.setDataCriacao(dataAtual);
+        j.setDataCriacao(sdf.format(dataAtual));
 
         return j;
     }

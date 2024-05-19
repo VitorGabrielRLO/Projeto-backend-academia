@@ -1,5 +1,8 @@
 package dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import entities.DivisaoTreino;
 
 public class DivisaoTreinoDao {
@@ -44,6 +47,9 @@ public class DivisaoTreinoDao {
         for (DivisaoTreino divisoes : divisao) {
             if (divisoes != null && divisoes.getNome().equals(nome)) {
                 divisoes.setNome(novoNome);
+                Date dataAtual = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                divisoes.setDataModificacao(sdf.format(dataAtual));
                 return true;
             }
         }

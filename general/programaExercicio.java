@@ -1,6 +1,7 @@
 package general;
 
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import dao.ExercicioDao;
@@ -66,14 +67,15 @@ public class programaExercicio{
     private Exercicio criaExercicio() {
         Exercicio j = new Exercicio();
         Date dataAtual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
         j.setNomeExercicio(nome);
         System.out.print("\nDescriçao: ");
         String descricao = s.nextLine();
-        j.setDescricaoFoto(descricao);
-        j.setDataCriacao(dataAtual);
+        j.setDescricaoFoto(descricao);          
+        j.setDataCriacao(sdf.format(dataAtual));
 
 
         return j;

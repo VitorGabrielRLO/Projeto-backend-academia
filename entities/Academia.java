@@ -8,7 +8,7 @@ public class Academia {
     private String nome;
     private String endereco;
     private String dataCriacao;
-    private Date dataModificacao;
+    private String dataModificacao;
 
     public Academia() { 
         id = Academia.serial++;
@@ -34,10 +34,10 @@ public class Academia {
     public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    public Date getDataModificacao() {
+    public String getDataModificacao() {
         return dataModificacao;
     }
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(String dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

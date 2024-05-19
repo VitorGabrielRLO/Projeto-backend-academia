@@ -10,8 +10,8 @@ public class Pessoa {
     private String loginPessoa;
     private String senhaPessoa;
     private int tipoUsuarioPessoa;
-    private Date dataCriacao;
-    private Date dataModificacaoPessoa;
+    private String dataCriacao;
+    private String dataModificacaoPessoa;
 
     // Construtor
 
@@ -31,12 +31,12 @@ public class Pessoa {
         this.nomePessoa = nome;
     }
 
-    public Date getdataCriacao()
+    public String getdataCriacao()
     {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao)
+    public void setDataCriacao(String dataCriacao)
     {
         this.dataCriacao = dataCriacao;
     }
@@ -73,11 +73,11 @@ public class Pessoa {
         this.tipoUsuarioPessoa = tipo;
     }
 
-    public Date getDataModificacaoPessoa() {
+    public String getDataModificacaoPessoa() {
         return dataModificacaoPessoa;
     }
 
-    public void setDataModificacaoPessoa(Date dataModificacao) {
+    public void setDataModificacaoPessoa(String dataModificacao) {
         this.dataModificacaoPessoa = dataModificacao;
     }
     

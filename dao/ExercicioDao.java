@@ -1,5 +1,6 @@
 package dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import entities.Exercicio;
 public class ExercicioDao {
@@ -48,7 +49,11 @@ public class ExercicioDao {
         for (Exercicio exercicios : exercicio) {
             if (exercicios != null && exercicios.getNomeExercicio().equals(nome)) {
                 exercicios.setNomeExercicio(novoNome);
+                Date dataAtual = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                exercicios.setDataModificacao(sdf.format(dataAtual));
                 return true;
+                
             }
         }
         return false;
@@ -84,6 +89,7 @@ public class ExercicioDao {
 
     public ExercicioDao() {
         Date dataAtual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Exercicio exercicio1 = new Exercicio();
         Exercicio exercicio2 = new Exercicio();
         Exercicio exercicio3 = new Exercicio();
@@ -93,25 +99,25 @@ public class ExercicioDao {
         exercicio1.setNomeExercicio("Supino");
         exercicio1.setDescricaoFoto("Foto");
         exercicio1.setAreaAfetada("Peito");
-        exercicio1.setDataCriacao(dataAtual);
+        exercicio1.setDataCriacao(sdf.format(dataAtual));
 
         
         exercicio2.setNomeExercicio("Rosca");
         exercicio2.setDescricaoFoto("Foto");
         exercicio2.setAreaAfetada("Biceps");
-        exercicio2.setDataCriacao(dataAtual);
+        exercicio2.setDataCriacao(sdf.format(dataAtual));
 
         
         exercicio3.setNomeExercicio("Agachamento");
         exercicio3.setDescricaoFoto("Foto");
         exercicio3.setAreaAfetada("Perna");
-        exercicio3.setDataCriacao(dataAtual);
+        exercicio3.setDataCriacao(sdf.format(dataAtual));
 
         
         exercicio4.setNomeExercicio("Elevacao lateral ");
         exercicio4.setDescricaoFoto("Foto");
         exercicio4.setAreaAfetada("Triceps");
-        exercicio4.setDataCriacao(dataAtual);
+        exercicio4.setDataCriacao(sdf.format(dataAtual));
 
         adiciona(exercicio1);
         adiciona(exercicio2);

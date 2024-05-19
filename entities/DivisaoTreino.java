@@ -7,8 +7,8 @@ public class DivisaoTreino {
     private long id;
     private String nome;
     private String nomeDetalhado;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private String dataCriacao;
+    private String dataModificacao;
 
     // Getters e Setters
     public DivisaoTreino() { 
@@ -38,19 +38,19 @@ public class DivisaoTreino {
         this.nomeDetalhado = nomeDetalhado;
     }
 
-    public Date getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public String getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(String dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

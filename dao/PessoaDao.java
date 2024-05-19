@@ -1,5 +1,8 @@
 package dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import entities.Pessoa;
 
 public class PessoaDao {
@@ -44,6 +47,10 @@ public class PessoaDao {
         for (Pessoa pessoas : pessoa) {
             if (pessoas != null && pessoas.getNomePessoa().equals(nome)) {
                 pessoas.setNomePessoa(novoNome);
+                Date dataAtual = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                pessoas.setDataModificacaoPessoa(sdf.format(dataAtual));
+
                 return true;
             }
         }

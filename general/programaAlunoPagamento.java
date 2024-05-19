@@ -2,8 +2,6 @@ package general;
 
 import dao.AlunoPagamentoDao;
 import entities.AlunoPagamento;
-import entities.MensalidadeVigente;
-
 import java.util.Scanner;
 import java.util.Date;
 

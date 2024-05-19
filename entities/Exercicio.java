@@ -8,8 +8,8 @@ public class Exercicio {
     private String nomeExercicio;
     private String descricaoFoto;
     private String area;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private String dataCriacao;
+    private String dataModificacao;
 
     // Getters e Setters
     public Exercicio() { 
@@ -45,14 +45,19 @@ public class Exercicio {
         return area;
     }
 
-    public Date getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    public Date getDataModificacao() {
+
+    public void setDataModificacao(String dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
+
+    public String getDataModificacao() {
         return dataModificacao;
     }
 

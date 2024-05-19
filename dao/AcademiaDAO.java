@@ -55,6 +55,9 @@ public class AcademiaDAO {
         for (Academia academias : academia) {
             if (academias != null && academias.getNome().equals(nome)) {
                 academias.setNome(novoNome);
+                Date dataAtual = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                academias.setDataModificacao(sdf.format(dataAtual));
                 return true;
             }
         }

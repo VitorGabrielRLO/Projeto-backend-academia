@@ -4,6 +4,7 @@ import dao.DivisaoTreinoDao;
 import entities.DivisaoTreino;
 
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class programaDivisaoTreino{
@@ -70,7 +71,8 @@ public class programaDivisaoTreino{
     
     private DivisaoTreino criaTreino() {
         DivisaoTreino j = new DivisaoTreino();
-        Date dataAtual = new Date();
+        Date dataCriacao = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
@@ -78,7 +80,7 @@ public class programaDivisaoTreino{
         System.out.print("\nNome Detalhado: ");
         String nomeDet = s.nextLine();
         j.setNomeDetalhado(nomeDet);
-        j.setDataCriacao(dataAtual);
+        j.setDataCriacao(sdf.format(dataCriacao));
 
         return j;
     }

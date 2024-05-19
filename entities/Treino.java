@@ -13,8 +13,8 @@ public class Treino {
     private Date dataTermino;
     private Exercicio exercicio;
     private DivisaoTreino divisaoTreino;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private String dataCriacao;
+    private String dataModificacao;
 
     // Getters e Setters
     public Treino() { 
@@ -56,19 +56,19 @@ public class Treino {
         this.divisaoTreino = divisaoTreino;
     }
 
-    public Date getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public String getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(String dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
