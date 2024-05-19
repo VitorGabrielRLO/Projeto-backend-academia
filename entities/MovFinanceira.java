@@ -1,7 +1,7 @@
 package entities;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MovFinanceira {
     private static long serial;
@@ -9,8 +9,8 @@ public class MovFinanceira {
     private double valor;
     private int tipo;
     private String descricao;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
     public MovFinanceira() { 
@@ -44,19 +44,19 @@ public class MovFinanceira {
         this.descricao = descricao;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

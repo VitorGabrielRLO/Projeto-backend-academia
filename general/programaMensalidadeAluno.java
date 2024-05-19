@@ -2,13 +2,15 @@ package general;
 
 import java.util.Scanner;
 import java.time.LocalDate;
-import java.util.Date;
 
 import dao.MensalidadeAlunoDao;
 import entities.MensalidadeAluno;
+import dao.MovFinanceiraDao;
+import entities.MovFinanceira;
 
 public class programaMensalidadeAluno{
     MensalidadeAlunoDao MensalidadeAlunoDao = new MensalidadeAlunoDao();
+    MovFinanceiraDao MovFinanceiraDao = new MovFinanceiraDao();
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
@@ -67,17 +69,17 @@ public class programaMensalidadeAluno{
     private MensalidadeAluno registraMensalidade() {
         MensalidadeAluno j = new MensalidadeAluno();
         // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+        MovFinanceira mov = new MovFinanceira();
         LocalDate dataAtual = LocalDate.now();
 
 
         System.out.print("\nEscolha seu plano: ");
-        System.out.print("\n1-Planot 1 Mes ");
-        System.out.print("\n2-Planot 3 Meses ");
-        System.out.print("\n3-Planot 6 Meses ");
+        System.out.print("\n1-Planos 1 Mes ");
+        System.out.print("\n2-Planos 3 Meses ");
+        System.out.print("\n3-Planos 6 Meses ");
         int plano = s.nextInt();
 
-        double valor = 90;
+        double valor = 100;
         if(plano == 1)
         {
             
@@ -85,8 +87,10 @@ public class programaMensalidadeAluno{
             j.setValor(valor);
             j.setPlano(plano);
             j.setVencimento(dataVencimento);
-            
-            
+            mov.setValor(valor);
+            mov.setTipo(1);
+            mov.setDescricao("Mensalidade");
+            mov.setDataCriacao(dataAtual);
         }
 
         if(plano == 2)
@@ -96,16 +100,24 @@ public class programaMensalidadeAluno{
             j.setValor(valor);
             j.setDataPagamento(dataAtual);
             j.setVencimento(dataVencimento);
-            
+            mov.setValor(valor);
+            mov.setTipo(1);
+            mov.setDescricao("Mensalidade plano 3 meses");
+            mov.setDataCriacao(dataAtual);
         }
         if(plano == 3)
         {
-            LocalDate dataVencimento = dataAtual.plusDays(90);
+            LocalDate dataVencimento = dataAtual.plusDays(180);
             valor = (valor*6)*0.8; //Aplicando desconto de 20% no plano de 6 meses
             j.setValor(valor);
             j.setDataPagamento(dataAtual);
-            
+            j.setVencimento(dataVencimento);
+            mov.setValor(valor);
+            mov.setTipo(1);
+            mov.setDescricao("Mensalidade plano 6 meses");
+            mov.setDataCriacao(dataAtual);
         }
+        MovFinanceiraDao.adiciona(mov);
         return j;
     }
 

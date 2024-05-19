@@ -17,8 +17,8 @@ public class PessoaDao {
         } else {
             return false;
         }
-
     }
+
 
     public boolean ehVazio() {
         for (Pessoa pessoas : pessoa) {
@@ -98,6 +98,9 @@ public class PessoaDao {
 
     }
 
+
+
+
     public PessoaDao() {
         Pessoa pessoa1 = new Pessoa();
         Pessoa pessoa2 = new Pessoa();
@@ -108,21 +111,25 @@ public class PessoaDao {
         pessoa1.setSexoPessoa("Mulher");
         pessoa1.setLoginPessoa("Virg");
         pessoa1.setSenhaPessoa("123");
+        pessoa1.setTipoUsuarioPessoa(1);
 
         pessoa2.setNomePessoa("Maicon");
         pessoa2.setSexoPessoa("Homem");
         pessoa2.setLoginPessoa("Maiquim");
         pessoa2.setSenhaPessoa("321");
+        pessoa2.setTipoUsuarioPessoa(2);
 
         pessoa3.setNomePessoa("James");
         pessoa3.setSexoPessoa("Homem");
         pessoa3.setLoginPessoa("Salada");
         pessoa3.setSenhaPessoa("299");
+        pessoa3.setTipoUsuarioPessoa(2);
 
-        pessoa4.setNomePessoa("Louders");
-        pessoa4.setSexoPessoa("Mulher");
-        pessoa4.setLoginPessoa("Lou");
-        pessoa4.setSenhaPessoa("2222");
+        pessoa4.setNomePessoa("admin");
+        pessoa4.setSexoPessoa("admin");
+        pessoa4.setLoginPessoa("admin");
+        pessoa4.setSenhaPessoa("admin");
+        pessoa4.setTipoUsuarioPessoa(3);
 
 
         adiciona(pessoa1);

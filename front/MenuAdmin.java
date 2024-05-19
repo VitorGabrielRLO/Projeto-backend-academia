@@ -7,23 +7,25 @@ import general.*;
 
 public class MenuAdmin {
     private programaAcademia programaAcademia;
-    private programaPessoa programaPessoa; // Mantém uma única instância
+    private programaPessoaAdmin programaPessoaAdmin; // Mantém uma única instância
     private programaExercicio programaExercicio;
     private programaDivisaoTreino programaDivisaoTreino;
     private programaExercicioAplicacao programaExercicioAplicacao;
     private programaAvaliacaoFisica programaAvaliacaoFisica;
     private programaMensalidadeAluno programaMensalidadeAluno;
+    private programaMovFinanceira programaMovFinanceira;
     
     //private Treino treino;
 
     public MenuAdmin() {
-        this.programaPessoa = new programaPessoa(); // Inicializa a instância de programaPessoa
+        this.programaPessoaAdmin = new programaPessoaAdmin(); // Inicializa a instância de programaPessoa
         this.programaExercicio = new programaExercicio();
         this.programaDivisaoTreino = new programaDivisaoTreino();
         this.programaExercicioAplicacao = new programaExercicioAplicacao();
         this.programaAcademia = new programaAcademia();
         this.programaAvaliacaoFisica = new programaAvaliacaoFisica();
         this.programaMensalidadeAluno = new programaMensalidadeAluno();
+        this.programaMovFinanceira = new programaMovFinanceira();
         // Inicialize outras variáveis se necessário
     }
 
@@ -38,7 +40,8 @@ public class MenuAdmin {
             System.out.println("5. Acessar Exercicios Aplicação");
             System.out.println("6. Avaliacao Fisica");
             System.out.println("7. Mensalidade");
-            System.out.println("8. Sair");
+            System.out.println("8. Movimentacao financeira");
+            System.out.println("10. Sair");
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
@@ -50,7 +53,7 @@ public class MenuAdmin {
                     break;
 
                 case 2:
-                    programaPessoa.mostrarMenu(); // Chama o método para exibir o menu de programaPessoa
+                    programaPessoaAdmin.mostrarMenu(); // Chama o método para exibir o menu de programaPessoa
                     break;
 
                 case 3:
@@ -71,7 +74,11 @@ public class MenuAdmin {
                 case 7:
                     programaMensalidadeAluno.mostrarMenu();
                     break;
+
                 case 8:
+                    programaMovFinanceira.mostrarMenu();
+                    break;
+                case 10:
                 System.out.println("Encerrando o programa...");
                 return;
 

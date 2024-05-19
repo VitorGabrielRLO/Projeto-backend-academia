@@ -2,14 +2,12 @@ package front;
 
 
 import java.util.Scanner;
-
-import entities.*;
 import general.*;
-import dao.*;
+
 
 public class MenuSelecao {
     private programaAcademia programaAcademia;
-    private programaPessoa programaPessoa; // Mantém uma única instância
+    private programaPessoaAdmin programaPessoaAdmin; // Mantém uma única instância
     private programaExercicio programaExercicio;
     private programaDivisaoTreino programaDivisaoTreino;
     private programaExercicioAplicacao programaExercicioAplicacao;
@@ -19,7 +17,7 @@ public class MenuSelecao {
     //private Treino treino;
 
     public MenuSelecao() {
-        this.programaPessoa = new programaPessoa(); // Inicializa a instância de programaPessoa
+        this.programaPessoaAdmin = new programaPessoaAdmin(); // Inicializa a instância de programaPessoa
         this.programaExercicio = new programaExercicio();
         this.programaDivisaoTreino = new programaDivisaoTreino();
         this.programaExercicioAplicacao = new programaExercicioAplicacao();
@@ -52,7 +50,7 @@ public class MenuSelecao {
                     break;
 
                 case 2:
-                    programaPessoa.mostrarMenu(); // Chama o método para exibir o menu de programaPessoa
+                    programaPessoaAdmin.mostrarMenu(); // Chama o método para exibir o menu de programaPessoa
                     break;
 
                 case 3:

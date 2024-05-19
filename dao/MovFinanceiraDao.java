@@ -4,7 +4,7 @@ import entities.MovFinanceira;
 
 
 public class MovFinanceiraDao {
-    MovFinanceira[] movFinanceira = new MovFinanceira[10];
+    MovFinanceira[] movFinanceira = new MovFinanceira[1000];
     double grana = 0;
 
     public boolean adiciona(MovFinanceira p) {
@@ -60,6 +60,16 @@ public class MovFinanceiraDao {
         }
         return false;
 
+    }
+
+    public void somaTudo(){
+        double soma = 0;
+        for (MovFinanceira movFinanceiras : movFinanceira) {
+            if (movFinanceiras != null) {
+                soma += movFinanceiras.getValor();
+            }
+        }
+        System.out.println(soma);
     }
 
     private int proximaPosicaoLivre() {

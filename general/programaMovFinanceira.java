@@ -5,7 +5,7 @@ import java.util.Scanner;
 import dao.MovFinanceiraDao;
 import entities.MovFinanceira;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class programaMovFinanceira{
     MovFinanceiraDao MovFinanceiraDao = new MovFinanceiraDao();
@@ -20,19 +20,20 @@ public class programaMovFinanceira{
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    MovFinanceira j = criaTreino();
+                    MovFinanceira j = criaMovimentacao();
 
                     boolean pessoaFoiInserida = MovFinanceiraDao.adiciona(j);
                     if (pessoaFoiInserida) {
-                        System.out.println("Pessoa inserida com sucesso");
+                        System.out.println("Movimentaçao inserida inserida com sucesso");
                     } else {
-                        System.out.println("Pessoa nao inserida");
+                        System.out.println("Movimentação nao inserida");
 
                     }
 
                     break;
                 case 2:
                   MovFinanceiraDao.mostrarTodos();
+                  MovFinanceiraDao.somaTudo();
                     break;
                 case 4:
                     System.out.println("Id da movimentaçao financeira a ser deletada:");
@@ -59,18 +60,24 @@ public class programaMovFinanceira{
         }while (opcaoUsuario != 5);
     }
     
-    private MovFinanceira criaTreino() {
+    private MovFinanceira criaMovimentacao() {
         MovFinanceira j = new MovFinanceira();
-        Date dataAtual = new Date();
+        LocalDate dataAtual = LocalDate.now();
         
         System.out.print("\nValor: ");
         double valor = s.nextDouble();
-        j.setValor(valor);
+        
         System.out.print("\nDescriçao: ");
-        String descricao = s.nextLine();
-        j.setDescricao(descricao);
+        String descricao = s.next();
+
         System.out.print("\n Tipo (1 - entrada / 0 - saida): ");
         int tipo = s.nextInt();
+        
+        if(tipo == 0)
+            valor = valor *(-1);
+            
+        j.setDescricao(descricao);
+        j.setValor(valor);
         j.setTipo(tipo);
         MovFinanceiraDao.movimentacaoFin(valor, tipo);
         j.setDataCriacao(dataAtual);
@@ -80,13 +87,17 @@ public class programaMovFinanceira{
 
     private int pegaOpcaoUsuario() {
 
-        System.out.println("1 cadastrar");
+        int opc;
+        System.out.println("1 cadastrar movimentacao");
         System.out.println("2 mostrar todos");
         System.out.println("3 alterar o nome da pessoa");
         System.out.println("4 excluir pelo id");
         System.out.println("5 sair");
         System.out.print("Qual sua opcao ?R: ");
-        return Integer.parseInt(s.nextLine());
+        
+        opc = s.nextInt();
+        return opc;
+
 
     }
     

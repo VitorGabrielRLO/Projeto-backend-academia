@@ -8,8 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import dao.PessoaDao;
 
-public class programaPessoa{
-    PessoaDao PessoaDao = new PessoaDao();
+public class programaPessoaAdmin{
+    PessoaDao PessoaDao = new PessoaDao(); //Criando
     Scanner s = new Scanner(System.in);
 
     public void mostrarMenu(){
@@ -87,8 +87,15 @@ public class programaPessoa{
         System.out.print("\nSenha: ");
         String senha = s.nextLine();
         j.setSenhaPessoa(senha);
+        
+        System.out.print("\nTipo Usuario (1- Aluno / 2- Professor / 3- Novo ADMIN): ");
+        int tipo = s.nextInt();
+        while(tipo != 1 || tipo != 2 ||tipo != 3){
+            System.out.print("\nTipo Invalido\nTipo Usuario (1- Aluno / 2- Professor / 3- Novo ADMIN): ");
+            tipo = s.nextInt();
+        }
+        j.setTipoUsuarioPessoa(tipo);
         j.setDataCriacao(sdf.format(dataAtual));
-        j.setTipoUsuarioPessoa(1);
 
         return j;
     }
