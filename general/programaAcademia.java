@@ -2,10 +2,9 @@ package general;
 
 import dao.AcademiaDAO;
 import entities.Academia;
-
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class programaAcademia{
     private AcademiaDAO AcademiaDAO;
@@ -35,16 +34,21 @@ public class programaAcademia{
 
                     break;
                 case 2:
-                AcademiaDAO.mostrarTodos();
+                List<Academia> academias = AcademiaDAO.mostrarTodos();
+                for (Academia a : academias) {
+                    System.out.println(a);
+                    
+    
+            }
                     break;
                 case 3:
                     System.out.println("Academia a procurada:");
                     String procurado = s.nextLine();
                     System.out.println("Novo nome:");
                     String novoNome = s.nextLine();
-                    System.out.println("Novo Endereco: ");
-                    String novoEndereco = s.nextLine();
-                    if (AcademiaDAO.alterarNome(procurado, novoNome,novoEndereco)) {
+                    // System.out.println("Novo Endereco: ");
+                    // String novoEndereco = s.nextLine();
+                    if (AcademiaDAO.alterarNome(procurado, novoNome)) {
                         System.out.println("Academia alterado");
                         
                     } else {
@@ -79,8 +83,7 @@ public class programaAcademia{
     
     private Academia criaAcademia() {
 
-        Date dataCriacao = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDate dataCriacao =  LocalDate.now();
         
         Academia j = new Academia();
 
@@ -90,7 +93,7 @@ public class programaAcademia{
         System.out.print("\nEndereco: ");
         String endereco = s.nextLine();
         j.setEndereco(endereco);
-        j.setDataCriacao(sdf.format(dataCriacao));
+        j.setDataCriacao(dataCriacao);
 
 
         return j;

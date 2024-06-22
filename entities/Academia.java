@@ -1,11 +1,13 @@
 package entities;
 
+import java.time.LocalDate;
+
 public class Academia {
     private static long serial;
     private long id;
     private String nome;
     private String endereco;
-    private String dataCriacao;
+    private LocalDate dataCriacao;
     private String dataModificacao;
 
     public Academia() { 
@@ -26,10 +28,10 @@ public class Academia {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public String getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
-    public void setDataCriacao(String dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
     public String getDataModificacao() {

@@ -1,134 +1,166 @@
 package dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import conection.Conexao;
 import entities.Academia;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+// import com.mysql.cj.x.protobuf.MysqlxCrud.*;
 
 
 // import entities.Exercicio;
 
 public class AcademiaDAO {
 
-    Academia[] academia = new Academia[10];
 
     public boolean adiciona(Academia p) {
-        int proximaPosicaoLivre = this.proximaPosicaoLivre();
-        if (proximaPosicaoLivre != -1) {
-            academia[proximaPosicaoLivre] = p;
-            return true;
-        } else {
-            return false;
-        }
+
+            String sql = "INSERT INTO ACADEMIA (NOME,ENDERECO,DATACRIACAO) VALUES (?, ?, now())";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1, p.getNome());
+        ps.setString(2, p.getEndereco());
+        ps.execute();
+        ps.close();
+        return true;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
 
     }
 
     public boolean ehVazio() {
-        for (Academia academias : academia) {
-            if (academias != null) {
-                return false;
-            }
+        String sql = "SELECT count(1) AS quantidade FROM academia";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ResultSet rs = ps.getResultSet();
+        
+        ps.close();
+        if (rs.getInt("quantidade") == 0) {
+            rs.close();
+            return true;
         }
+        else{
+            rs.close();
+            return false;
+        }
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
+    }
+
+    public List<Academia> mostrarTodos() {
+        String sql = "select * from academia";
+
+        List<Academia> academias = new ArrayList<>();
+
+        try (
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql)) {
+
+                while (rs.next()) {
+                    Long id = rs.getLong("id");
+                    String nome = rs.getString("nome");
+                    String endereco = rs.getString("endereco");
+                    java.sql.Date currentDate = rs.getDate("dataCriacao");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+
+                    Academia academia = new Academia();
+                    academia.setNome(nome);
+                    academia.setEndereco(endereco);
+                    academia.setDataCriacao(dataCriacao);
+                    academias.add(academia);
+                }
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+        return academias;
+
+    }
+   
+    public boolean alterarNome(String nome, String novoNome) {
+        
+        String sql = "UPDATE academia  SET nome = ? WHERE nome LIKE ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1, novoNome);
+        ps.setString(2, nome);
+        ps.execute();
+        ps.close();
         return true;
 
-    }
-
-    public void mostrarTodos() {
-        boolean temAcademia = false;
-        for (Academia academias : academia) {
-            if (academias != null) {
-                System.out.println("ID: " + academias.getId());
-                System.out.println("Nome: " + academias.getNome());
-                System.out.println("Endereco: " + academias.getEndereco());
-                System.out.println("Data de Criação: " + academias.getDataCriacao());
-                System.out.println("Data de Modificação: " + academias.getDataModificacao());
-                System.out.println("--------------------------");
-                temAcademia = true;
-            }
-        }
-        if (!temAcademia) {
-            System.out.println("Não existem exercícios cadastrados.");
-        }
-    }
-
-    public boolean alterarNome(String nome, String novoNome, String novoEndereco) {
-        for (Academia academias : academia) {
-            if (academias != null && academias.getNome().equals(nome)) {
-                academias.setNome(novoNome);
-                Date dataAtual = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                academias.setDataModificacao(sdf.format(dataAtual));
-                academias.setEndereco(novoEndereco);
-                return true;
-            }
-        }
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
-
+    }
     }
 
     Academia buscaPorNome(String nome) {
-        for (Academia academias : academia) {
-            if (academias != null && academias.getNome().equals(nome)) {
-                return academias;
-            }
+        // SELECT * FROM academia where nome like 'Leonardo';
+        String sql = "SELECT * FROM academia WHERE nome LIKE ?";
+
+        try (
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql)) {
+
+               
+                    Long id = rs.getLong("id");
+                    String nomeAcademia = rs.getString("nome");
+                    String endereco = rs.getString("endereco");
+                    java.sql.Date currentDate = rs.getDate("dataCriacao");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+
+                    Academia academia = new Academia();
+                    academia.setNome(nomeAcademia);
+                    academia.setEndereco(endereco);
+                    academia.setDataCriacao(dataCriacao);
+                    return academia;
+                
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
         }
-        return null;
+        
 
     }
 
     public boolean remover(String nome) {
-        for (int i = 0; i < academia.length; i++) {
-            if (academia[i] != null && academia[i].getNome().equals(nome)) {
-                academia[i] = null;
-                return true;
-            }
-        }
+        // Delete from academia where id like 3;
+        String sql = "DELETE FROM academia WHERE nome LIKE ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1,nome);
+        boolean result = ps.execute();
+
+        ps.close();
+        return result;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
-
+    }
     }
 
-    private int proximaPosicaoLivre() {
-        for (int i = 0; i < academia.length; i++) {
-            if (academia[i] == null) {
-                return i;
-            }
-
-        }
-        return -1;
-
-    }
-
-    public AcademiaDAO() {
-        Date dataAtual = new Date();
-        Date dataCriacao = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-        Academia academia1 = new Academia();
-        Academia academia2 = new Academia();
-        Academia academia3 = new Academia();
-        Academia academia4 = new Academia();
-
-        academia1.setNome("Gym");
-        academia1.setEndereco("Rua 123");
-        academia1.setDataCriacao(sdf.format(dataAtual));
-        
-        academia2.setNome("treino");
-        academia2.setEndereco("Rua 321");
-        academia2.setDataCriacao(sdf.format(dataAtual));
-
-        academia3.setNome("Fitcorps");
-        academia3.setEndereco("Rua visconde");
-        academia3.setDataCriacao(sdf.format(dataAtual));
-        
-        academia4.setNome("SmartFit");
-        academia4.setEndereco("Rua Leopoldino");
-        academia4.setDataCriacao(sdf.format(dataAtual));
 
 
-        adiciona(academia1);
-        adiciona(academia2);
-        adiciona(academia3);
-        adiciona(academia4);
-
-    }
 }
+

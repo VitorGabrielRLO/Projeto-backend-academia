@@ -16,7 +16,6 @@ public class Conexao {
     {
         try
         {
-
             if(conn == null)
             {
                 conn = DriverManager.getConnection(url, user, password);
