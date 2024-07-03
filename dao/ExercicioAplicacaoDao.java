@@ -1,124 +1,89 @@
-package dao; // Definindo qual pacote esta classe pertence
+package dao;
 
-import java.util.Date;
-
+import conection.Conexao;
 import entities.ExercicioAplicacao;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExercicioAplicacaoDao {
 
-    ExercicioAplicacao[] exercicioAplicacao = new ExercicioAplicacao[100];
-
     public boolean adiciona(ExercicioAplicacao p) {
-        int proximaPosicaoLivre = this.proximaPosicaoLivre();
-        if (proximaPosicaoLivre != -1) {
-            exercicioAplicacao[proximaPosicaoLivre] = p;
-            return true;
-        } else {
+        String sql = "INSERT INTO ExercicioAplicacao (descricao, dataCriacaoExercicioAplicacao, dataModificacaoExercicioAplicacao) VALUES (?, now(), now())";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setString(1, p.getDescricao());
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
-
     }
 
     public boolean ehVazio() {
-        for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
-            if (exercicioAplicacaos != null) {
-                return false;
+        String sql = "SELECT COUNT(*) AS quantidade FROM ExercicioAplicacao";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int quantidade = rs.getInt("quantidade");
+                return quantidade == 0;
             }
+            return true; // Retorna true se o ResultSet está vazio
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-        return true;
-
     }
-    public void mostrarTodos() {
-        boolean temExercicio = false;
-        for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
-            if (exercicioAplicacaos != null) {
-                System.out.println("ID: " + exercicioAplicacaos.getId());
-                System.out.println("Descrição: " + exercicioAplicacaos.getDescricao());
-                System.out.println("Data de Criação: " + exercicioAplicacaos.getDataCriacao());
-                System.out.println("Data de Modificação: " + exercicioAplicacaos.getDataModificacao());
-                System.out.println("--------------------------");
-                temExercicio = true;
+
+    public List<ExercicioAplicacao> mostrarTodos() {
+        String sql = "SELECT * FROM ExercicioAplicacao";
+        List<ExercicioAplicacao> exercicioAplicacaos = new ArrayList<>();
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Long id = rs.getLong("idExercicioAplicacao");
+                String descricao = rs.getString("descricao");
+                LocalDate dataCriacao = rs.getDate("dataCriacaoExercicioAplicacao").toLocalDate();
+                LocalDate dataModificacao = rs.getDate("dataModificacaoExercicioAplicacao").toLocalDate();
+
+                ExercicioAplicacao exercicioAplicacao = new ExercicioAplicacao();
+                exercicioAplicacao.setId(id);
+                exercicioAplicacao.setDescricao(descricao);
+                exercicioAplicacao.setDataCriacao(dataCriacao);
+                exercicioAplicacao.setDataModificacao(dataModificacao);
+                exercicioAplicacaos.add(exercicioAplicacao);
             }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar todos os exercícios aplicação", e);
         }
-        if (!temExercicio) {
-            System.out.println("Não existem exercícios cadastrados.");
+        return exercicioAplicacaos;
+    }
+
+    public boolean remover(long id) {
+        String sql = "DELETE FROM ExercicioAplicacao WHERE idExercicioAplicacao = ?";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setLong(1, id);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-
-
-public boolean alterarDescricao(int id, String novaDescricao) {
-    for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
-        if (exercicioAplicacaos != null && exercicioAplicacaos.getId() == id) {
-            exercicioAplicacaos.setDescricao(novaDescricao);
-            return true;
+    public boolean alterarDescricao(long id, String descricaoNovo) {
+        String sql = "UPDATE ExercicioAplicacao SET descricao = ?, dataModificacaoExercicioAplicacao = now() WHERE idExercicioAplicacao = ?";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setString(1, descricaoNovo);
+            ps.setLong(2, id);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-    }
-    return false;
-}
-
-
-    ExercicioAplicacao buscaPorId(int id) {
-        for (ExercicioAplicacao exercicioAplicacaos : exercicioAplicacao) {
-            if (exercicioAplicacaos != null && exercicioAplicacaos.getId() == id) {
-                return exercicioAplicacaos;
-            }
-        }
-        
-        return null;
-
-    }
-
-    public boolean remover(int id) {
-        for (int i = 0; i < exercicioAplicacao.length; i++) {
-            if (exercicioAplicacao[i] != null && exercicioAplicacao[i].getId() == id) {
-                exercicioAplicacao[i] = null;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int proximaPosicaoLivre() {
-        for (int i = 0; i < exercicioAplicacao.length; i++) {
-            if (exercicioAplicacao[i] == null) {
-                return i;
-            }
-
-        }
-        return -1;
-
-    }
-
-    public ExercicioAplicacaoDao() {
-        ExercicioAplicacao exApli1 = new ExercicioAplicacao();
-        ExercicioAplicacao exApli2 = new ExercicioAplicacao();
-        ExercicioAplicacao exApli3 = new ExercicioAplicacao();
-        ExercicioAplicacao exApli4 = new ExercicioAplicacao();
-
-
-        exApli1.setDescricao("4x12");
-        exApli1.setDataCriacao(new Date());
-        exApli1.setDataModificacao(new Date());
-
-
-        exApli2.setDescricao("4x10");
-        exApli2.setDataCriacao(new Date());
-        exApli2.setDataModificacao(new Date());
-
-
-        exApli3.setDescricao("5x5");
-        exApli3.setDataCriacao(new Date());
-        exApli3.setDataModificacao(new Date());
-
-
-        exApli4.setDescricao("123");
-        exApli4.setDataCriacao(new Date());
-        exApli4.setDataModificacao(new Date());
-
-        adiciona(exApli1);
-        adiciona(exApli2);
-        adiciona(exApli3);
-        adiciona(exApli4);
     }
 }

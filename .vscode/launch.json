@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "programaMensalidadeAluno",
+      "request": "launch",
+      "mainClass": "general.programaMensalidadeAluno",
+      "projectName": "Projeto-backend-academia_18b5832c"
+    },
+    {
+      "type": "java",
       "name": "Launch Program",
       "request": "launch",
       "mainClass": "Main",

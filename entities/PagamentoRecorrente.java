@@ -1,26 +1,26 @@
 package entities;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PagamentoRecorrente {
-    private static long serial;
     private long id;
     private Pessoa aluno;
-    private Date data;
+    private LocalDate data;
     private String cartaoDeCredito;
     private Double valor;
-    private Date dataInicio;
+    private LocalDate dataInicio;
     private int numeroMeses;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public PagamentoRecorrente() { 
-        id = PagamentoRecorrente.serial++;
-    }
+
     public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Pessoa getAluno() {
@@ -31,11 +31,11 @@ public class PagamentoRecorrente {
         this.aluno = aluno;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -55,11 +55,11 @@ public class PagamentoRecorrente {
         this.valor = valor;
     }
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
@@ -71,19 +71,19 @@ public class PagamentoRecorrente {
         this.numeroMeses = numeroMeses;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

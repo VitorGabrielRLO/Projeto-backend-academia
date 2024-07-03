@@ -2,7 +2,6 @@ package entities;
 import java.time.LocalDate;
 
 public class FichaTreino {
-    private static long serial;
     private long id;
     private Pessoa pessoa;
     private DivisaoTreino divisao;
@@ -10,11 +9,11 @@ public class FichaTreino {
     private LocalDate dataInicio;
     private LocalDate dataFim;
 
-	public FichaTreino() { 
-        id = FichaTreino.serial++;
-    }
     public long getId() {
         return id;
+    }
+	public void setId(long id) {
+        this.id = id;
     }
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -48,4 +47,17 @@ public class FichaTreino {
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
 	}
+
+	@Override
+    public String toString() {
+        return "Ficha De Treino{\n" +
+                "---------------------------------\nNome: " + pessoa.getNomePessoa() +
+                "Divsao do Treino: " + divisao.getNome() +
+                "\nDescrição: " + divisao.getNomeDetalhado() +
+                "\nData Inicio: " + dataInicio +
+                "\nData Fim: " + dataFim +
+                "\n------------------------------\n" + 
+				"Exercicios: " + treino.getExercicio() +
+				"}";
+    }
 }

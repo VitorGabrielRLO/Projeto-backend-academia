@@ -1,22 +1,21 @@
 package general;
 
-import dao.DivisaoTreinoDao;
-import entities.DivisaoTreino;
-
+import dao.*;
+import entities.*;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class programaDivisaoTreino{
-    private DivisaoTreinoDao DivisaoTreinoDao;
+public class programaDivisaoTreino {
+    private DivisaoTreinoDao divisaoTreinoDao;
+    private Scanner scanner;
 
-public programaDivisaoTreino(DivisaoTreinoDao DivisaoTreinoDao){
-    this.DivisaoTreinoDao = DivisaoTreinoDao;
-}
+    public programaDivisaoTreino() {
+        this.divisaoTreinoDao = new DivisaoTreinoDao();
+        this.scanner = new Scanner(System.in);
+    }
 
-    Scanner s = new Scanner(System.in);
-
-    public void mostrarMenu(){
+    public void mostrarMenu() {
         int opcaoUsuario;
 
         do {
@@ -24,83 +23,93 @@ public programaDivisaoTreino(DivisaoTreinoDao DivisaoTreinoDao){
             switch (opcaoUsuario) {
                 case 1:
                     DivisaoTreino j = criaTreino();
-
-                    boolean pessoaFoiInserida = DivisaoTreinoDao.adiciona(j);
-                    if (pessoaFoiInserida) {
-                        System.out.println("Divisao inserida com sucesso");
+                    boolean divisaoFoiInserida = divisaoTreinoDao.adiciona(j);
+                    if (divisaoFoiInserida) {
+                        System.out.println("Divisão inserida com sucesso");
                     } else {
-                        System.out.println("Divisao nao inserida");
-
+                        System.out.println("Divisão não inserida");
                     }
-
                     break;
                 case 2:
-                    DivisaoTreinoDao.mostrarTodos();
+                    List<DivisaoTreino> divisaoTreinos = divisaoTreinoDao.mostrarTodos();
+                    for (DivisaoTreino a : divisaoTreinos) {
+                        System.out.println(a);
+                    }
                     break;
                 case 3:
-                    System.out.println("Divisao a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    if (DivisaoTreinoDao.alterarNome(procurado, novoNome)) {
-                        System.out.println("Divisao alterado");
+                    System.out.print("Divisão a ser procurada: ");
+                    String procurado = scanner.nextLine();
+                    System.out.print("Novo nome: ");
+                    String novoNome = scanner.nextLine();
+                    if (divisaoTreinoDao.alterarNome(procurado, novoNome)) {
+                        System.out.println("Divisão alterada");
                     } else {
-                        System.out.println("Divisao não encontrado");
+                        System.out.println("Divisão não encontrada");
                     }
-
                     break;
                 case 4:
-                    System.out.println("Pessoa procurada:");
-                    String nomeExclusao = s.nextLine();
-
-                    if (DivisaoTreinoDao.remover(nomeExclusao)) {
-                        System.out.println("Pessoa excluída");
+                    System.out.print("Divisão a ser excluída: ");
+                    String nomeExclusao = scanner.nextLine();
+                    if (divisaoTreinoDao.remover(nomeExclusao)) {
+                        System.out.println("Divisão excluída");
                     } else {
-                        System.out.println("Pessoa não excluída");
+                        System.out.println("Divisão não excluída");
                     }
-
                     break;
                 case 5:
-                    System.out.println("5");
-
+                    System.out.println("Voltando...");
                     break;
-
                 default:
-                    System.out.println("sair");
-
+                    System.out.println("Opção inválida");
                     break;
-
             }
-        }while (opcaoUsuario != 5);
+        } while (opcaoUsuario != 5);
+        
+        // Fechar o scanner ao sair do loop
+        scanner.close();
     }
-    
+
     private DivisaoTreino criaTreino() {
         DivisaoTreino j = new DivisaoTreino();
-        Date dataCriacao = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+        // Solicita e lê o nome do usuário
         System.out.print("\nNome: ");
-        String nome = s.nextLine();
+        String nome = scanner.nextLine();
         j.setNome(nome);
-        System.out.print("\nNome Detalhado: ");
-        String nomeDet = s.nextLine();
-        j.setNomeDetalhado(nomeDet);
-        j.setDataCriacao(sdf.format(dataCriacao));
 
-        return j;
+        // Solicita e lê o nome detalhado do usuário
+        System.out.print("\nNome Detalhado: ");
+        String nomeDet = scanner.nextLine();
+        j.setNomeDetalhado(nomeDet);
+
+        return j; // Retorna o objeto DivisaoTreino criado e preenchido
     }
 
     private int pegaOpcaoUsuario() {
-        int opc;
-        System.out.println("1 - Cadastrar divisao de treino");
-        System.out.println("2 - Mostrar todas as divisoes");
-        System.out.println("3 - Alterar o nome da divisao");
-        System.out.println("4 - Excluir divisao pelo nome");
-        System.out.println("5 - Voltar");
-        System.out.print("Qual sua opcao ?R: ");
-        opc = s.nextInt();
-        return opc;
+        int opc = 0;
+        boolean valid = false;
 
+        while (!valid) {
+            try {
+                System.out.println("1 - Cadastrar divisão de treino");
+                System.out.println("2 - Mostrar todas as divisões");
+                System.out.println("3 - Alterar o nome da divisão");
+                System.out.println("4 - Excluir divisão pelo nome");
+                System.out.println("5 - Voltar");
+                System.out.print("Qual sua opção? R: ");
+                opc = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do scanner
+
+                if (opc >= 1 && opc <= 5) {
+                    valid = true; // Entrada válida
+                } else {
+                    System.out.println("Opção inválida. Por favor, escolha um número entre 1 e 5.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número.");
+                scanner.nextLine(); // Limpar o buffer do scanner após InputMismatchException
+            }
+        }
+
+        return opc;
     }
-    
 }

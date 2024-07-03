@@ -1,117 +1,119 @@
 package general;
 
-import dao.AlunoPagamentoDao;
-import entities.AlunoPagamento;
-import entities.MensalidadeAluno;
-import dao.MensalidadeAlunoDao;
-import java.util.Scanner;
-import java.util.Date;
+import dao.*;
+import entities.*;
 import java.time.LocalDate;
-// import entities.MensalidadeAluno;
-import dao.MovFinanceiraDao;
-import entities.MovFinanceira;
+import java.util.List;
+import java.util.Scanner;
 
-public class programaAlunoPagamento{
-    
-    
-    private AlunoPagamentoDao AlunoPagamentoDao;
-    private MovFinanceiraDao MovFinanceiraDao;
-    Scanner s = new Scanner(System.in);
+public class programaAlunoPagamento {
+    private AlunoPagamentoDao alunoPagamentoDao;
+    private PessoaDao pessoaDao;
+    private MensalidadeAlunoDao mensalidadeAlunoDao;
+    private MovFinanceiraDao movFinanceiraDao;
 
-    public programaAlunoPagamento(AlunoPagamentoDao alunoPagamentoDao, MovFinanceiraDao MovFinanceiraDao){
-        this.AlunoPagamentoDao = alunoPagamentoDao;
-        this.MovFinanceiraDao = MovFinanceiraDao;
+    public programaAlunoPagamento() {
+        this.alunoPagamentoDao = new AlunoPagamentoDao();
+        this.pessoaDao = new PessoaDao();
+        this.mensalidadeAlunoDao = new MensalidadeAlunoDao();
+        this.movFinanceiraDao = new MovFinanceiraDao();
     }
 
-    public void mostrarMenu(){
+    Scanner s = new Scanner(System.in);
+
+    public void mostrarMenu() {
         int opcaoUsuario;
 
         do {
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    AlunoPagamento j = AlunoPagamento();
-
-                    boolean pessoaFoiInserida = AlunoPagamentoDao.adiciona(j);
-                    if (pessoaFoiInserida) {
-                        System.out.println("Divisao inserida com sucesso");
-                    } else {
-                        System.out.println("Divisao nao inserida");
-
+                    AlunoPagamento pagamento = registrarPagamento();
+                    if (pagamento != null) {
+                        boolean pagamentoFoiInserido = alunoPagamentoDao.adiciona(pagamento);
+                        if (pagamentoFoiInserido) {
+                            System.out.println("Pagamento registrado com sucesso");
+                        } else {
+                            System.out.println("Falha ao registrar pagamento");
+                        }
                     }
-
                     break;
+
                 case 2:
-                    AlunoPagamentoDao.mostrarTodos();
+                    mostrarTodosPagamentos();
                     break;
                 case 3:
-
-
+                    // Implementar atualização de pagamento se necessário
                     break;
                 case 4:
-  
-
+                    // Implementar exclusão de pagamento se necessário
                     break;
                 case 5:
-                    System.out.println("5");
-
+                    System.out.println("Saindo...");
                     break;
-
                 default:
-                    System.out.println("sair");
-
+                    System.out.println("Opção inválida");
                     break;
-
             }
-        }while (opcaoUsuario != 5);
+        } while (opcaoUsuario != 5);
     }
-    
-    private AlunoPagamento AlunoPagamento() {
-        AlunoPagamento j = new AlunoPagamento();
-        MensalidadeAlunoDao MensalidadeAlunoDao = new MensalidadeAlunoDao();
-        // Date dataAtual = new Date();
-        // MensalidadeAluno j = new MensalidadeAluno();
-        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    private AlunoPagamento registrarPagamento() {
+        AlunoPagamento pagamento = new AlunoPagamento();
         MovFinanceira mov = new MovFinanceira();
         LocalDate dataAtual = LocalDate.now();
 
+        System.out.println("Escolha um aluno pelo nome:");
+        pessoaDao.mostrarTodos();
+        System.out.print("Nome do Aluno: ");
+        String nome = s.nextLine();
+        Pessoa aluno = pessoaDao.buscaPorNome(nome);
+        if (aluno == null) {
+            System.out.println("Aluno não encontrado!");
+            return null;
+        }
+        pagamento.setAluno(aluno);
 
-        
-        MensalidadeAlunoDao.mostrarTodos();
-        System.out.print("\nEscolha seu plano pelo id: ");
-        Long plano = s.nextLong();
+        mensalidadeAlunoDao.mostrarTodos();
+        System.out.print("Escolha um plano pelo ID: ");
+        Long planoId = Long.parseLong(s.nextLine());
+        MensalidadeAluno plano = mensalidadeAlunoDao.buscaPorId(planoId);
+        if (plano == null) {
+            System.out.println("Plano não encontrado!");
+            return null;
+        }
 
-        double valor = MensalidadeAlunoDao.escolherId(plano);
-        String nomePlano = MensalidadeAlunoDao.pegaPlano(plano);
-            
-            LocalDate dataVencimento = dataAtual.plusDays(30);
-            j.setValor(valor);
-            j.setPlano(nomePlano);
-            j.setVencimento(dataVencimento);
-            mov.setValor(valor);
-            mov.setTipo(1);
-            mov.setDescricao("Mensalidade");
-            mov.setDataCriacao(dataAtual);
-        
-        MovFinanceiraDao.adiciona(mov);
-        return j;
-     }
+        LocalDate dataVencimento = dataAtual.plusDays(30);
+        pagamento.setValor(plano.getValor());
+        pagamento.setPlano(plano);
+        pagamento.setVencimento(dataVencimento);
+        pagamento.setDataCriacao(dataAtual);
+        pagamento.setModalidade(1); // Supondo que modalidade é 1 para mensalidade
+
+        mov.setValor(plano.getValor());
+        mov.setTipo(1); // Supondo que 1 é o tipo para pagamento de mensalidade
+        mov.setDescricao("Mensalidade");
+        mov.setDataCriacao(dataAtual);
+
+        movFinanceiraDao.adiciona(mov);
+
+        return pagamento;
+    }
+
+    public void mostrarTodosPagamentos() {
+        List<AlunoPagamento> pagamentos = alunoPagamentoDao.mostrarTodos();
+        for (AlunoPagamento pagamento : pagamentos) {
+            System.out.println(pagamento);
+        }
+    }
 
     private int pegaOpcaoUsuario() {
-
-        int opc;
-
         System.out.println("1 - Registrar Pagamento");
-        System.out.println("2 - Mostrar todas as avaliacoes");
-        System.out.println("3 - Atualizar avaliacao");
-        System.out.println("4 - Excluir avaliacao pelo id");
+        System.out.println("2 - Mostrar todos os pagamentos");
+        System.out.println("3 - Atualizar pagamento");
+        System.out.println("4 - Excluir pagamento pelo ID");
         System.out.println("5 - Voltar");
-        System.out.print("Qual sua opcao ?R: ");
-        
-        opc = s.nextInt();
-        return opc;
+        System.out.print("Qual sua opção? R: ");
+        return Integer.parseInt(s.nextLine());
     }
-    
-
-
 }

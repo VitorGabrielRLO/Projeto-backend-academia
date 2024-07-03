@@ -1,16 +1,14 @@
 package general;
 
-import java.util.Scanner;
-
 import dao.EntradaAlunoDao;
 import entities.EntradaAluno;
-
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Scanner;
 
 public class ProgramaEntradaAluno{
     private EntradaAlunoDao EntradaAlunoDao;
-    public ProgramaEntradaAluno(EntradaAlunoDao EntradaAlunoDao){
-        this.EntradaAlunoDao= EntradaAlunoDao;
+    public ProgramaEntradaAluno(){
+        this.EntradaAlunoDao= new EntradaAlunoDao();
     }
 
     Scanner s = new Scanner(System.in);
@@ -55,11 +53,12 @@ public class ProgramaEntradaAluno{
     
     private EntradaAluno entradaAluno() {
         EntradaAluno j = new EntradaAluno();
-        Date dataAtual = new Date();
+        System.out.print("\nNome: ");
+        String nome = s.nextLine();
+        j.setNome(nome);
+        LocalDate dataAtual = LocalDate.now();
         System.out.print("\nSeja Bem vindo ");
-        j.setDataCriacao(dataAtual);
-
-        
+        j.setDataHora(dataAtual);
 
         return j;
     }

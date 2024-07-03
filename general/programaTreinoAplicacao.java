@@ -10,8 +10,8 @@ import java.util.Date;
 public class programaTreinoAplicacao{
     private TreinoAplicacaoDao TreinoAplicacaoDao;
 
-    public programaTreinoAplicacao(TreinoAplicacaoDao TreinoAplicacaoDao){
-        this.TreinoAplicacaoDao = TreinoAplicacaoDao;
+    public programaTreinoAplicacao(){
+        this.TreinoAplicacaoDao = new TreinoAplicacaoDao();
     }
 
     Scanner s = new Scanner(System.in);

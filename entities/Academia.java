@@ -3,18 +3,17 @@ package entities;
 import java.time.LocalDate;
 
 public class Academia {
-    private static long serial;
     private long id;
     private String nome;
     private String endereco;
     private LocalDate dataCriacao;
-    private String dataModificacao;
+    private LocalDate dataModificacao;
 
-    public Academia() { 
-        id = Academia.serial++;
-    }
     public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
     public String getNome() {
         return nome;
@@ -34,10 +33,10 @@ public class Academia {
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    public String getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
-    public void setDataModificacao(String dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -48,6 +47,7 @@ public class Academia {
                 ", Nome='" + nome + '\'' +
                 ", endereco='" + endereco + '\'' +
                 ", dataCriacao=" + dataCriacao +
+                ", dataModificaçao=" + dataModificacao +
                 '}';
     }
 }

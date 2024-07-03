@@ -1,28 +1,25 @@
 package entities;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class AlunoPagamento {
-    private static long serial;
     private long id;
-    private MensalidadeVigente mensalidade;
-    private Date data;
     private double valor;
-    private String plano;
+    private MensalidadeAluno plano;
     private Pessoa aluno;
     private int modalidade;
-    private Date dataCriacao;
+    private LocalDate dataCriacao;
     private LocalDate dataModificacao;
     private LocalDate vencimento;
     private LocalDate dataPagamento;
 
     // Getters e Setters
-    public AlunoPagamento() { 
-        id = AlunoPagamento.serial++;
-    }
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 
@@ -34,21 +31,14 @@ public class AlunoPagamento {
         this.valor = valor;
     }
 
-    public String getPlano(){
+    public MensalidadeAluno getPlano(){
         return plano;
     }
-    public void setPlano(String plano)
+    public void setPlano(MensalidadeAluno plano)
     {
         this.plano = plano;
     }
 
-    public MensalidadeVigente getMensalidade() {
-        return mensalidade;
-    }
-
-    public void setMensalidade(MensalidadeVigente mensalidade) {
-        this.mensalidade = mensalidade;
-    }
 
     public void setVencimento(LocalDate vencimento)
     {
@@ -60,14 +50,7 @@ public class AlunoPagamento {
     }
 
 
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
+   
     public Pessoa getAluno() {
         return aluno;
     }
@@ -93,11 +76,11 @@ public class AlunoPagamento {
         return dataPagamento;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
@@ -114,9 +97,7 @@ public class AlunoPagamento {
     public String toString() {
         return "AlunoPagamento{" +
                 "id=" + id +
-                ", mensalidade=" + mensalidade +
-                ", data=" + data +
-                ", aluno=" + aluno +
+                ", aluno=" + aluno.getNomePessoa() +
                 ", modalidade=" + modalidade +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +

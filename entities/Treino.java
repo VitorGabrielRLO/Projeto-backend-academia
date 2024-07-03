@@ -1,42 +1,41 @@
 package entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 // import DivisaoTreino;
 // import Exercicio;
 
 public class Treino {
-    private static long serial;
     private long id;
-    private Date dataInicio;
-    private Date dataTermino;
+    private LocalDate dataInicio;
+    private LocalDate dataTermino;
     private Exercicio exercicio;
     private DivisaoTreino divisaoTreino;
-    private String dataCriacao;
-    private String dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public Treino() { 
-        id = Treino.serial++;
-    }
     public long getId() {
         return id;
     }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataTermino() {
+    public LocalDate getDataTermino() {
         return dataTermino;
     }
 
-    public void setDataTermino(Date dataTermino) {
+    public void setDataTermino(LocalDate dataTermino) {
         this.dataTermino = dataTermino;
     }
 
@@ -56,19 +55,19 @@ public class Treino {
         this.divisaoTreino = divisaoTreino;
     }
 
-    public String getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(String dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public String getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(String dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -79,8 +78,8 @@ public class Treino {
                 "id=" + id +
                 ", dataInicio=" + dataInicio +
                 ", dataTermino=" + dataTermino +
-                ", exercicio=" + exercicio +
-                ", divisaoTreino=" + divisaoTreino +
+                ", exercicio=" + exercicio.getNomeExercicio() +
+                ", divisaoTreino=" + divisaoTreino.getNome() +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

@@ -4,7 +4,6 @@ package entities;
 import java.time.LocalDate;
 
 public class MensalidadeAluno {
-    private static long serial;
     private long id;
     private String plano;
     private double valor;
@@ -12,13 +11,13 @@ public class MensalidadeAluno {
     private LocalDate dataCriacao;
     private LocalDate dataModificacao;
 
-    public MensalidadeAluno() { 
-        id = MensalidadeAluno.serial++;
-    }
+
     public long getId() {
         return id;
     }
-
+    public void setId(long id) {
+        this.id = id;
+    }
     public void setPlano(String plano)
     {
         this.plano = plano;

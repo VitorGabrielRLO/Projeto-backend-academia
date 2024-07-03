@@ -1,18 +1,16 @@
 package general;
 
-import java.util.Scanner;
-
 import dao.MovFinanceiraDao;
-import entities.MovFinanceira;
-
-import java.time.LocalDate;
+import entities.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class programaMovFinanceira{
 
     
     private MovFinanceiraDao MovFinanceiraDao;
-    public programaMovFinanceira(MovFinanceiraDao MovFinanceiraDao){
-        this.MovFinanceiraDao = MovFinanceiraDao;
+    public programaMovFinanceira(){
+        this.MovFinanceiraDao = new MovFinanceiraDao();
     }
 
     Scanner s = new Scanner(System.in);
@@ -38,8 +36,30 @@ public class programaMovFinanceira{
 
                     break;
                 case 2:
-                  MovFinanceiraDao.mostrarTodos();
-                  MovFinanceiraDao.somaTudo();
+                  List<MovFinanceira> movFinanceiras = MovFinanceiraDao.mostrarTodos();
+                    if (movFinanceiras.isEmpty()) {
+                        System.out.println("Nenhuma movimentação encontrada.");
+                    } else {
+                        for (MovFinanceira movFinanceira : movFinanceiras) {
+                            System.out.println(movFinanceira);
+                        }
+                    }
+                    double gastoTotal = MovFinanceiraDao.valorTotal();
+                    System.out.println("Soma de todos valores: "+ gastoTotal);
+                    break;
+                case 3:
+                    System.out.println("Ano da pesquisa: ");
+                    Long ano = s.nextLong();
+                    System.out.println("Mês da pesquisa: ");
+                    Long mes = s.nextLong();
+                  List<MovFinanceira> movFinanceirasMes = MovFinanceiraDao.mostrarTodosPorMes(ano, mes);
+                    if (movFinanceirasMes.isEmpty()) {
+                        System.out.println("Nenhuma movimentação encontrada.");
+                    } else {
+                        for (MovFinanceira movFinanceira : movFinanceirasMes) {
+                            System.out.println(movFinanceira);
+                        }
+                    }
                     break;
                 case 4:
                     System.out.println("Id da movimentaçao financeira a ser deletada:");
@@ -68,7 +88,7 @@ public class programaMovFinanceira{
     
     private MovFinanceira criaMovimentacao() {
         MovFinanceira j = new MovFinanceira();
-        LocalDate dataAtual = LocalDate.now();
+
         
         System.out.print("\nValor: ");
         double valor = s.nextDouble();
@@ -85,8 +105,8 @@ public class programaMovFinanceira{
         j.setDescricao(descricao);
         j.setValor(valor);
         j.setTipo(tipo);
-        MovFinanceiraDao.movimentacaoFin(valor, tipo);
-        j.setDataCriacao(dataAtual);
+        // MovFinanceiraDao.movimentacaoFin(valor, tipo);
+
 
         return j;
     }
@@ -96,7 +116,7 @@ public class programaMovFinanceira{
         int opc;
         System.out.println("1 cadastrar movimentacao");
         System.out.println("2 mostrar todos");
-        System.out.println("3 alterar o nome da pessoa");
+        System.out.println("3 mostrar todos por mes");
         System.out.println("4 excluir pelo id");
         System.out.println("5 sair");
         System.out.print("Qual sua opcao ?R: ");

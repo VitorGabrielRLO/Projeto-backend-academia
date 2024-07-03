@@ -1,127 +1,163 @@
 package dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import conection.Conexao;
 import entities.DivisaoTreino;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DivisaoTreinoDao {
 
-    DivisaoTreino[] divisao = new DivisaoTreino[100];
-
     public boolean adiciona(DivisaoTreino p) {
-        int proximaPosicaoLivre = this.proximaPosicaoLivre();
-        if (proximaPosicaoLivre != -1) {
-            divisao[proximaPosicaoLivre] = p;
-            return true;
-        } else {
-            return false;
-        }
+
+        String sql = "INSERT INTO divisaotreino (nome, nomeDetalhado, dataCriacaoDivisaoTreino, dataModificacaoDivisaoTreino) VALUES (?, ?, now(), now())";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1, p.getNome());
+        ps.setString(2, p.getNomeDetalhado());
+        ps.execute();
+        ps.close();
+        return true;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
 
     }
 
     public boolean ehVazio() {
-        for (DivisaoTreino divisoes : divisao) {
-            if (divisoes != null) {
-                return false;
-            }
+        String sql = "SELECT count(1) AS quantidade FROM divisaotreino";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ResultSet rs = ps.getResultSet();
+        
+        ps.close();
+        if (rs.getInt("quantidade") == 0) {
+            rs.close();
+            return true;
         }
+        else{
+            rs.close();
+            return false;
+        }
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
+    }
+
+    public List<DivisaoTreino> mostrarTodos() {
+        String sql = "select * from divisaotreino";
+
+        List<DivisaoTreino> divisaoTreinos = new ArrayList<>();
+
+        try (
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql)) {
+
+                while (rs.next()) {
+                    Long id = rs.getLong("idDivisaoTreino");
+                    String nome = rs.getString("nome");
+                    String nomeDetalhado = rs.getString("nomeDetalhado");
+                    java.sql.Date currentDate = rs.getDate("dataCriacaoDivisaoTreino");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+                    java.sql.Date currentDate1 = rs.getDate("dataModificacaoDivisaoTreino");
+                    LocalDate dataModificacao = currentDate1.toLocalDate();
+
+                    DivisaoTreino divisaoTreino = new DivisaoTreino();
+                    divisaoTreino.setId(id);
+                    divisaoTreino.setNome(nome);
+                    divisaoTreino.setNomeDetalhado(nomeDetalhado);
+                    divisaoTreino.setDataCriacao(dataCriacao);
+                    divisaoTreino.setDataModificacao(dataModificacao);
+                    divisaoTreinos.add(divisaoTreino);
+                }
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+        return divisaoTreinos;
+
+    }
+   
+    public boolean alterarNome(String nome, String novoNome) {
+        
+        String sql = "UPDATE divisaotreino  SET nome = ?, dataModificacaoDivisaoTreino = now() WHERE nome LIKE ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1, novoNome);
+        ps.setString(2, nome);
+        ps.execute();
+        ps.close();
         return true;
 
-    }
-
-    public void mostrarTodos() {
-        boolean temJogador = false;
-        for (DivisaoTreino divisoes : divisao) {
-            if (divisoes != null) {
-                System.out.println(divisoes);
-                System.out.println("-------------\n");
-                temJogador = true;
-            }
-        }
-        if (!temJogador) {
-            System.out.println("Não existe divisao cadastrada");
-        }
-    }
-
-    public boolean alterarNome(String nome, String novoNome) {
-        for (DivisaoTreino divisoes : divisao) {
-            if (divisoes != null && divisoes.getNome().equals(nome)) {
-                divisoes.setNome(novoNome);
-                Date dataAtual = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                divisoes.setDataModificacao(sdf.format(dataAtual));
-                return true;
-            }
-        }
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
-
+    }
     }
 
     public DivisaoTreino buscaPorNome(String nome) {
-        for (DivisaoTreino divisoes : divisao) {
-            if (divisoes != null && divisoes.getNome().equals(nome)) {
-                return divisoes;
+    String sql = "SELECT * FROM divisaotreino WHERE nome LIKE ?";
+
+    try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
+        stmt.setString(1, nome);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                Long id = rs.getLong("idDivisaoTreino");
+                String nome1 = rs.getString("nome");
+                String nomeDetalhado = rs.getString("nomeDetalhado");
+                java.sql.Date currentDate = rs.getDate("dataCriacaoDivisaoTreino");
+                LocalDate dataCriacao = currentDate.toLocalDate();
+                java.sql.Date currentDate1 = rs.getDate("dataModificacaoDivisaoTreino");
+                LocalDate dataModificacao = currentDate1.toLocalDate();
+
+                DivisaoTreino divisaoTreino = new DivisaoTreino();
+                divisaoTreino.setId(id);
+                divisaoTreino.setNome(nome1);
+                divisaoTreino.setNomeDetalhado(nomeDetalhado);
+                divisaoTreino.setDataCriacao(dataCriacao);
+                divisaoTreino.setDataModificacao(dataModificacao);
+                return divisaoTreino;
             }
         }
-        return null;
-
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
     }
-    public DivisaoTreino selecionarPorId(Long id) {
-        for (DivisaoTreino divisoes : divisao) {
-            if (divisoes != null && divisoes.getId() == id) {
-                return divisoes;
-            }
-        }
-        return null;
-
-    }
+    return null; // return null if no matching record is found
+}
 
 
     public boolean remover(String nome) {
-        for (int i = 0; i < divisao.length; i++) {
-            if (divisao[i] != null && divisao[i].getNome().equals(nome)) {
-                divisao[i] = null;
-                return true;
-            }
-        }
+        // Delete from academia where id like 3;
+        String sql = "DELETE FROM divisaotreino WHERE nome LIKE ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1,nome);
+        boolean result = ps.execute();
+
+        ps.close();
+        return result;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
-
     }
-
-    private int proximaPosicaoLivre() {
-        for (int i = 0; i < divisao.length; i++) {
-            if (divisao[i] == null) {
-                return i;
-            }
-
-        }
-        return -1;
-
-    }
-
-    public DivisaoTreinoDao() {
-        DivisaoTreino divisao1 = new DivisaoTreino();
-        DivisaoTreino divisao2 = new DivisaoTreino();
-        DivisaoTreino divisao3 = new DivisaoTreino();
-        DivisaoTreino divisao4 = new DivisaoTreino();
-
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
-
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
-
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
-
-        divisao1.setNome("Virginia");
-        divisao1.setNomeDetalhado("Mulher");
-
-        adiciona(divisao1);
-        adiciona(divisao2);
-        adiciona(divisao3);
-        adiciona(divisao4);
-
     }
 }

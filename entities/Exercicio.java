@@ -1,23 +1,21 @@
 package entities;
 
-
-
+import java.time.LocalDate;
 
 public class Exercicio {
-    private static long serial;
     private long id;
     private String nomeExercicio;
     private String descricaoFoto;
     private String area;
-    private String dataCriacao;
-    private String dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public Exercicio() { 
-        id = Exercicio.serial++;
-    }
     public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNomeExercicio() {
@@ -46,19 +44,19 @@ public class Exercicio {
         return area;
     }
 
-    public String getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(String dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public void setDataModificacao(String dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
-    public String getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
@@ -69,6 +67,7 @@ public class Exercicio {
                 ", nomeExercicio='" + nomeExercicio + '\'' +
                 ", descricaoFoto='" + descricaoFoto + '\'' +
                 ", dataCriacao=" + dataCriacao +
+                ", dataModificacao=" + dataModificacao +
                 '}';
     }
 }

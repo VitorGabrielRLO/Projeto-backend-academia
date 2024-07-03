@@ -1,9 +1,8 @@
 package front;
 
 
-import java.util.Scanner;
 import general.*;
-import dao.*;
+import java.util.Scanner;
 
 
 public class MenuAdmin {
@@ -15,62 +14,31 @@ public class MenuAdmin {
     private programaAvaliacaoFisica programaAvaliacaoFisica;
     private programaMensalidadeAluno programaMensalidadeAluno;
     private programaMovFinanceira programaMovFinanceira;
+    private programaMensalidadeVigente programaMensalidadeVigente;
+    private programaPagamentoRecorrente programaPagamentoRecorrente;
     private programaTreino programaTreino;
-    private AcademiaDAO academiaDAO;
-    private AlunoPagamentoDao alunoPagamentoDao;
-    private AvaliacaoFisicaDao  avaliacaoFisicaDao;
-    private DivisaoTreinoDao divisaoTreinoDao;
-    private EntradaAlunoDao entradaAlunoDao;
-    private ExercicioAplicacaoDao exercicioAplicacaoDao;
-    private ExercicioDao exercicioDao;
-    private FichaTreinoDao fichaTreinoDao;
-    private MovFinanceiraDao movFinanceiraDao;
-    private PagamentoRecorrenteDao pagamentoRecorrenteDao;
-    private PessoaDao pessoaDao;
-    private TreinoDao treinoDao;
-    private TreinoAplicacaoDao treinoAplicacaoDao;
     private programaAlunoPagamento programaAlunoPagamento;
-    private MensalidadeAlunoDao mensalidadeAlunoDao;
 
 
 
 
 
 
-
-    public MenuAdmin(AcademiaDAO academiaDAO, AlunoPagamentoDao alunoPagamentoDao, 
-    AvaliacaoFisicaDao avaliacaoFisicaDao, DivisaoTreinoDao divisaoTreinoDao,
-        EntradaAlunoDao entradaAlunoDao,ExercicioAplicacaoDao exercicioAplicacaoDao,
-        ExercicioDao exercicioDao,FichaTreinoDao fichaTreinoDao,MovFinanceiraDao movFinanceiraDao,
-        PagamentoRecorrenteDao pagamentoRecorrenteDao,PessoaDao pessoaDao, 
-        TreinoDao treinoDao, TreinoAplicacaoDao treinoAplicacaoDao, MensalidadeAlunoDao mensalidadeAlunoDao){
-        this.academiaDAO = academiaDAO;
-        this.alunoPagamentoDao= alunoPagamentoDao;
-        this.avaliacaoFisicaDao=avaliacaoFisicaDao ;
-        this.divisaoTreinoDao= divisaoTreinoDao;
-        this.entradaAlunoDao=entradaAlunoDao ;
-        this.exercicioAplicacaoDao= exercicioAplicacaoDao;
-        this.exercicioDao= exercicioDao;
-        this.fichaTreinoDao=fichaTreinoDao ;
-        this.movFinanceiraDao=movFinanceiraDao ;
-        this.pagamentoRecorrenteDao=pagamentoRecorrenteDao ;
-        this.pessoaDao= pessoaDao;
-        this.treinoDao= treinoDao;
-        this.treinoAplicacaoDao= treinoAplicacaoDao;
-        this.pessoaDao = pessoaDao;
-        this.mensalidadeAlunoDao = mensalidadeAlunoDao;
-        
-        this.programaPessoaAdmin = new programaPessoaAdmin(pessoaDao); // Inicializa a instância de programaPessoa
-        this.programaExercicio = new programaExercicio(exercicioDao);
-        this.programaDivisaoTreino = new programaDivisaoTreino(divisaoTreinoDao);
-        this.programaExercicioAplicacao = new programaExercicioAplicacao(exercicioAplicacaoDao);
-        this.programaAcademia = new programaAcademia(academiaDAO);
-        this.programaAvaliacaoFisica = new programaAvaliacaoFisica(avaliacaoFisicaDao, movFinanceiraDao);
-        this.programaMensalidadeAluno = new programaMensalidadeAluno(mensalidadeAlunoDao, movFinanceiraDao);
-        this.programaMovFinanceira = new programaMovFinanceira(movFinanceiraDao);
-        this.programaTreino = new programaTreino(treinoDao);
-        this.programaAlunoPagamento = new programaAlunoPagamento(alunoPagamentoDao, movFinanceiraDao);
+    public MenuAdmin(){
+        this.programaAcademia = new programaAcademia();
+        this.programaPessoaAdmin = new programaPessoaAdmin();
+        this.programaAvaliacaoFisica = new programaAvaliacaoFisica();
+        this.programaMovFinanceira = new programaMovFinanceira();
+        this.programaDivisaoTreino = new programaDivisaoTreino();
+        this.programaExercicio = new programaExercicio();
+        this.programaExercicioAplicacao = new programaExercicioAplicacao();
+        this.programaMensalidadeAluno = new programaMensalidadeAluno();
+        this.programaMensalidadeVigente = new programaMensalidadeVigente();
+        this.programaPagamentoRecorrente = new programaPagamentoRecorrente();
+        this.programaAlunoPagamento = new programaAlunoPagamento();
+        this.programaTreino = new programaTreino();
     }
+
     
     //private Treino treino;
 
@@ -90,6 +58,7 @@ public class MenuAdmin {
             System.out.println("8. Movimentacao financeira");
             System.out.println("9. Planos da Academia");
             System.out.println("10. Pagamento Mensalidade Aluno");
+            System.out.println("11. Pagamento Recorrente");
             System.out.println("12. Sair");
             System.out.print("Selecione a opção desejada: ");
 
@@ -129,14 +98,21 @@ public class MenuAdmin {
                     break;
                 
                 case 9:
-                    programaMensalidadeAluno.mostrarMenu();
+                    programaMensalidadeVigente.mostrarMenu();
                     break;
 
                 case 10:
                     programaAlunoPagamento.mostrarMenu();
                     break;
 
+                case 11:
+                    programaPagamentoRecorrente.mostrarMenu();
+
+                    break;
                 case 12:
+                    programaTreino.mostrarMenu();
+                    break;
+                case 14:
                 // scanner.close();
                 System.out.println("Encerrando o programa...");
                 return;

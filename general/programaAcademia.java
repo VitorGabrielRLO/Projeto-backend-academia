@@ -3,112 +3,101 @@ package general;
 import dao.AcademiaDAO;
 import entities.Academia;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
-public class programaAcademia{
-    private AcademiaDAO AcademiaDAO;
+public class programaAcademia {
+    private AcademiaDAO academiaDAO;
 
-    public programaAcademia(AcademiaDAO AcademiaDAO){
-        this.AcademiaDAO = AcademiaDAO;
+    public programaAcademia() {
+        this.academiaDAO = new AcademiaDAO();
     }
 
     Scanner s = new Scanner(System.in);
 
-    public void mostrarMenu(){
+    public void mostrarMenu() {
         int opcaoUsuario;
 
         do {
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                Academia j = criaAcademia();
+                    Academia academia = criaAcademia();
 
-                    boolean pessoaFoiInserida = AcademiaDAO.adiciona(j);
-                    if (pessoaFoiInserida) {
+                    boolean academiaFoiInserida = academiaDAO.adiciona(academia);
+                    if (academiaFoiInserida) {
                         System.out.println("Academia inserida com sucesso");
                     } else {
-                        System.out.println("Academia nao inserida");
-
+                        System.out.println("Erro ao inserir academia");
                     }
-
                     break;
+
                 case 2:
-                List<Academia> academias = AcademiaDAO.mostrarTodos();
-                for (Academia a : academias) {
-                    System.out.println(a);
-                    
-    
-            }
+                    academiaDAO.mostrarTodasAcademias();
                     break;
-                case 3:
-                    System.out.println("Academia a procurada:");
-                    String procurado = s.nextLine();
-                    System.out.println("Novo nome:");
-                    String novoNome = s.nextLine();
-                    // System.out.println("Novo Endereco: ");
-                    // String novoEndereco = s.nextLine();
-                    if (AcademiaDAO.alterarNome(procurado, novoNome)) {
-                        System.out.println("Academia alterado");
-                        
-                    } else {
-                        System.out.println("Academia não encontrado");
-                    }
 
+                case 3:
+                    System.out.println("Digite o nome da academia a ser alterada:");
+                    String procurado = s.nextLine();
+                    System.out.println("Digite o novo nome:");
+                    String novoNome = s.nextLine();
+
+                    if (academiaDAO.alterarNome(procurado, novoNome)) {
+                        System.out.println("Nome da academia alterado com sucesso");
+                    } else {
+                        System.out.println("Academia não encontrada");
+                    }
                     break;
+
                 case 4:
-                    System.out.println("Academia procurada:");
+                    System.out.println("Digite o nome da academia a ser removida:");
                     String nomeExclusao = s.nextLine();
 
-                    if (AcademiaDAO.remover(nomeExclusao)) {
-                        System.out.println("Academia excluída");
+                    if (academiaDAO.remover(nomeExclusao)) {
+                        System.out.println("Academia excluída com sucesso");
                     } else {
-                        System.out.println("Pessoa não excluída");
+                        System.out.println("Erro ao excluir academia");
                     }
-
                     break;
-                case 5:
-                    System.out.println("5");
 
+                case 5:
+                    System.out.println("Encerrando programa...");
                     break;
 
                 default:
-                    System.out.println("sair");
-
+                    System.out.println("Opção inválida");
                     break;
-
             }
-        }while (opcaoUsuario != 5);
+        } while (opcaoUsuario != 5);
     }
-    
-    private Academia criaAcademia() {
 
-        LocalDate dataCriacao =  LocalDate.now();
-        
-        Academia j = new Academia();
+    private Academia criaAcademia() {
+        LocalDate dataCriacao = LocalDate.now();
+        Academia academia = new Academia();
 
         System.out.print("\nNome: ");
         String nome = s.nextLine();
-        j.setNome(nome);
+        academia.setNome(nome);
+
         System.out.print("\nEndereco: ");
         String endereco = s.nextLine();
-        j.setEndereco(endereco);
-        j.setDataCriacao(dataCriacao);
+        academia.setEndereco(endereco);
 
+        academia.setDataCriacao(dataCriacao);
 
-        return j;
+        return academia;
     }
 
     private int pegaOpcaoUsuario() {
-
+        System.out.println("\n=== Menu ===");
         System.out.println("1 - Cadastrar Academia");
         System.out.println("2 - Mostrar todas as Academias");
         System.out.println("3 - Alterar o nome da Academia");
         System.out.println("4 - Excluir Academia pelo nome");
-        System.out.println("5 - Voltar");
-        System.out.print("Qual sua opcao ?R: ");
-        return Integer.parseInt(s.nextLine());
-
+        System.out.println("5 - Sair");
+        System.out.print("Escolha uma opção: ");
+        
+        int opcao = Integer.parseInt(s.nextLine());
+        System.out.println();
+        return opcao;
     }
-    
 }

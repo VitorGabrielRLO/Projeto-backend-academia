@@ -2,71 +2,23 @@ package front;
 
 import java.util.Scanner;
 
-import dao.AcademiaDAO;
-import dao.AlunoPagamentoDao;
-import dao.AvaliacaoFisicaDao;
-import dao.DivisaoTreinoDao;
-import dao.EntradaAlunoDao;
-import dao.ExercicioAplicacaoDao;
-import dao.ExercicioDao;
-import dao.FichaTreinoDao;
-import dao.MensalidadeAlunoDao;
-import dao.MovFinanceiraDao;
-import dao.PagamentoRecorrenteDao;
 import dao.PessoaDao;
-import dao.TreinoAplicacaoDao;
-import dao.TreinoDao;
+
 
 
 public class Login {
     private MenuAdmin menuAdmin;
     private MenuAluno menuAluno;
-    private AcademiaDAO academiaDAO;
-    private AlunoPagamentoDao alunoPagamentoDao ;
-    private AvaliacaoFisicaDao  avaliacaoFisicaDao ;
-    private DivisaoTreinoDao divisaoTreinoDao ;
-    private EntradaAlunoDao entradaAlunoDao ;
-    private ExercicioAplicacaoDao exercicioAplicacaoDao;
-    private ExercicioDao exercicioDao;
-    private FichaTreinoDao fichaTreinoDao;
-    private MovFinanceiraDao movFinanceiraDao;
-    private PagamentoRecorrenteDao pagamentoRecorrenteDao;
     private PessoaDao pessoaDao;
-    private TreinoDao treinoDao;
-    private TreinoAplicacaoDao treinoAplicacaoDao;
-    private MensalidadeAlunoDao mensalidadeAlunoDao;
-
-
-
-
 
     private MenuProfessor menuProfessor;
 
-    public Login(AcademiaDAO academiaDAO, AlunoPagamentoDao alunoPagamentoDao, 
-    AvaliacaoFisicaDao avaliacaoFisicaDao, DivisaoTreinoDao divisaoTreinoDao,
-        EntradaAlunoDao entradaAlunoDao,ExercicioAplicacaoDao exercicioAplicacaoDao,
-        ExercicioDao exercicioDao,FichaTreinoDao fichaTreinoDao,MovFinanceiraDao movFinanceiraDao,
-        PagamentoRecorrenteDao pagamentoRecorrenteDao,PessoaDao pessoaDao, 
-        TreinoDao treinoDao, TreinoAplicacaoDao treinoAplicacaoDao, MensalidadeAlunoDao mensalidadeAlunoDao){
-        this.academiaDAO = academiaDAO;
-        this.alunoPagamentoDao= alunoPagamentoDao;
-        this.avaliacaoFisicaDao=avaliacaoFisicaDao ;
-        this.divisaoTreinoDao= divisaoTreinoDao;
-        this.entradaAlunoDao=entradaAlunoDao ;
-        this.exercicioAplicacaoDao= exercicioAplicacaoDao;
-        this.exercicioDao= exercicioDao;
-        this.fichaTreinoDao=fichaTreinoDao ;
-        this.movFinanceiraDao=movFinanceiraDao ;
-        this.pagamentoRecorrenteDao=pagamentoRecorrenteDao ;
-        this.pessoaDao= pessoaDao;
-        this.treinoDao= treinoDao;
-        this.treinoAplicacaoDao= treinoAplicacaoDao;
-        this.pessoaDao = pessoaDao;
-        this.mensalidadeAlunoDao = mensalidadeAlunoDao;
-        
-        this.menuAdmin = new MenuAdmin(academiaDAO, alunoPagamentoDao, avaliacaoFisicaDao, divisaoTreinoDao, entradaAlunoDao, exercicioAplicacaoDao, exercicioDao, fichaTreinoDao, movFinanceiraDao, pagamentoRecorrenteDao, pessoaDao, treinoDao, treinoAplicacaoDao, mensalidadeAlunoDao);
-        this.menuProfessor = new MenuProfessor(academiaDAO, alunoPagamentoDao, avaliacaoFisicaDao, divisaoTreinoDao, entradaAlunoDao, exercicioAplicacaoDao, exercicioDao, fichaTreinoDao, movFinanceiraDao, pagamentoRecorrenteDao, pessoaDao, treinoDao, treinoAplicacaoDao, mensalidadeAlunoDao);
-        this.menuAluno = new MenuAluno(academiaDAO, alunoPagamentoDao, avaliacaoFisicaDao, divisaoTreinoDao, entradaAlunoDao, exercicioAplicacaoDao, exercicioDao, fichaTreinoDao, movFinanceiraDao, pagamentoRecorrenteDao, pessoaDao, treinoDao, treinoAplicacaoDao, mensalidadeAlunoDao);
+    public Login(){
+                
+        this.menuAdmin = new MenuAdmin();
+        this.menuProfessor = new MenuProfessor();
+        this.menuAluno = new MenuAluno();
+        this.pessoaDao = new PessoaDao();
     }
 
 

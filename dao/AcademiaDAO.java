@@ -19,7 +19,7 @@ public class AcademiaDAO {
 
     public boolean adiciona(Academia p) {
 
-            String sql = "INSERT INTO ACADEMIA (NOME,ENDERECO,DATACRIACAO) VALUES (?, ?, now())";
+        String sql = "INSERT INTO ACADEMIA (NOME,ENDERECO,DATACRIACAO,DATAMODIFICACAO) VALUES (?, ?, now(),now())";
         PreparedStatement ps = null;
     try
     {
@@ -64,37 +64,43 @@ public class AcademiaDAO {
     }
 
     public List<Academia> mostrarTodos() {
-        String sql = "select * from academia";
-
+        String sql = "SELECT * FROM academia";
+    
         List<Academia> academias = new ArrayList<>();
-
+    
         try (
-                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery(sql)) {
-
-                while (rs.next()) {
-                    Long id = rs.getLong("id");
-                    String nome = rs.getString("nome");
-                    String endereco = rs.getString("endereco");
-                    java.sql.Date currentDate = rs.getDate("dataCriacao");
-                    LocalDate dataCriacao = currentDate.toLocalDate();
-
-                    Academia academia = new Academia();
-                    academia.setNome(nome);
-                    academia.setEndereco(endereco);
-                    academia.setDataCriacao(dataCriacao);
-                    academias.add(academia);
-                }
+            PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                Long id = rs.getLong("id");
+                String nome = rs.getString("nome");
+                String endereco = rs.getString("endereco");
+                java.sql.Date currentDate = rs.getDate("dataCriacao");
+                LocalDate dataCriacao = (currentDate != null) ? currentDate.toLocalDate() : null;
+                java.sql.Date currentDate1 = rs.getDate("dataModificacao");
+                LocalDate dataModificacao = (currentDate1 != null) ? currentDate1.toLocalDate() : null;
+    
+                Academia academia = new Academia();
+                academia.setId(id);
+                academia.setNome(nome);
+                academia.setEndereco(endereco);
+                academia.setDataCriacao(dataCriacao);
+                academia.setDataModificacao(dataModificacao);
+    
+                academias.add(academia);
+            }
         } catch (SQLException e) {
-             throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao buscar todas as academias", e);
         }
+    
         return academias;
-
     }
+    
    
     public boolean alterarNome(String nome, String novoNome) {
         
-        String sql = "UPDATE academia  SET nome = ? WHERE nome LIKE ?";
+        String sql = "UPDATE academia  SET nome = ? ,dataModificacao = now() WHERE nome LIKE ?";
         PreparedStatement ps = null;
     try
     {
@@ -112,54 +118,56 @@ public class AcademiaDAO {
     }
     }
 
-    Academia buscaPorNome(String nome) {
-        // SELECT * FROM academia where nome like 'Leonardo';
-        String sql = "SELECT * FROM academia WHERE nome LIKE ?";
-
-        try (
-                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery(sql)) {
-
-               
-                    Long id = rs.getLong("id");
-                    String nomeAcademia = rs.getString("nome");
-                    String endereco = rs.getString("endereco");
-                    java.sql.Date currentDate = rs.getDate("dataCriacao");
-                    LocalDate dataCriacao = currentDate.toLocalDate();
-
-                    Academia academia = new Academia();
-                    academia.setNome(nomeAcademia);
-                    academia.setEndereco(endereco);
-                    academia.setDataCriacao(dataCriacao);
-                    return academia;
-                
+    public Academia buscaPorId(long id) {
+        String sql = "SELECT * FROM academia WHERE id = ?";
+    
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                String nomeAcademia = rs.getString("nome");
+                String endereco = rs.getString("endereco");
+                java.sql.Date currentDate = rs.getDate("dataCriacao");
+                LocalDate dataCriacao = currentDate.toLocalDate();
+                java.sql.Date currentDate1 = rs.getDate("dataModificacao");
+                LocalDate dataModificacao = currentDate1.toLocalDate();
+    
+                Academia academia = new Academia();
+                academia.setId(id);
+                academia.setNome(nomeAcademia);
+                academia.setEndereco(endereco);
+                academia.setDataCriacao(dataCriacao);
+                academia.setDataModificacao(dataModificacao);
+    
+                return academia;
+            }
         } catch (SQLException e) {
-             throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
-        
-
+    
+        return null; // Retorna null se não encontrar a academia com o ID especificado
     }
-
+    
     public boolean remover(String nome) {
-        // Delete from academia where id like 3;
-        String sql = "DELETE FROM academia WHERE nome LIKE ?";
-        PreparedStatement ps = null;
-    try
-    {
-        ps = Conexao.getConexao().prepareStatement(sql);
-        ps.setString(1,nome);
-        boolean result = ps.execute();
-
-        ps.close();
-        return result;
-
-    }catch (SQLException e)
-    {
-        e.printStackTrace();
-        return false;
+        String sql = "DELETE FROM academia WHERE nome = ?";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setString(1, nome);
+            int rowsAffected = ps.executeUpdate(); // Usamos executeUpdate para DELETE
+    
+            return rowsAffected > 0; // Retorna true se houver linhas afetadas
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+    
+    public void mostrarTodasAcademias() {
+        List<Academia> pagamentos = mostrarTodos();
+        for (Academia pagamento : pagamentos) {
+            System.out.println(pagamento);
+        }
     }
-
 
 
 }

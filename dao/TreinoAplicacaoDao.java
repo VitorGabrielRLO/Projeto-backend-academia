@@ -1,88 +1,158 @@
 package dao;
-import entities.Treino;
+import conection.Conexao;
 import entities.TreinoAplicacao;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 public class TreinoAplicacaoDao {
 
-    TreinoAplicacao[] treinoAplicacao = new TreinoAplicacao[10];
-
     public boolean adiciona(TreinoAplicacao p) {
-        int proximaPosicaoLivre = this.proximaPosicaoLivre();
-        if (proximaPosicaoLivre != -1) {
-            treinoAplicacao[proximaPosicaoLivre] = p;
-            return true;
-        } else {
-            return false;
-        }
+
+        String sql = "INSERT INTO treinoaplicacao (treino, exercicio, exercicioaplicacao, divisaoTreino, dataCriacao, dataModificacao) VALUES (?, ?, ?, ?, now(), NULL)";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setLong(1, p.getTreino().getId());
+        ps.setLong(2, p.getExercicio().getId());
+        ps.setLong(3, p.getExercicioAplicacao().getId());
+        ps.setLong(4, p.getDivisaoTreino().getId());
+        ps.execute();
+        ps.close();
+        return true;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
 
     }
 
     public boolean ehVazio() {
-        for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
-            if (treinoAplicacaos != null) {
-                return false;
-            }
+        String sql = "SELECT count(1) AS quantidade FROM academia";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ResultSet rs = ps.getResultSet();
+        
+        ps.close();
+        if (rs.getInt("quantidade") == 0) {
+            rs.close();
+            return true;
         }
+        else{
+            rs.close();
+            return false;
+        }
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
+    }
+
+    public List<TreinoAplicacao> mostrarTodos() {
+        String sql = "select * from treinoaplicacao";
+
+        List<TreinoAplicacao> treinoAplicacaos = new ArrayList<>();
+
+        try (
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql)) {
+
+                while (rs.next()) {
+                    Long id = rs.getLong("id");
+                    String nome = rs.getString("nome");
+                    String endereco = rs.getString("endereco");
+                    java.sql.Date currentDate = rs.getDate("dataCriacao");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+
+                    TreinoAplicacao treinoAplicacao = new TreinoAplicacao();
+                    treinoAplicacao.setId(id);
+                    treinoAplicacao.setNome(nome);
+                    treinoAplicacao.setEndereco(endereco);
+                    treinoAplicacao.setDataCriacao(dataCriacao);
+                    treinoAplicacaos.add(treinoAplicacao);
+                }
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+        return treinoAplicacaos;
+
+    }
+   
+    public boolean alterarNome(String nome, String novoNome) {
+        
+        String sql = "UPDATE academia  SET nome = ? WHERE nome LIKE ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1, novoNome);
+        ps.setString(2, nome);
+        ps.execute();
+        ps.close();
         return true;
 
-    }
-
-    public void mostrarTodos() {
-        boolean temExercicio = false;
-        for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
-            if (treinoAplicacaos != null) {
-                System.out.println(treinoAplicacaos);
-                System.out.println("-------------\n");
-                temExercicio = true;
-            }
-        }
-        if (!temExercicio) {
-            System.out.println("Não existe pessoa cadastrada");
-        }
-    }
-
-    public boolean alterarTreino(Treino treino, String novoTreino) {
-        for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
-            if (treinoAplicacaos != null && treinoAplicacaos.getTreino().equals(novoTreino)) {
-                treinoAplicacaos.setTreino(treino);
-                return true;
-            }
-        }
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
-
+    }
     }
 
-    @SuppressWarnings("unlikely-arg-type")
-    TreinoAplicacao buscaPorNome(String treino) {
-        for (TreinoAplicacao treinoAplicacaos : treinoAplicacao) {
-            if (treinoAplicacaos != null && treinoAplicacaos.getTreino().equals(treino)) {
-                return treinoAplicacaos;
-            }
+    Academia buscaPorNome(String nome) {
+        // SELECT * FROM academia where nome like 'Leonardo';
+        String sql = "SELECT * FROM academia WHERE nome LIKE ?";
+
+        try (
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql)) {
+
+               
+                    Long id = rs.getLong("id");
+                    String nomeAcademia = rs.getString("nome");
+                    String endereco = rs.getString("endereco");
+                    java.sql.Date currentDate = rs.getDate("dataCriacao");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+
+                    Academia academia = new Academia();
+                    academia.setNome(nomeAcademia);
+                    academia.setEndereco(endereco);
+                    academia.setDataCriacao(dataCriacao);
+                    return academia;
+                
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
         }
-        return null;
+        
 
     }
 
     public boolean remover(String nome) {
-        for (int i = 0; i < treinoAplicacao.length; i++) {
-            if (treinoAplicacao[i] != null && treinoAplicacao[i].getTreino().equals(nome)) {
-                treinoAplicacao[i] = null;
-                return true;
-            }
-        }
+        // Delete from academia where id like 3;
+        String sql = "DELETE FROM academia WHERE nome LIKE ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setString(1,nome);
+        boolean result = ps.execute();
+
+        ps.close();
+        return result;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
-
     }
-
-    private int proximaPosicaoLivre() {
-        for (int i = 0; i < treinoAplicacao.length; i++) {
-            if (treinoAplicacao[i] == null) {
-                return i;
-            }
-
-        }
-        return -1;
-
     }
 
 }

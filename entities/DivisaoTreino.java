@@ -1,23 +1,20 @@
 package entities;
 
+import java.time.LocalDate;
 
 public class DivisaoTreino {
-    private static long serial;
     private long id;
     private String nome;
     private String nomeDetalhado;
-    private String dataCriacao;
-    private String dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public DivisaoTreino() { 
-        id = DivisaoTreino.serial++;
-    }
     public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -37,19 +34,19 @@ public class DivisaoTreino {
         this.nomeDetalhado = nomeDetalhado;
     }
 
-    public String getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(String dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public String getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(String dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

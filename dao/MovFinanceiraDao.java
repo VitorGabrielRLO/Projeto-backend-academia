@@ -1,130 +1,176 @@
 package dao;
 
+import conection.Conexao;
 import entities.MovFinanceira;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MovFinanceiraDao {
     
-    MovFinanceira[] movFinanceira = new MovFinanceira[1000];
-    double grana = 0;
-
     public boolean adiciona(MovFinanceira p) {
-        int proximaPosicaoLivre = this.proximaPosicaoLivre();
-        if (proximaPosicaoLivre != -1) {
-            movFinanceira[proximaPosicaoLivre] = p;
-            return true;
-        } else {
-            return false;
-        }
+
+        String sql = "INSERT INTO MovFinanceira (valor,tipo,descricao, dataCriacaoMovFinanceira, dataModificacaoMovFinanceira) VALUES (?, ?, ?, now(), now())";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setDouble(1, p.getValor());
+        ps.setInt(2, p.getTipo());
+        ps.setString(3, p.getDescricao());
+        ps.execute();
+        ps.close();
+        return true;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
 
     }
 
     public boolean ehVazio() {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
-                return false;
-            }
+        String sql = "SELECT count(1) AS quantidade FROM MovFinanceira";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ResultSet rs = ps.getResultSet();
+        
+        ps.close();
+        if (rs.getInt("quantidade") == 0) {
+            rs.close();
+            return true;
         }
-        return true;
-
-    }
-
-    public void mostrarTodos() {
-        boolean temJogador = false;
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
-                System.out.println(movFinanceiras);
-                System.out.println("-------------\n");
-                temJogador = true;
-            }
+        else{
+            rs.close();
+            return false;
         }
-        if (!temJogador) {
-            System.out.println("Não existe movimentaçao financeira cadastrada");
-        }
-    }
 
-    MovFinanceira buscaPorId(long idBuscado) {
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null && movFinanceiras.getId() == idBuscado) {
-                return movFinanceiras;
-            }
-        }
-        return null;
-
-    }
-
-    public boolean remover(long idBuscado) {
-        for (int i = 0; i < movFinanceira.length; i++) {
-            if (movFinanceira[i] != null && movFinanceira[i].getId() == idBuscado) {
-                movFinanceira[i] = null;
-                return true;
-            }
-        }
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
         return false;
+    }
+    }
+
+    public List<MovFinanceira> mostrarTodos() {
+        String sql = "SELECT * FROM MovFinanceira";
+
+        List<MovFinanceira> movFinanceiras = new ArrayList<>();
+
+        try {
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    Long id = rs.getLong("idMovFinanceira");
+                    double valor = rs.getDouble("valor");
+                    int tipo = rs.getInt("tipo");
+                    String descricao = rs.getString("descricao");
+                    java.sql.Date currentDate = rs.getDate("dataCriacaoMovFinanceira");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+                    java.sql.Date currentDateModify = rs.getDate("dataModificacaoMovFinanceira");
+                    LocalDate dataModificacao = currentDateModify.toLocalDate();
+
+                    MovFinanceira movFinanceira = new MovFinanceira();
+                    movFinanceira.setId(id);
+                    movFinanceira.setValor(valor);
+                    movFinanceira.setTipo(tipo);
+                    movFinanceira.setDescricao(descricao);
+                    movFinanceira.setDataCriacao(dataCriacao);
+                    movFinanceira.setDataModificacao(dataModificacao);
+                    movFinanceiras.add(movFinanceira);
+                }
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+        return movFinanceiras;
+
+    }
+   
+    public boolean remover(long id) {
+        // Delete from academia where id like 3;
+        String sql = "DELETE FROM MovFinanceira WHERE idMovFinanceira = ?";
+        PreparedStatement ps = null;
+    try
+    {
+        ps = Conexao.getConexao().prepareStatement(sql);
+        ps.setLong(1, id);
+        boolean result = ps.execute();
+
+        ps.close();
+        return result;
+
+    }catch (SQLException e)
+    {
+        e.printStackTrace();
+        return false;
+    }
+    }
+
+    public double valorTotal() {
+        String sql = "SELECT * FROM MovFinanceira";
+
+        double valorTotal = 0;
+
+        try {
+                PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    double valor = rs.getDouble("valor");
+
+                    valorTotal += valor;
+                }
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+        return valorTotal;
 
     }
 
-    public void somaTudo(){
-        double soma = 0;
-        for (MovFinanceira movFinanceiras : movFinanceira) {
-            if (movFinanceiras != null) {
-                soma += movFinanceiras.getValor();
+    public List<MovFinanceira> mostrarTodosPorMes(Long ano, Long mes) {
+        String sql = "SELECT * FROM MovFinanceira WHERE YEAR(dataCriacaoMovFinanceira) = ? AND MONTH(dataCriacaoMovFinanceira) = ?";
+        List<MovFinanceira> movFinanceiras = new ArrayList<>();
+
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
+            stmt.setLong(1, ano);
+            stmt.setLong(2, mes);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Long id = rs.getLong("idMovFinanceira");
+                    double valor = rs.getDouble("valor");
+                    int tipo = rs.getInt("tipo");
+                    String descricao = rs.getString("descricao");
+                    java.sql.Date currentDate = rs.getDate("dataCriacaoMovFinanceira");
+                    LocalDate dataCriacao = currentDate.toLocalDate();
+                    java.sql.Date currentDateModify = rs.getDate("dataModificacaoMovFinanceira");
+                    LocalDate dataModificacao = currentDateModify.toLocalDate();
+
+                    MovFinanceira movFinanceira = new MovFinanceira();
+                    movFinanceira.setId(id);
+                    movFinanceira.setValor(valor);
+                    movFinanceira.setTipo(tipo);
+                    movFinanceira.setDescricao(descricao);
+                    movFinanceira.setDataCriacao(dataCriacao);
+                    movFinanceira.setDataModificacao(dataModificacao);
+
+                    movFinanceiras.add(movFinanceira);
+                }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar movimentações financeiras por mês", e);
         }
-        System.out.println(soma);
+
+        return movFinanceiras;
     }
-
-    private int proximaPosicaoLivre() {
-        for (int i = 0; i < movFinanceira.length; i++) {
-            if (movFinanceira[i] == null) {
-                return i;
-            }
-
-        }
-        return -1;
-
-    }
-
-     public void movimentacaoFin(double valor, int tipo){
-        if(tipo == 1){
-            this.grana += valor;
-        }
-        if(tipo == 0){
-            this.grana -= valor;
-        }
-    }
-    /* 
-    public PessoaDao() {
-        Pessoa pessoa1 = new Pessoa();
-        Pessoa pessoa2 = new Pessoa();
-        Pessoa pessoa3 = new Pessoa();
-        Pessoa pessoa4 = new Pessoa();
-
-        pessoa1.setNomePessoa("Virginia");
-        pessoa1.setSexoPessoa("Mulher");
-        pessoa1.setLoginPessoa("Virg");
-        pessoa1.setSenhaPessoa("123");
-
-        pessoa2.setNomePessoa("Maicon");
-        pessoa2.setSexoPessoa("Homem");
-        pessoa2.setLoginPessoa("Maiquim");
-        pessoa2.setSenhaPessoa("321");
-
-        pessoa3.setNomePessoa("James");
-        pessoa3.setSexoPessoa("Homem");
-        pessoa3.setLoginPessoa("Salada");
-        pessoa3.setSenhaPessoa("299");
-
-        pessoa4.setNomePessoa("Louders");
-        pessoa4.setSexoPessoa("Mulher");
-        pessoa4.setLoginPessoa("Lou");
-        pessoa4.setSenhaPessoa("2222");
-
-
-        adiciona(pessoa1);
-        adiciona(pessoa2);
-        adiciona(pessoa3);
-        adiciona(pessoa4);
-
-    }*/
 }
+
+
+

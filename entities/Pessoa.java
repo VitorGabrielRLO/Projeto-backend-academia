@@ -1,26 +1,27 @@
 package entities;
 
+import java.time.LocalDate;
 
 public class Pessoa {
-    private static long serial;
     private long idPessoa;
     private String nomePessoa;
     private String sexoPessoa;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String loginPessoa;
     private String senhaPessoa;
     private int tipoUsuarioPessoa;
-    private String dataCriacao;
-    private String dataModificacaoPessoa;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacaoPessoa;
 
     // Construtor
 
     // Getters e Setters
-    public Pessoa() { 
-        idPessoa = Pessoa.serial++;
-    }
     public long getId() {
         return idPessoa;
+    }
+
+    public void setId(long idPessoa) {
+        this.idPessoa = idPessoa;
     }
 
     public String getNomePessoa() {
@@ -31,12 +32,12 @@ public class Pessoa {
         this.nomePessoa = nome;
     }
 
-    public String getdataCriacao()
+    public LocalDate getdataCriacao()
     {
         return dataCriacao;
     }
 
-    public void setDataCriacao(String dataCriacao)
+    public void setDataCriacao(LocalDate dataCriacao)
     {
         this.dataCriacao = dataCriacao;
     }
@@ -73,19 +74,19 @@ public class Pessoa {
         this.tipoUsuarioPessoa = tipo;
     }
 
-    public String getDataModificacaoPessoa() {
+    public LocalDate getDataModificacaoPessoa() {
         return dataModificacaoPessoa;
     }
 
-    public void setDataModificacaoPessoa(String dataNascimento) {
+    public void setDataModificacaoPessoa(LocalDate dataNascimento) {
         this.dataModificacaoPessoa = dataNascimento;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     

@@ -4,7 +4,6 @@ package entities;
 import java.time.LocalDate;
 
 public class MovFinanceira {
-    private static long serial;
     private long id;
     private double valor;
     private int tipo;
@@ -13,11 +12,11 @@ public class MovFinanceira {
     private LocalDate dataModificacao;
 
     // Getters e Setters
-    public MovFinanceira() { 
-        id = MovFinanceira.serial++;
-    }
     public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getValor() {

@@ -1,21 +1,20 @@
 package entities;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ExercicioAplicacao {
-    private static long serial;
     private long id;
     private String descricao;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public ExercicioAplicacao() { 
-        id = ExercicioAplicacao.serial++;
-    }
     public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setDescricao(String descricao) {
@@ -27,19 +26,19 @@ public class ExercicioAplicacao {
     }
 
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

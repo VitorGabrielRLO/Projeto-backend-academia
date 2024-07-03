@@ -1,74 +1,38 @@
 package front;
 
-import java.util.Scanner;
 import general.*;
-import entities.*;
-import dao.*;
+import java.util.Scanner;
 
 public class MenuProfessor{
 
     private programaAcademia programaAcademia;
     private programaPessoaAdmin programaPessoaAdmin; // Mantém uma única instância
-    private programaExercicio programaExercicio;
-    private programaDivisaoTreino programaDivisaoTreino;
-    private programaExercicioAplicacao programaExercicioAplicacao;
-    private programaAvaliacaoFisica programaAvaliacaoFisica;
-    private programaMensalidadeAluno programaMensalidadeAluno;
-    private programaMovFinanceira programaMovFinanceira;
-    private programaTreino programaTreino;
-    private AcademiaDAO academiaDAO;
-    private AlunoPagamentoDao alunoPagamentoDao;
-    private AvaliacaoFisicaDao  avaliacaoFisicaDao;
-    private DivisaoTreinoDao divisaoTreinoDao;
-    private EntradaAlunoDao entradaAlunoDao;
-    private ExercicioAplicacaoDao exercicioAplicacaoDao;
-    private ExercicioDao exercicioDao;
-    private FichaTreinoDao fichaTreinoDao;
-    private MovFinanceiraDao movFinanceiraDao;
-    private PagamentoRecorrenteDao pagamentoRecorrenteDao;
-    private PessoaDao pessoaDao;
-    private TreinoDao treinoDao;
-    private TreinoAplicacaoDao treinoAplicacaoDao;
-    private programaAlunoPagamento programaAlunoPagamento;
-    private MensalidadeAlunoDao mensalidadeAlunoDao;
-    private ProgramaEntradaAluno programaEntradaAluno;
-    private programaFichaTreino programaFichaTreino;
+    // private programaExercicio programaExercicio;
+    // private programaDivisaoTreino programaDivisaoTreino;
+    // private programaExercicioAplicacao programaExercicioAplicacao;
+    // private programaAvaliacaoFisica programaAvaliacaoFisica;
+    // private programaMensalidadeAluno programaMensalidadeAluno;
+    // private programaMovFinanceira programaMovFinanceira;
+    // private programaTreino programaTreino;
+    // private programaAlunoPagamento programaAlunoPagamento;
+    // private ProgramaEntradaAluno programaEntradaAluno;
+    // private programaFichaTreino programaFichaTreino;
     private programaPessoa programaPessoa;
     
     //private Treino treino;
 
-    public MenuProfessor(AcademiaDAO academiaDAO, AlunoPagamentoDao alunoPagamentoDao, 
-    AvaliacaoFisicaDao avaliacaoFisicaDao, DivisaoTreinoDao divisaoTreinoDao,
-        EntradaAlunoDao entradaAlunoDao,ExercicioAplicacaoDao exercicioAplicacaoDao,
-        ExercicioDao exercicioDao,FichaTreinoDao fichaTreinoDao,MovFinanceiraDao movFinanceiraDao,
-        PagamentoRecorrenteDao pagamentoRecorrenteDao,PessoaDao pessoaDao, 
-        TreinoDao treinoDao, TreinoAplicacaoDao treinoAplicacaoDao, MensalidadeAlunoDao mensalidadeAlunoDao){
-        this.academiaDAO = academiaDAO;
-        this.alunoPagamentoDao= alunoPagamentoDao;
-        this.avaliacaoFisicaDao=avaliacaoFisicaDao ;
-        this.divisaoTreinoDao= divisaoTreinoDao;
-        this.entradaAlunoDao=entradaAlunoDao ;
-        this.exercicioAplicacaoDao= exercicioAplicacaoDao;
-        this.exercicioDao= exercicioDao;
-        this.fichaTreinoDao=fichaTreinoDao ;
-        this.movFinanceiraDao=movFinanceiraDao ;
-        this.pagamentoRecorrenteDao=pagamentoRecorrenteDao ;
-        this.pessoaDao= pessoaDao;
-        this.treinoDao= treinoDao;
-        this.treinoAplicacaoDao= treinoAplicacaoDao;
-        this.pessoaDao = pessoaDao;
-        this.mensalidadeAlunoDao = mensalidadeAlunoDao;
-        
-        this.programaPessoa = new programaPessoa(pessoaDao); // Inicializa a instância de programaPessoa
-        this.programaExercicio = new programaExercicio(exercicioDao);
-        this.programaDivisaoTreino = new programaDivisaoTreino(divisaoTreinoDao);
-        this.programaExercicioAplicacao = new programaExercicioAplicacao(exercicioAplicacaoDao);
-        this.programaAcademia = new programaAcademia(academiaDAO);
-        this.programaAvaliacaoFisica = new programaAvaliacaoFisica(avaliacaoFisicaDao, movFinanceiraDao);
-        this.programaMensalidadeAluno = new programaMensalidadeAluno(mensalidadeAlunoDao, movFinanceiraDao);
-        this.programaMovFinanceira = new programaMovFinanceira(movFinanceiraDao);
-        this.programaTreino = new programaTreino(treinoDao);
-        this.programaAlunoPagamento = new programaAlunoPagamento(alunoPagamentoDao, movFinanceiraDao);
+    public MenuProfessor(){
+       
+        this.programaPessoa = new programaPessoa(); // Inicializa a instância de programaPessoa
+        // this.programaExercicio = new programaExercicio();
+        // this.programaDivisaoTreino = new programaDivisaoTreino();
+        // this.programaExercicioAplicacao = new programaExercicioAplicacao();
+        this.programaAcademia = new programaAcademia();
+        // this.programaAvaliacaoFisica = new programaAvaliacaoFisica();
+        // this.programaMensalidadeAluno = new programaMensalidadeAluno();
+        // this.programaMovFinanceira = new programaMovFinanceira();
+        // this.programaTreino = new programaTreino();
+        // this.programaAlunoPagamento = new programaAlunoPagamento();
     }
     public void menuProfessor(){
     Scanner scanner = new Scanner(System.in);
@@ -92,23 +56,23 @@ public class MenuProfessor{
                     break;
 
                 case 2:
-                    programaExercicio.mostrarMenu(); // Chama o menu de opções do Treino para mostrar exercícios
+                    //programaExercicio.mostrarMenu(); // Chama o menu de opções do Treino para mostrar exercícios
                     break;
 
                 case 3:
-                    programaDivisaoTreino.mostrarMenu();
+                    //programaDivisaoTreino.mostrarMenu();
                     break;
 
                 case 4:
-                    programaExercicioAplicacao.mostrarMenu();
+                    //programaExercicioAplicacao.mostrarMenu();
                     break;
 
                 case 5:
-                    programaAvaliacaoFisica.mostrarMenu();
+                    //programaAvaliacaoFisica.mostrarMenu();
                     break;
                 
                 case 6:
-                    programaMensalidadeAluno.mostrarMenu();
+                    //programaMensalidadeAluno.mostrarMenu();
                     break;
                 case 7:
                     // scanner.close();

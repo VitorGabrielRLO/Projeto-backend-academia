@@ -1,10 +1,9 @@
 package entities;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AvaliacaoFisica {
-    private static long serial;
     private long id;
     private Pessoa pessoa;
     private Treino ultimoTreino;
@@ -12,15 +11,16 @@ public class AvaliacaoFisica {
     private double altura;
     private double imc;
     private double indiceSatisfacao;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Getters e Setters
-    public AvaliacaoFisica() { 
-        id = AvaliacaoFisica.serial++;
-    }
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Pessoa getPessoa() {
@@ -72,19 +72,19 @@ public class AvaliacaoFisica {
         this.indiceSatisfacao = indiceSatisfacao;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -93,8 +93,8 @@ public class AvaliacaoFisica {
     public String toString() {
         return "AvaliacaoFisica{" +
                 "id=" + id +
-                ", pessoa=" + pessoa +
-                ", ultimoTreino=" + ultimoTreino +
+                ", pessoa=" + pessoa.getNomePessoa() +
+                ", ultimoTreino=" + ultimoTreino.getId() +
                 ", peso=" + peso +
                 ", altura=" + altura +
                 ", imc=" + imc +

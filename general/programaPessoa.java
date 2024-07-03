@@ -1,17 +1,14 @@
 package general;
 
-import java.util.Scanner;
-
-import entities.Pessoa;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import dao.PessoaDao;
+import entities.Pessoa;
+import java.time.LocalDate;
+import java.util.Scanner;
 
 public class programaPessoa{
     private PessoaDao PessoaDao;
-    public programaPessoa(PessoaDao PessoaDao){
-        this.PessoaDao = PessoaDao;
+    public programaPessoa(){
+        this.PessoaDao = new PessoaDao();
     }
     Scanner s = new Scanner(System.in);
 
@@ -34,7 +31,7 @@ public class programaPessoa{
 
                     break;
                 case 2:
-                    PessoaDao.mostrarTodos();
+                    PessoaDao.mostrarTodasPessoas();
                     break;
                 case 3:
                     System.out.println("Pessoa a procurada:");
@@ -75,22 +72,25 @@ public class programaPessoa{
     
     private Pessoa criaPessoa() {
         Pessoa j = new Pessoa();
-        Date dataAtual = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDate data = LocalDate.now();
         
         System.out.print("\nNome: ");
-        String nome = s.nextLine();
+        String nome = s.next();
         j.setNomePessoa(nome);
         System.out.print("\nSexo: ");
-        String sexo = s.nextLine();
+        String sexo = s.next();
         j.setSexoPessoa(sexo);
+        System.out.print("\nData Nascimento: ");
+        String dataNascimento1 = s.next();
+        LocalDate dt = LocalDate.parse(dataNascimento1);
+        j.setDataNascimento(dt);
         System.out.print("\nLogin: ");
-        String login = s.nextLine();
+        String login = s.next();
         j.setLoginPessoa(login);
         System.out.print("\nSenha: ");
-        String senha = s.nextLine();
+        String senha = s.next();
         j.setSenhaPessoa(senha);
-        j.setDataCriacao(sdf.format(dataAtual));
+        j.setDataCriacao(data);
         j.setTipoUsuarioPessoa(1);
 
         return j;
@@ -100,9 +100,10 @@ public class programaPessoa{
 
         System.out.println("1 cadastrar");
         System.out.println("2 mostrar todos");
-        System.out.println("3 alterar o nome da pessoa");
-        System.out.println("4 excluir pelo id");
-        System.out.println("5 sair");
+        System.out.println("3 buscar pessoa");
+        System.out.println("4 alterar o nome da pessoa");
+        System.out.println("5 excluir pelo id");
+        System.out.println("6 sair");
         System.out.print("Qual sua opcao ?R: ");
         return Integer.parseInt(s.nextLine());
 

@@ -1,114 +1,128 @@
-package dao; // Definindo qual pacote esta classe pertence
+package dao;
 
-
-import entities.AvaliacaoFisica;
-
+import conection.Conexao;
+import entities.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AvaliacaoFisicaDao {
 
-    AvaliacaoFisica[] avaliacaoFisica = new AvaliacaoFisica[100];
-
     public boolean adiciona(AvaliacaoFisica p) {
-        int proximaPosicaoLivre = this.proximaPosicaoLivre();
-        if (proximaPosicaoLivre != -1) {
-            avaliacaoFisica[proximaPosicaoLivre] = p;
+        String sql = "INSERT INTO avaliacaofisica (pessoa, ultimotreino, peso, altura, imc, indiceSatisfacao, dataCriacaoAvaliacaoFisica, dataModificacaoAvaliacaoFisica) VALUES (?, ?, ?, ?, ?, ?, now(), now())";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setLong(1, p.getPessoa().getId());
+            ps.setLong(2, p.getUltimoTreino().getId());
+            ps.setDouble(3, p.getPeso());
+            ps.setDouble(4, p.getAltura());
+            ps.setDouble(5, p.getIMC());
+            ps.setDouble(6, p.getIndiceSatisfacao());
+            ps.execute();
             return true;
-        } else {
+        } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
-
     }
 
     public boolean ehVazio() {
-        for (AvaliacaoFisica avaliacaoFisicas : avaliacaoFisica) {
-            if (avaliacaoFisicas != null) {
-                return false;
+        String sql = "SELECT count(*) AS quantidade FROM avaliacaofisica";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int quantidade = rs.getInt("quantidade");
+                return quantidade == 0;
             }
-        }
-        return true;
-
-    }
-    public void mostrarTodos() {
-        boolean temExercicio = false;
-        for (AvaliacaoFisica avaliacaoFisicas : avaliacaoFisica) {
-            if (avaliacaoFisicas != null) {
-                System.out.println("ID: " + avaliacaoFisicas.getId());
-                System.out.println("IMC: " + avaliacaoFisicas.getIMC());
-                System.out.println("Indice de satisfacao:" + avaliacaoFisicas.getIndiceSatisfacao());
-                System.out.println("Data de Criação: " + avaliacaoFisicas.getDataCriacao());
-                System.out.println("Data de Modificação: " + avaliacaoFisicas.getDataModificacao());
-                System.out.println("--------------------------");
-                temExercicio = true;
-            }
-        }
-        if (!temExercicio) {
-            System.out.println("Não existem IMCs cadastrados.");
-        }
-    }
-
-
-
-    AvaliacaoFisica buscaPorId(int id) {
-        for (AvaliacaoFisica avaliacaoFisicas : avaliacaoFisica) {
-            if (avaliacaoFisicas != null && avaliacaoFisicas.getId() == id) {
-                return avaliacaoFisicas;
-            }
-        }
-        
-        return null;
-
-    }
-
-    public boolean remover(int id) {
-        for (int i = 0; i < avaliacaoFisica.length; i++) {
-            if (avaliacaoFisica[i] != null && avaliacaoFisica[i].getId() == id) {
-                avaliacaoFisica[i] = null;
-                return true;
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return false;
     }
 
-    private int proximaPosicaoLivre() {
-        for (int i = 0; i < avaliacaoFisica.length; i++) {
-            if (avaliacaoFisica[i] == null) {
-                return i;
+    public List<AvaliacaoFisica> mostrarTodos() {
+        String sql = " SELECT av.*, tr.idTreino, tr.dataInicio, tr.dataTermino, ex.nomeExercicio, p.nomePessoa\n" + //
+                        "FROM avaliacaofisica av\n" + //
+                        "INNER JOIN treino tr ON av.ultimoTreino = tr.idTreino\n" + //
+                        "INNER JOIN exercicio ex ON tr.exercicio = ex.idExercicio\n" + //
+                        "INNER JOIN pessoa p ON av.pessoa = p.idPessoa;";
+    
+        List<AvaliacaoFisica> avaliacoesFisicas = new ArrayList<>();
+    
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+    
+            while (rs.next()) {
+                AvaliacaoFisica avaliacaoFisica = new AvaliacaoFisica();
+    
+                avaliacaoFisica.setId(rs.getLong("idAvaliacaoFisica"));
+                avaliacaoFisica.setPeso(rs.getDouble("peso"));
+                avaliacaoFisica.setAltura(rs.getDouble("altura"));
+                avaliacaoFisica.setIMC(rs.getDouble("imc"));
+                avaliacaoFisica.setIndiceSatisfacao(rs.getDouble("indiceSatisfacao"));
+                avaliacaoFisica.setDataCriacao(rs.getDate("dataCriacaoAvaliacaoFisica").toLocalDate());
+                avaliacaoFisica.setDataModificacao(rs.getDate("dataModificacaoAvaliacaoFisica").toLocalDate());
+    
+                Pessoa pessoa = new Pessoa();
+                pessoa.setNomePessoa(rs.getString("nomePessoa"));
+    
+                avaliacaoFisica.setPessoa(pessoa);
+                Treino treino = new Treino();
+                treino.setId(rs.getLong("idTreino"));
+                avaliacaoFisica.setUltimoTreino(treino);
+                
+    
+                avaliacoesFisicas.add(avaliacaoFisica);
             }
-
+    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao recuperar avaliações físicas do banco de dados", e);
         }
-        return -1;
-
+    
+        return avaliacoesFisicas;
     }
 
-    // public ExercicioAplicacaoDao() {
-    //     ExercicioAplicacao exApli1 = new ExercicioAplicacao();
-    //     ExercicioAplicacao exApli2 = new ExercicioAplicacao();
-    //     ExercicioAplicacao exApli3 = new ExercicioAplicacao();
-    //     ExercicioAplicacao exApli4 = new ExercicioAplicacao();
+    public boolean alterarNome(long id, String novoNome) {
+        String sql = "UPDATE avaliacaofisica SET nome = ? WHERE idAvaliacaoFisica = ?";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setString(1, novoNome);
+            ps.setLong(2, id);
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public AvaliacaoFisica buscaPorNome(String nomePessoa) {
+        String sql = "SELECT * FROM avaliacaofisica af INNER JOIN pessoa p ON af.pessoa = p.idPessoa WHERE p.nomePessoa = ?";
+        try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
+            stmt.setString(1, nomePessoa);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                AvaliacaoFisica avaliacaoFisica = new AvaliacaoFisica();
+                avaliacaoFisica.setId(rs.getLong("idAvaliacaoFisica"));
+                // Defina os demais atributos da avaliação física aqui
+                return avaliacaoFisica;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar avaliação física por nome de pessoa", e);
+        }
+        return null;
+    }
 
 
-    //     exApli1.setDescricao("4x12");
-    //     exApli1.setDataCriacao(new Date());
-    //     exApli1.setDataModificacao(new Date());
-
-
-    //     exApli2.setDescricao("4x10");
-    //     exApli2.setDataCriacao(new Date());
-    //     exApli2.setDataModificacao(new Date());
-
-
-    //     exApli3.setDescricao("5x5");
-    //     exApli3.setDataCriacao(new Date());
-    //     exApli3.setDataModificacao(new Date());
-
-
-    //     exApli4.setDescricao("123");
-    //     exApli4.setDataCriacao(new Date());
-    //     exApli4.setDataModificacao(new Date());
-
-    //     adiciona(exApli1);
-    //     adiciona(exApli2);
-    //     adiciona(exApli3);
-    //     adiciona(exApli4);
-    // }
+    public boolean remover(long id) {
+        String sql = "DELETE FROM avaliacaofisica WHERE idAvaliacaoFisica = ?";
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setLong(1, id);
+            boolean result = ps.execute();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
