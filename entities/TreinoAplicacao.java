@@ -1,6 +1,5 @@
 package entities;
 
-
 import java.util.Date;
 
 public class TreinoAplicacao {
@@ -12,10 +11,25 @@ public class TreinoAplicacao {
     private Date dataCriacao;
     private Date dataModificacao;
 
+    // Construtores
+    public TreinoAplicacao() {
+    }
+
+    public TreinoAplicacao(long id, Treino treino, Exercicio exercicio, ExercicioAplicacao exercicioAplicacao, DivisaoTreino divisaoTreino, Date dataCriacao, Date dataModificacao) {
+        this.id = id;
+        this.treino = treino;
+        this.exercicio = exercicio;
+        this.exercicioAplicacao = exercicioAplicacao;
+        this.divisaoTreino = divisaoTreino;
+        this.dataCriacao = dataCriacao;
+        this.dataModificacao = dataModificacao;
+    }
+
     // Getters e Setters
     public long getId() {
         return id;
     }
+    
     public void setId(long id) {
         this.id = id;
     }
@@ -68,17 +82,10 @@ public class TreinoAplicacao {
         this.dataModificacao = dataModificacao;
     }
 
-    
     @Override
     public String toString() {
-        return "TreinoAplicacao{" +
-                "id=" + id +
-                ", treino=" + treino +
-                ", exercicio=" + exercicio +
-                ", exercicioAplicacao=" + exercicioAplicacao +
-                ", divisaoTreino=" + divisaoTreino +
-                ", dataCriacao=" + dataCriacao +
-                ", dataModificacao=" + dataModificacao +
-                '}';
+        return  "\n"+ exercicio.getNomeExercicio() + 
+                "    " + exercicioAplicacao.getDescricao() +
+                "\n\n";
     }
 }

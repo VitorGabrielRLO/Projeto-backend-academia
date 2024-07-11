@@ -98,7 +98,10 @@ public class AlunoPagamento {
         return "AlunoPagamento{" +
                 "id=" + id +
                 ", aluno=" + aluno.getNomePessoa() +
+                ", plano=" + plano.getPlano() +
                 ", modalidade=" + modalidade +
+                ", data pagamento=" + dataPagamento +
+                ", data vencimento=" + vencimento +
                 ", dataCriacao=" + dataCriacao +
                 ", dataModificacao=" + dataModificacao +
                 '}';

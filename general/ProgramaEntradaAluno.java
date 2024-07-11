@@ -1,80 +1,64 @@
 package general;
 
-import dao.EntradaAlunoDao;
+import dao.*;
 import entities.EntradaAluno;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class ProgramaEntradaAluno{
-    private EntradaAlunoDao EntradaAlunoDao;
-    public ProgramaEntradaAluno(){
-        this.EntradaAlunoDao= new EntradaAlunoDao();
+public class ProgramaEntradaAluno {
+    private EntradaAlunoDao entradaAlunoDao;
+    private AlunoPagamentoDao alunoPagamentoDao;
+    private Scanner s;
+
+    public ProgramaEntradaAluno() {
+        this.entradaAlunoDao = new EntradaAlunoDao();
+        this.alunoPagamentoDao = new AlunoPagamentoDao();
+        this.s = new Scanner(System.in);
     }
 
-    Scanner s = new Scanner(System.in);
-
-    public void mostrarMenu(){
-
-
+    public void mostrarMenu() {
         int opcaoUsuario;
 
         do {
             opcaoUsuario = pegaOpcaoUsuario();
             switch (opcaoUsuario) {
                 case 1:
-                    EntradaAluno j = entradaAluno();
+                    EntradaAluno entrada = entradaAluno();
+                    LocalDate agora = LocalDate.now();
 
-                    boolean entradaAluno = EntradaAlunoDao.adiciona(j);
-                    if (entradaAluno) {
-                        System.out.println("\nEntrada registrada\n");
+                    if (agora.isBefore(alunoPagamentoDao.buscaPorNomePessoa(entrada.getNome()))) {
+                        entradaAlunoDao.adiciona(entrada);
+                        System.out.println("\nEntrada registrada, Bem vindo\n");
                     } else {
-                        System.out.println("\nEntrada nao inserida\n");
-
+                        System.out.println("\nEntrada não inserida, consulte a recepção\n");
                     }
-
                     break;
                 case 2:
-                  EntradaAlunoDao.mostrarTodos();
+                    entradaAlunoDao.mostrarTodos();
                     break;
                 case 3:
-                System.out.println("Saindo...\n");
-
-
+                    System.out.println("Saindo do menu de entrada de alunos...\n");
                     break;
-
                 default:
-                    System.out.println("sair");
-
-                    return;
-
+                    System.out.println("Opção inválida.");
+                    break;
             }
-        }while (opcaoUsuario != 5);
+        } while (opcaoUsuario != 3);
     }
-    
+
     private EntradaAluno entradaAluno() {
-        EntradaAluno j = new EntradaAluno();
+        EntradaAluno entrada = new EntradaAluno();
         System.out.print("\nNome: ");
         String nome = s.nextLine();
-        j.setNome(nome);
-        LocalDate dataAtual = LocalDate.now();
-        System.out.print("\nSeja Bem vindo ");
-        j.setDataHora(dataAtual);
-
-        return j;
+        entrada.setNome(nome);
+        return entrada;
     }
 
     private int pegaOpcaoUsuario() {
-
-        int sla;
-
-        System.out.println("1 - Entrar");
-        System.out.println("2 - Mostrar Registro");
-        System.out.println("3 - sair");
-        System.out.print("Qual sua opcao ?R: ");
-        
-        
-        sla = s.nextInt();
-        return sla;
+        System.out.println("1 - Registrar entrada");
+        System.out.println("2 - Mostrar todos os registros de entrada");
+        System.out.println("3 - Sair");
+        System.out.print("Qual sua opção? R: ");
+        return Integer.parseInt(s.nextLine());
     }
-    
 }

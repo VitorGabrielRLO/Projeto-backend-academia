@@ -1,13 +1,11 @@
 package front;
 
-
 import general.*;
 import java.util.Scanner;
 
-
 public class MenuAdmin {
     private programaAcademia programaAcademia;
-    private programaPessoaAdmin programaPessoaAdmin; // Mantém uma única instância
+    private programaPessoaAdmin programaPessoaAdmin;
     private programaExercicio programaExercicio;
     private programaDivisaoTreino programaDivisaoTreino;
     private programaExercicioAplicacao programaExercicioAplicacao;
@@ -18,13 +16,10 @@ public class MenuAdmin {
     private programaPagamentoRecorrente programaPagamentoRecorrente;
     private programaTreino programaTreino;
     private programaAlunoPagamento programaAlunoPagamento;
+    private programaTreinoAplicacao programaTreinoAplicacao;
+    private programaFichaTreino programaFichaTreino;
 
-
-
-
-
-
-    public MenuAdmin(){
+    public MenuAdmin() {
         this.programaAcademia = new programaAcademia();
         this.programaPessoaAdmin = new programaPessoaAdmin();
         this.programaAvaliacaoFisica = new programaAvaliacaoFisica();
@@ -37,12 +32,9 @@ public class MenuAdmin {
         this.programaPagamentoRecorrente = new programaPagamentoRecorrente();
         this.programaAlunoPagamento = new programaAlunoPagamento();
         this.programaTreino = new programaTreino();
+        this.programaTreinoAplicacao = new programaTreinoAplicacao();
+        this.programaFichaTreino = new programaFichaTreino();
     }
-
-    
-    //private Treino treino;
-
-    //Main -> Login -> Menus -> programas
 
     public void selecioneOpc() {
         Scanner scanner = new Scanner(System.in);
@@ -51,15 +43,18 @@ public class MenuAdmin {
             System.out.println("1. Acessar Área da Academia");
             System.out.println("2. Acessar informações do Aluno");
             System.out.println("3. Mostrar Exercícios");
-            System.out.println("4. Mostrar divisoes de treino");
-            System.out.println("5. Acessar Exercicios Aplicação");
-            System.out.println("6. Avaliacao Fisica");
+            System.out.println("4. Mostrar divisões de treino");
+            System.out.println("5. Acessar Exercícios Aplicação");
+            System.out.println("6. Avaliação Física");
             System.out.println("7. Mensalidade");
-            System.out.println("8. Movimentacao financeira");
+            System.out.println("8. Movimentação financeira");
             System.out.println("9. Planos da Academia");
             System.out.println("10. Pagamento Mensalidade Aluno");
             System.out.println("11. Pagamento Recorrente");
-            System.out.println("12. Sair");
+            System.out.println("12. Acessar Treino");
+            System.out.println("13. Acessar Treino Aplicação");
+            System.out.println("14. Acessar Ficha treino");
+            System.out.println("15. Sair");
             System.out.print("Selecione a opção desejada: ");
 
             int opc = scanner.nextInt();
@@ -67,56 +62,50 @@ public class MenuAdmin {
 
             switch (opc) {
                 case 1:
-                    programaAcademia.mostrarMenu(); // Chama o método para adicionar informações
+                    programaAcademia.mostrarMenu();
                     break;
-
                 case 2:
-                    programaPessoaAdmin.mostrarMenu(); // Chama o método para exibir o menu de programaPessoa
+                    programaPessoaAdmin.mostrarMenu();
                     break;
-
                 case 3:
-                    programaExercicio.mostrarMenu(); // Chama o menu de opções do Treino para mostrar exercícios
+                    programaExercicio.mostrarMenu();
                     break;
-
                 case 4:
                     programaDivisaoTreino.mostrarMenu();
                     break;
-
                 case 5:
                     programaExercicioAplicacao.mostrarMenu();
-                break;
-                
+                    break;
                 case 6:
                     programaAvaliacaoFisica.mostrarMenu();
                     break;
                 case 7:
                     programaMensalidadeAluno.mostrarMenu();
                     break;
-
                 case 8:
                     programaMovFinanceira.mostrarMenu();
                     break;
-                
                 case 9:
                     programaMensalidadeVigente.mostrarMenu();
                     break;
-
                 case 10:
                     programaAlunoPagamento.mostrarMenu();
                     break;
-
                 case 11:
                     programaPagamentoRecorrente.mostrarMenu();
-
                     break;
                 case 12:
                     programaTreino.mostrarMenu();
                     break;
+                case 13:
+                    programaTreinoAplicacao.mostrarMenu();
+                    break;
                 case 14:
-                // scanner.close();
-                System.out.println("Encerrando o programa...");
-                return;
-
+                    programaFichaTreino.mostrarMenu();
+                    break;
+                case 15:
+                    System.out.println("Encerrando o programa...");
+                    return;
                 default:
                     System.out.println("Opção inválida.");
                     break;

@@ -1,8 +1,5 @@
 package dao;
 
-import conection.Conexao;
-import entities.PagamentoRecorrente;
-import entities.Pessoa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +7,10 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import conection.Conexao;
+import entities.PagamentoRecorrente;
+import entities.Pessoa;
 
 public class PagamentoRecorrenteDao {
 

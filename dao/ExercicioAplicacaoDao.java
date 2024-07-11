@@ -86,4 +86,29 @@ public class ExercicioAplicacaoDao {
             return false;
         }
     }
+    public ExercicioAplicacao buscaPorId(Long idBuscado) {
+    String sql = "SELECT * FROM exercicioaplicacao WHERE idExercicioaplicacao LIKE ?";
+
+    try (PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql)) {
+        stmt.setLong(1, idBuscado);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                Long id = rs.getLong("idExercicioAplicacao");
+                String descricao = rs.getString("descricao");
+                LocalDate dataCriacao = rs.getDate("dataCriacaoExercicioAplicacao").toLocalDate();
+                LocalDate dataModificacao = rs.getDate("dataModificacaoExercicioAplicacao").toLocalDate();
+
+                ExercicioAplicacao exercicioAplicacao = new ExercicioAplicacao();
+                exercicioAplicacao.setId(id);
+                exercicioAplicacao.setDescricao(descricao);
+                exercicioAplicacao.setDataCriacao(dataCriacao);
+                exercicioAplicacao.setDataModificacao(dataModificacao);
+                return exercicioAplicacao;
+            }
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+    return null; // return null if no matching record is found
+}
 }

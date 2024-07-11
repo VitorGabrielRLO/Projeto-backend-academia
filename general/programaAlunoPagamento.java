@@ -1,10 +1,17 @@
 package general;
 
-import dao.*;
-import entities.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
+
+import dao.AlunoPagamentoDao;
+import dao.MensalidadeAlunoDao;
+import dao.MovFinanceiraDao;
+import dao.PessoaDao;
+import entities.AlunoPagamento;
+import entities.MensalidadeAluno;
+import entities.MovFinanceira;
+import entities.Pessoa;
 
 public class programaAlunoPagamento {
     private AlunoPagamentoDao alunoPagamentoDao;
@@ -43,12 +50,15 @@ public class programaAlunoPagamento {
                     mostrarTodosPagamentos();
                     break;
                 case 3:
-                    // Implementar atualização de pagamento se necessário
+                    System.out.println("Escolha um aluno pelo nome:");
+                    long idEscolhido = s.nextLong();
+                    if(mensalidadeAlunoDao.remover(idEscolhido)){
+                        System.out.println("Excluido com sucesso");
+                    }else{
+                        System.out.println("Houve algum erro");
+                    }
                     break;
                 case 4:
-                    // Implementar exclusão de pagamento se necessário
-                    break;
-                case 5:
                     System.out.println("Saindo...");
                     break;
                 default:
@@ -78,12 +88,24 @@ public class programaAlunoPagamento {
         System.out.print("Escolha um plano pelo ID: ");
         Long planoId = Long.parseLong(s.nextLine());
         MensalidadeAluno plano = mensalidadeAlunoDao.buscaPorId(planoId);
+        
         if (plano == null) {
             System.out.println("Plano não encontrado!");
             return null;
         }
-
-        LocalDate dataVencimento = dataAtual.plusDays(30);
+        LocalDate dataVencimento = dataAtual;
+        if(plano.getPlano().equals("Mensal")){
+            dataVencimento = dataAtual.plusDays(30);
+        }
+        if(plano.getPlano().equals("Trimestral")){
+            dataVencimento = dataAtual.plusDays(90);
+        }
+        if(plano.getPlano().equals("Semestral")){
+            dataVencimento = dataAtual.plusDays(180);
+        }
+        if(plano.getPlano().equals("Anual")){
+            dataVencimento = dataAtual.plusDays(360);
+        }
         pagamento.setValor(plano.getValor());
         pagamento.setPlano(plano);
         pagamento.setVencimento(dataVencimento);
@@ -110,9 +132,8 @@ public class programaAlunoPagamento {
     private int pegaOpcaoUsuario() {
         System.out.println("1 - Registrar Pagamento");
         System.out.println("2 - Mostrar todos os pagamentos");
-        System.out.println("3 - Atualizar pagamento");
-        System.out.println("4 - Excluir pagamento pelo ID");
-        System.out.println("5 - Voltar");
+        System.out.println("3 - Excluir pagamento pelo ID");
+        System.out.println("4 - Voltar");
         System.out.print("Qual sua opção? R: ");
         return Integer.parseInt(s.nextLine());
     }

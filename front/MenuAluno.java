@@ -5,15 +5,14 @@ import java.util.Scanner;
 
 public class MenuAluno {
     private ProgramaEntradaAluno programaEntradaAluno;
+    private Scanner scanner;
 
-
-    public MenuAluno(){
+    public MenuAluno() {
         this.programaEntradaAluno = new ProgramaEntradaAluno();
+        this.scanner = new Scanner(System.in);
     }
-    
 
     public void selecioneOpc() {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("");
             System.out.println("1. Entrada");
@@ -26,17 +25,18 @@ public class MenuAluno {
 
             switch (opc) {
                 case 1:
-                    programaEntradaAluno.mostrarMenu(); 
+                    programaEntradaAluno.mostrarMenu();
                     break;
 
                 case 2:
-                    //programaFichaTreino.mostrarMenu();
+                    // Caso a ficha de treino não seja necessária, este case pode ser removido
+                    System.out.println("Funcionalidade de Ficha Treino ainda não implementada.");
                     break;
-                
+
                 case 3:
                     System.out.println("Saindo...");
+                    scanner.close(); // Fechar o scanner ao sair
                     return;
-
 
                 default:
                     System.out.println("Opção inválida.");
